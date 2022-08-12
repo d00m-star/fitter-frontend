@@ -34,14 +34,10 @@ function App() {
 
   return (
     <div className="">
-      <Routes>
-        <Route path="/" element={<Home setUser={setUser} />} />
-      </Routes>
+      <NavBar />
       <main>
-        <header>
-          <NavBar />
-        </header>
         <Routes>
+          <Route path="/" element={<Home setUser={setUser} />} />
           <Route
             path="/feed"
             element={<Feed feats={feats} setFeats={setFeats} />}
