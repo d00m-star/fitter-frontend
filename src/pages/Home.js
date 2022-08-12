@@ -32,7 +32,7 @@ const Home = ({ user, setUser }) => {
   }
 
   const updateSignUpValues = (e) => {
-    setSignUpValues({ ...loginValues, [e.target.id]: e.target.value })
+    setSignUpValues({ ...signUpValues, [e.target.name]: e.target.value })
   }
 
   const submitSignUp = async (e) => {
@@ -56,7 +56,7 @@ const Home = ({ user, setUser }) => {
   }
 
   const updateLoginValues = (e) => {
-    setLoginValues({ ...loginValues, [e.target.id]: e.target.value })
+    setLoginValues({ ...loginValues, [e.target.name]: e.target.value })
     ///////////////////////// consider name here instead of id
   }
 
