@@ -1,9 +1,4 @@
-const SignUpForm = ({
-  signUpValues,
-  updateSignUpValues,
-  submitSignUp,
-  passwordMatch
-}) => {
+const SignUpForm = ({ signUpValues, updateSignUpValues, submitSignUp }) => {
   return (
     <div>
       <form onSubmit={submitSignUp}>
@@ -58,8 +53,7 @@ const SignUpForm = ({
             !signUpValues.username ||
             !signUpValues.email ||
             !signUpValues.password ||
-            !signUpValues.confirmPassword ||
-            !passwordMatch
+            !signUpValues.confirmPassword
           }
         >
           Sign Up

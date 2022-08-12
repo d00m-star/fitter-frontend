@@ -8,8 +8,16 @@ import LoginForm from '../components/LoginForm'
 const Home = ({ user, setUser }) => {
   const [signUp, setSignUp] = useState(true)
   const [upOrIn, setUpOrIn] = useState('Login')
-  const [signUpValues, setSignUpValues] = useState({ name: '', age: '', location: '', username: '', email: '', password: '', confirmPassword: '' })
-  const [passwordMatch, setPasswordMatch] = useState(false)
+  const [signUpValues, setSignUpValues] = useState({
+    name: '',
+    age: '',
+    location: '',
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  })
+  // const [passwordMatch, setPasswordMatch] = useState(false)
   const [loginValues, setLoginValues] = useState({ username: '', password: '' })
   let navigate = useNavigate()
 
@@ -27,15 +35,22 @@ const Home = ({ user, setUser }) => {
     setSignUpValues({ ...loginValues, [e.target.id]: e.target.value })
   }
 
-  const doPasswordsMatch = () => {
-    if (signUpValues.password !== '' && signUpValues.password === signUpValues.confirmPassword) setPasswordMatch(true)
-  }
-
-  const submitSignUp = (e) => {
+  const submitSignUp = async (e) => {
     e.preventDefault()
-    if (passwordMatch) {
+    if (
+      signUpValues.password !== '' &&
+      signUpValues.password === signUpValues.confirmPassword
+    ) {
       await SignUpUser(signUpValues)
-      setSignUpValues({ name: '', age: '', location: '', username: '', email: '', password: '', confirmPassword: '' })
+      setSignUpValues({
+        name: '',
+        age: '',
+        location: '',
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      })
       setSignUp(false)
     }
   }
@@ -57,7 +72,12 @@ const Home = ({ user, setUser }) => {
     <div>
       <main>
         {signUp ? (
-          <SignUpForm signUpValues={signUpValues} updateSignUpValues={updateSignUpValues} submitSignUp={submitSignUp} passwordMatch={passwordMatch} />
+          <SignUpForm
+            signUpValues={signUpValues}
+            updateSignUpValues={updateSignUpValues}
+            submitSignUp={submitSignUp}
+            // passwordMatch={passwordMatch}
+          />
         ) : (
           <LoginForm
             loginValues={loginValues}
@@ -66,7 +86,9 @@ const Home = ({ user, setUser }) => {
           />
         )}
       </main>
-      <button disabled={user} onClick={changeUpOrIn}>{upOrIn}</button>
+      <button disabled={user} onClick={changeUpOrIn}>
+        {upOrIn}
+      </button>
     </div>
   )
 }
