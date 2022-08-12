@@ -16,7 +16,7 @@ const LoginForm = ({ loginValues, updateLoginValues, submitLogin }) => {
         />
         <button
           type="submit"
-          disabled={!signUpValues.username || !signUpValues.password}
+          disabled={!loginValues.username || !loginValues.password}
         >
           Login
         </button>
