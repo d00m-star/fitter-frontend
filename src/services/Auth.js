@@ -9,7 +9,7 @@ return res.data
   }
 }
 
-export const Login = async (data) => {
+export const LoginUser = async (data) => {
   try {
 const res = await Client.post('/user/login', data)
 localStorage.setItem('token', res.data.token)
