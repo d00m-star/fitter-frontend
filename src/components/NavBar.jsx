@@ -1,40 +1,46 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const NavBar = ({ user, logout }) => {
-  if (user) {
-    forUser = (
-      <nav className="navbar">
-        {/* add logo icon */}
-        <Link to="">
-          <img src="" alt="logo" />
-          LOGO
-        </Link>
+  return (
+    <nav className="navbar">
+      {/* add logo icon */}
+      <Link to="">
+        <img src="" alt="logo" />
+        LOGO
+      </Link>
+      <div className="nav-links">
         <div>
           {/* add feed/home, logout icon */}
-          <Link to="/home">
+          <NavLink
+            to="/home"
+            className={({ isActive }) => (isActive ? 'active' : undefined)}
+          >
             <img src="" alt="feed" />
             FEED
-          </Link>
-          <Link to="/" onClick={logout}>
+          </NavLink>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? 'active' : undefined)}
+            onClick={logout}
+          >
             <img src="" alt="logout" />
             LOGOUT
-          </Link>
+          </NavLink>
         </div>
         <div>
           {/* add profpic icon */}
-          <Link to="">
+          <NavLink
+            to=""
+            className={({ isActive }) => (isActive ? 'active' : undefined)}
+          >
             <img src="" alt="logo" />
-          </Link>
+          </NavLink>
           <h3>Hi, {user.name} </h3>
         </div>
-      </nav>
-    )
-  }
-
-  const forPublic = <nav></nav>
-
-  return <header>{user ? forUser : forPublic}</header>
+      </div>
+    </nav>
+  )
 }
 
 export default NavBar
