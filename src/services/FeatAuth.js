@@ -1,10 +1,9 @@
 import Client from './api'
 
-export const getFeats = async () => {
+export const GetFeats = async () => {
   try {
     const response = await Client.get('/feats')
-    localStorage.setItem('token', response.data.token)
-    return setFeats(response.data)
+    return response.data
   } catch (e) {
     throw e
   }
