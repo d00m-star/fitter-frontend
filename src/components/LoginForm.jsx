@@ -1,7 +1,7 @@
 const LoginForm = ({ loginValues, updateLoginValues, submitLogin }) => {
   return (
     <div>
-      <form onSubmit={submitLogin}>
+      <form onSubmit={(e) => submitLogin(e)}>
         <input
           name="username"
           value={loginValues.username}
