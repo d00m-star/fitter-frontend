@@ -1,16 +1,20 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { getFeats } from '../services/FeatAuth'
+import { GetFeats } from '../services/FeatAuth'
 import FeatCard from '../components/FeatCard'
 import FeatForm from '../components/FeatForm'
 
 const Feed = ({ feats, setFeats }) => {
   let navigate = useNavigate
 
-  let [formDisplay, setFormDisplay] = useState(null)
+  const [formDisplay, setFormDisplay] = useState('none')
 
   useEffect(() => {
-    getFeats()
+    const handleFeats = async () => {
+      const data = await GetFeats()
+      setFeats(data)
+    }
+    handleFeats()
   }, [])
 
   const showFeat = (feat) => {
@@ -18,7 +22,7 @@ const Feed = ({ feats, setFeats }) => {
   }
 
   const displayCreateFeat = () => {
-    formDisplay === null ? setFormDisplay() : setFormDisplay(null)
+    formDisplay === 'none' ? setFormDisplay('flex') : setFormDisplay('none')
   }
 
   return (
