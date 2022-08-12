@@ -49,9 +49,10 @@ const Home = ({ setUser }) => {
     <div>
       <main>
         {signUp ? (
-          <SignUpForm updateSignUpValues={updateSignUpValues} submitSignUp={submitSignUp} />
+          <SignUpForm signUpValues={signUpValues} updateSignUpValues={updateSignUpValues} submitSignUp={submitSignUp} />
         ) : (
           <LoginForm
+            loginValues={loginValues}
             updateLoginValues={updateLoginValues}
             submitLogin={submitLogin}
           />
