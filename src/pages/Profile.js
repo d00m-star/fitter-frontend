@@ -10,8 +10,10 @@ const Profile = ({ feats, user }) => {
   const [passwordFormValues, setPasswordFormValues] = useState({
     oldPassword: '',
     newPassword: '',
-    confirmNewPassword: ''
+    confirmNewPassword: '',
+    username: user.username
   })
+  const [success, setSuccess] = useState('')
   const [infoDisplay, setInfoDisplay] = useState('flex')
   const [passwordFormDisplay, setPasswordFormDisplay] = useState('none')
 
@@ -43,8 +45,19 @@ const Profile = ({ feats, user }) => {
     })
   }
 
-  const submitNewPassword = (e) => {
+  const submitNewPassword = async (e) => {
     e.preventDefault()
+    const res = await ChangePassword(passwordFormValues)
+    setSuccess(res.msg)
+    setPasswordFormValues({
+      ...passwordFormValues,
+      oldPassword: '',
+      newPassword: '',
+      confirmNewPassword: ''
+    })
+    setPasswordEditing(false)
+    setInfoDisplay('flex')
+    setPasswordFormDisplay('none')
   }
 
   return (
@@ -97,8 +110,8 @@ const Profile = ({ feats, user }) => {
         <button onClick={renderPasswordEditing}>Change Password</button>
       </section>
       <section id="user-feats">
-        {userFeats?.map((userFeat) => (
-          <FeatCard />
+        {userFeats?.map((feat) => (
+          <FeatCard feat={feat} key={feat.id} />
         ))}
       </section>
     </main>
