@@ -64,7 +64,7 @@ const SignUpForm = ({ signUpValues, updateSignUpValues, submitSignUp }) => {
           placeholder="Minimum 8 characters"
           value={signUpValues.password}
           onInput={updateSignUpValues}
-          minLength={8}
+          minLength="8"
           required
         />
 

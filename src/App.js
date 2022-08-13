@@ -43,7 +43,10 @@ function App() {
             path="/profile"
             element={<Profile user={user} feats={feats} />}
           />
-          <Route path="/commentdeets" element={<CommentDetails />} />
+          <Route
+            path="/commentdeets/:comment_id"
+            element={<CommentDetails />}
+          />
           <Route path="/featdeets" element={<FeatDetails />} />
         </Routes>
       </main>

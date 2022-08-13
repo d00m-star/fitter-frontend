@@ -1,4 +1,9 @@
-const CommentCard = ({ getComments, editComments, deleteComments }) => {
+const CommentCard = ({
+  getComments,
+  editComments,
+  deleteComments,
+  comment
+}) => {
   return (
     <div className="comment-card">
       <h3>{comment.username}</h3>

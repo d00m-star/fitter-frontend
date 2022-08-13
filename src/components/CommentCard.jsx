@@ -1,4 +1,9 @@
-const CommentCard = () => {
+import { useNavigate } from "react-router-dom"
+
+const CommentCard = ({comment}) => {
+  const toCommentDetails = (comment) => {
+    navigate(`/commentdeets/${comment.id}`)
+  }
   return ( <div className='comment-list'>
     { comments.map((comment) => (
       <div className='comment-card' key={comment.id}>
