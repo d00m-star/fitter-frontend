@@ -50,7 +50,7 @@ const Home = ({ user, setUser }) => {
         password: '',
         confirmPassword: ''
       })
-      setSignUp(false)
+      changeUpOrIn()
     }
   }
 
