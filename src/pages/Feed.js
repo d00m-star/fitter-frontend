@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { GetFeats } from '../services/FeatReq'
+import { GetFeats, PostFeat } from '../services/FeatReq'
 import FeatCard from '../components/FeatCard'
 import FeatForm from '../components/FeatForm'
 
@@ -9,14 +9,14 @@ const Feed = ({ feats, setFeats }) => {
 
   const [formDisplay, setFormDisplay] = useState('none')
   const [active, setActive] = useState(false)
-
-  useEffect(() => {
-    const handleFeats = async () => {
-      const data = await GetFeats()
-      setFeats(data)
-    }
-    handleFeats()
-  }, [])
+  const [featFormValues, setFeatFormValues] = useState({
+    type: '',
+    bodyPart: '',
+    intensity: 0,
+    description: '',
+    image: ''
+  })
+  const [emoji, setEmoji] = useState('')
 
   const showFeat = (feat) => {
     navigate(`/feats/${feat.id}`)
@@ -26,15 +26,6 @@ const Feed = ({ feats, setFeats }) => {
     formDisplay === 'none' ? setFormDisplay('flex') : setFormDisplay('none')
     !active ? setActive(true) : setActive(false)
   }
-
-  const [featFormValues, setFeatFormValues] = useState({
-    type: '',
-    bodyPart: '',
-    intensity: 0,
-    description: '',
-    image: ''
-  })
-  const [emoji, setEmoji] = useState('')
 
   const updateFeatFormValues = (e) => {
     e.target.id === 'intensity'
@@ -68,7 +59,18 @@ const Feed = ({ feats, setFeats }) => {
 
   const submitFeatForm = async (e) => {
     e.preventDefault()
+    const data = await PostFeat()
+    setFeats(data)
+    setFormDisplay('none')
   }
+
+  useEffect(() => {
+    const handleFeats = async () => {
+      const data = await GetFeats()
+      setFeats(data)
+    }
+    handleFeats()
+  }, [])
 
   return (
     <div>
