@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { SignUpUser, LoginUser } from '../services/Auth'
+import { SignUpUser, LoginUser } from '../services/AuthReq'
 
 import SignUpForm from '../components/SignUpForm'
 import LoginForm from '../components/LoginForm'

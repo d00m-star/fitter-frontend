@@ -7,7 +7,8 @@ import Feed from './pages/Feed'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
 import './App.css'
-import { CheckSession } from './services/Auth'
+import { CheckSession } from './services/AuthReq'
+
 function App() {
   const [user, setUser] = useState(null)
   const [feats, setFeats] = useState(null)

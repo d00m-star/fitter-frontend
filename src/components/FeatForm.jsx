@@ -1,51 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
 
-const FeatForm = ({ displayCreateFeat }) => {
-  // { featFormValues, updateFeatFormValues, submitFeatForm }
-  const [featFormValues, setFeatFormValues] = useState({
-    type: '',
-    bodyPart: '',
-    intensity: 0,
-    description: '',
-    image: ''
-  })
-  const [emoji, setEmoji] = useState('')
-
-  const updateFeatFormValues = (e) => {
-    e.target.id === 'intensity'
-      ? setFeatFormValues({
-          ...featFormValues,
-          [e.target.id]: Number(e.target.value)
-        })
-      : setFeatFormValues({ ...featFormValues, [e.target.id]: e.target.value })
-    switch (featFormValues.intensity) {
-      case 0:
-        setEmoji('a')
-        break
-      case 1:
-        setEmoji('b')
-        break
-      case 2:
-        setEmoji('c')
-        break
-      case 3:
-        setEmoji('d')
-        break
-      case 4:
-        setEmoji('e')
-        break
-      case 5:
-        setEmoji('f')
-        break
-      default:
-    }
-  }
-
-  const submitFeatForm = async (e) => {
-    e.preventDefault()
-  }
-
+const FeatForm = ({
+  displayCreateFeat,
+  featFormValues,
+  updateFeatFormValues,
+  submitFeatForm,
+  emoji
+}) => {
   return (
     <div>
       <h1>FeatForm</h1>
