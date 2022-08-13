@@ -36,7 +36,7 @@ const Feed = ({ feats, setFeats }) => {
       </div>
       <button onClick={displayCreateFeat}>Create Feat</button>
       <div style={{ display: `${formDisplay}` }}>
-        <FeatForm />
+        <FeatForm displayCreateFeat={displayCreateFeat} />
       </div>
     </div>
   )

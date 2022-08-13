@@ -9,7 +9,6 @@ const NavBar = ({ user, logout }) => {
           {/* add logo icon */}
           <Link to="/feed">
             <img src="" alt="logo" />
-            LOGO
           </Link>
           <div className="nav-links">
             <div>
@@ -19,7 +18,6 @@ const NavBar = ({ user, logout }) => {
                 className={({ isActive }) => (isActive ? 'active' : undefined)}
               >
                 <img src="" alt="feed" />
-                FEED
               </NavLink>
               <NavLink
                 to="/"
@@ -27,7 +25,6 @@ const NavBar = ({ user, logout }) => {
                 onClick={logout}
               >
                 <img src="" alt="logout" />
-                LOGOUT
               </NavLink>
             </div>
             <div>
