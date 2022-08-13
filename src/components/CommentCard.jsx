@@ -1,4 +1,3 @@
-
 const CommentCard = () => {
   return ( <div className='comment-list'>
     { comments.map((comment) => (
