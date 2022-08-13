@@ -17,7 +17,6 @@ const Home = ({ user, setUser }) => {
     password: '',
     confirmPassword: ''
   })
-  // const [passwordMatch, setPasswordMatch] = useState(false)
   const [loginValues, setLoginValues] = useState({ username: '', password: '' })
   let navigate = useNavigate()
 
@@ -57,7 +56,6 @@ const Home = ({ user, setUser }) => {
 
   const updateLoginValues = (e) => {
     setLoginValues({ ...loginValues, [e.target.name]: e.target.value })
-    ///////////////////////// consider name here instead of id
   }
 
   const submitLogin = async (e) => {
@@ -76,7 +74,6 @@ const Home = ({ user, setUser }) => {
             signUpValues={signUpValues}
             updateSignUpValues={updateSignUpValues}
             submitSignUp={submitSignUp}
-            // passwordMatch={passwordMatch}
           />
         ) : (
           <LoginForm
