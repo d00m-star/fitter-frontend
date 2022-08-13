@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { ChangePassword } from '../services/AuthReq'
 
 import FeatCard from '../components/FeatCard'
+import FeatForm from '../components/FeatForm'
 
 const Profile = ({ feats, user }) => {
   const [userFeats, setUserFeats] = useState(null)
@@ -13,18 +14,18 @@ const Profile = ({ feats, user }) => {
     confirmNewPassword: '',
     username: user.username
   })
-  const [success, setSuccess] = useState('')
+  const [success, setSuccess] = useState('') // consider use case for this
   const [infoDisplay, setInfoDisplay] = useState('flex')
   const [passwordFormDisplay, setPasswordFormDisplay] = useState('none')
-
-  useEffect(() => {
-    if (feats) {
-      const getUserFeats = feats.filter((feat) => feat.userId === user.id)
-      setUserFeats(getUserFeats)
-    } else {
-      setUserFeats('Share a Feat!')
-    }
-  }, [])
+  const [featFormDisplay, setFeatFormDisplay] = useState('none')
+  const [featFormValues, setFeatFormValues] = useState({
+    type: '',
+    bodyPart: '',
+    intensity: 0,
+    description: '',
+    image: ''
+  })
+  const [emoji, setEmoji] = useState('')
 
   const renderPasswordEditing = () => {
     if (!passwordEditing) {
@@ -59,6 +60,55 @@ const Profile = ({ feats, user }) => {
     setInfoDisplay('flex')
     setPasswordFormDisplay('none')
   }
+
+  const toggleFeatFormDisplay = () => {
+    featFormDisplay === 'none'
+      ? setFeatFormDisplay('flex')
+      : setFeatFormDisplay('none')
+  }
+
+  const updateFeatFormValues = (e) => {
+    e.target.id === 'intensity'
+      ? setFeatFormValues({
+          ...featFormValues,
+          [e.target.id]: Number(e.target.value)
+        })
+      : setFeatFormValues({ ...featFormValues, [e.target.id]: e.target.value })
+    switch (featFormValues.intensity) {
+      case 0:
+        setEmoji('a')
+        break
+      case 1:
+        setEmoji('b')
+        break
+      case 2:
+        setEmoji('c')
+        break
+      case 3:
+        setEmoji('d')
+        break
+      case 4:
+        setEmoji('e')
+        break
+      case 5:
+        setEmoji('f')
+        break
+      default:
+    }
+  }
+
+  const submitFeatForm = async (e) => {
+    e.preventDefault()
+  }
+
+  useEffect(() => {
+    if (feats) {
+      const getUserFeats = feats.filter((feat) => feat.userId === user.id)
+      setUserFeats(getUserFeats)
+    } else {
+      setUserFeats('Share a Feat!')
+    }
+  }, [])
 
   return (
     <main>
@@ -110,6 +160,9 @@ const Profile = ({ feats, user }) => {
         <button onClick={renderPasswordEditing}>Change Password</button>
       </section>
       <section id="user-feats">
+        <button onClick={toggleFeatFormDisplay}>Share Feat!</button>
+        <h1 style={{ display: `${featFormDisplay}` }}>this works</h1>
+        {/* <FeatForm style={{ display: `${featFormDisplay}` }} /> */}
         {userFeats?.map((feat) => (
           <FeatCard feat={feat} key={feat.id} />
         ))}

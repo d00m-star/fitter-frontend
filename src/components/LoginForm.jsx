@@ -2,13 +2,19 @@ const LoginForm = ({ loginValues, updateLoginValues, submitLogin }) => {
   return (
     <div>
       <form onSubmit={(e) => submitLogin(e)}>
+        <label htmlFor="login-username">Username</label>
         <input
+          type="text"
+          id="login-username"
           name="username"
           value={loginValues.username}
           onInput={updateLoginValues}
           required
         />
+        <label htmlFor="login-password">Username</label>
         <input
+          type="password"
+          id="login-password"
           name="password"
           value={loginValues.password}
           onInput={updateLoginValues}
