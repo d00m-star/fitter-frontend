@@ -1,4 +1,13 @@
+import { useState } from "react"
+
 const CommentForm = () => {
+
+  const [comments, setComments] = useState({})
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    
+  }
+
 
   return (
     <div className="comment-form-container">
