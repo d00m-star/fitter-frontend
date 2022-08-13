@@ -8,6 +8,7 @@ const Feed = ({ feats, setFeats }) => {
   let navigate = useNavigate
 
   const [formDisplay, setFormDisplay] = useState('none')
+  const [active, setActive] = useState(false)
 
   useEffect(() => {
     const handleFeats = async () => {
@@ -23,6 +24,7 @@ const Feed = ({ feats, setFeats }) => {
 
   const displayCreateFeat = () => {
     formDisplay === 'none' ? setFormDisplay('flex') : setFormDisplay('none')
+    !active ? setActive(true) : setActive(false)
   }
 
   return (
@@ -34,7 +36,9 @@ const Feed = ({ feats, setFeats }) => {
           </div>
         ))}
       </div>
-      <button onClick={displayCreateFeat}>Create Feat</button>
+      <button onClick={displayCreateFeat} disabled={active}>
+        Create Feat
+      </button>
       <div style={{ display: `${formDisplay}` }}>
         <FeatForm displayCreateFeat={displayCreateFeat} />
       </div>
