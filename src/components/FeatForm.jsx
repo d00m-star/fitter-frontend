@@ -1,25 +1,35 @@
 import React from 'react'
 import { useState } from 'react'
 
-const [featValues, setFeatValues] = useState({
-  type: '',
-  bodyPart: '',
-  intensity: '',
-  description: '',
-  image: ''
-})
+const FeatForm = ({ displayCreateFeat }) => {
+  // { featFormValues, updateFeatFormValues, submitFeatForm }
+  const [featFormValues, setFeatFormValues] = useState({
+    type: '',
+    bodyPart: '',
+    intensity: 0,
+    description: '',
+    image: ''
+  })
 
-const submitFeatForm = async () => {
-  e.preventDefault()
-}
+  const updateFeatFormValues = (e) => {
+    setFeatFormValues({ ...featFormValues, [e.target.id]: e.target.value })
+  }
 
-const FeatForm = ({ featValues }) => {
+  const submitFeatForm = async (e) => {
+    e.preventDefault()
+  }
+
   return (
     <div>
       <h1>FeatForm</h1>
       <form onSubmit={submitFeatForm}>
         <label htmlFor="type">Type:</label>
-        <select name="type" id="type" value={featValues.type}>
+        <select
+          name="type"
+          id="type"
+          value={featFormValues.type}
+          onChange={updateFeatFormValues}
+        >
           <option value="" disabled hidden>
             {' '}
           </option>
@@ -31,7 +41,12 @@ const FeatForm = ({ featValues }) => {
         </select>
 
         <label htmlFor="bodyPart">Body Part:</label>
-        <select name="bodyPart" id="bodyPart" value={featValues.bodyPart}>
+        <select
+          name="bodyPart"
+          id="bodyPart"
+          value={featFormValues.bodyPart}
+          onChange={updateFeatFormValues}
+        >
           <option value="" disabled hidden>
             {' '}
           </option>
@@ -47,7 +62,14 @@ const FeatForm = ({ featValues }) => {
         </select>
 
         <label htmlFor="intensity">Intensity:</label>
-        <input type="range" min={0} max={5} value={featValues.intensity} />
+        <input
+          type="range"
+          min="0"
+          max="5"
+          step="1"
+          value={featFormValues.intensity}
+          onChange={updateFeatFormValues}
+        />
 
         <label htmlFor="description">Description:</label>
         <textarea
@@ -55,12 +77,14 @@ const FeatForm = ({ featValues }) => {
           cols="30"
           rows="10"
           placeholder="Please describe the workout in more detail"
-          value={featValues.desctiption}
+          value={featFormValues.desctiption}
+          onChange={updateFeatFormValues}
         ></textarea>
 
         <label htmlFor="image"></label>
 
-        <button>Post Feat</button>
+        <button type="summit">Post Feat</button>
+        <button onClick={displayCreateFeat}>Nevermind!</button>
       </form>
     </div>
   )
