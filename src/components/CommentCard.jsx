@@ -1,9 +1,16 @@
-// const CommentCard = ({ comments, editComment, deleteComment }) => {
-//   return (
-//     <div className="comment-card">
-//       <h3>{.name}</h3>
-//       <h5>{.description}</h5>
-//     </div>
-//   )
-// }
-// export default CommentCard
+
+const CommentCard = () => {
+  return ( <div className='comment-list'>
+    { comments.map((comment) => (
+      <div className='comment-card' key={comment.id}>
+        <h4>{comment.username}</h4>
+        <h2>{comment.description}</h2>
+        <button onClick={() => showComment(comment)}>Update</button>
+      </div>
+      ) 
+    )}
+  </div>
+  )
+}
+export default CommentCard
+

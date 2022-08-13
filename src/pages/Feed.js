@@ -1,30 +1,43 @@
-import { useEffect } from 'react'
-import axios from 'axios'
-import FeatCard from '../components/FeatCard'
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { GetFeats } from '../services/FeatAuth'
+import FeatCard from '../components/FeatCard'
+import FeatForm from '../components/FeatForm'
 
 const Feed = ({ feats, setFeats }) => {
   let navigate = useNavigate
 
+  const [formDisplay, setFormDisplay] = useState('none')
+
   useEffect(() => {
-    const getFeats = async () => {
-      const response = await axios.get('/feats')
-      setFeats(response.data) // UPDATE
+    const handleFeats = async () => {
+      const data = await GetFeats()
+      setFeats(data)
     }
-    getFeats()
+    handleFeats()
   }, [])
 
   const showFeat = (feat) => {
     navigate(`/feats/${feat.id}`)
   }
 
+  const displayCreateFeat = () => {
+    formDisplay === 'none' ? setFormDisplay('flex') : setFormDisplay('none')
+  }
+
   return (
-    <div className="feat-grid">
-      {feats?.map((feat) => (
-        <div key={feat.id} onClick={() => showFeat(feat)}>
-          <FeatCard feat={feat} />
-        </div>
-      ))}
+    <div>
+      <div className="feat-grid">
+        {feats?.map((feat) => (
+          <div key={feat.id} onClick={() => showFeat(feat)}>
+            <FeatCard feat={feat} />
+          </div>
+        ))}
+      </div>
+      <button onClick={displayCreateFeat}>Create Feat</button>
+      <div style={{ display: `${formDisplay}` }}>
+        <FeatForm />
+      </div>
     </div>
   )
 }
