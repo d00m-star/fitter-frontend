@@ -10,9 +10,36 @@ const FeatForm = ({ displayCreateFeat }) => {
     description: '',
     image: ''
   })
+  const [emoji, setEmoji] = useState('')
 
   const updateFeatFormValues = (e) => {
-    setFeatFormValues({ ...featFormValues, [e.target.id]: e.target.value })
+    e.target.id === 'intensity'
+      ? setFeatFormValues({
+          ...featFormValues,
+          [e.target.id]: Number(e.target.value)
+        })
+      : setFeatFormValues({ ...featFormValues, [e.target.id]: e.target.value })
+    switch (featFormValues.intensity) {
+      case 0:
+        setEmoji('a')
+        break
+      case 1:
+        setEmoji('b')
+        break
+      case 2:
+        setEmoji('c')
+        break
+      case 3:
+        setEmoji('d')
+        break
+      case 4:
+        setEmoji('e')
+        break
+      case 5:
+        setEmoji('f')
+        break
+      default:
+    }
   }
 
   const submitFeatForm = async (e) => {
@@ -64,12 +91,14 @@ const FeatForm = ({ displayCreateFeat }) => {
         <label htmlFor="intensity">Intensity:</label>
         <input
           type="range"
+          id="intensity"
           min="0"
           max="5"
           step="1"
           value={featFormValues.intensity}
           onChange={updateFeatFormValues}
         />
+        <label htmlFor="intensity">{emoji}</label>
 
         <label htmlFor="description">Description:</label>
         <textarea
