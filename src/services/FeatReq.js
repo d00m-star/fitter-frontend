@@ -8,3 +8,12 @@ export const GetFeats = async () => {
     throw e
   }
 }
+
+export const PostFeat = async (data) => {
+  try {
+    const response = await Client.post('/feats/create', data)
+    return response.data
+  } catch (e) {
+    throw e
+  }
+}
