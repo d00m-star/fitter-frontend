@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { ChangePassword } from '../services/Auth'
+import { ChangePassword } from '../services/AuthReq'
 
 import FeatCard from '../components/FeatCard'
 
