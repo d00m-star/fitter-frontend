@@ -35,7 +35,7 @@ const NavBar = ({ user, logout }) => {
               >
                 <img src="" alt="profile" />
               </NavLink>
-              <h3>Hi, {user.name} </h3>
+              <h3>Hi, {user.username} </h3>
             </div>
           </div>
         </nav>
