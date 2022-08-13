@@ -39,7 +39,10 @@ function App() {
             path="/feed"
             element={<Feed feats={feats} setFeats={setFeats} />}
           />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/profile"
+            element={<Profile user={user} feats={feats} />}
+          />
           <Route path="/commentdeets" element={<CommentDetails />} />
           <Route path="/featdeets" element={<FeatDetails />} />
         </Routes>

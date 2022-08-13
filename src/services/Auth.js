@@ -27,3 +27,12 @@ export const CheckSession = async () => {
     throw e
   }
 }
+
+export const ChangePassword = async (data) => {
+  try {
+    const res = await Client.put('/user/profile', data)
+    return res.data
+  } catch (e) {
+    throw e
+  }
+}
