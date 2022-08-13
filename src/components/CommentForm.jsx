@@ -1,8 +1,25 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
-const CommentForm = () => {
+const CommentForm = ({ feat, user, comment }) => {
 
-  const [comments, setComments] = useState({})
+  let navigate = useNavigate()
+  const [editing, setEditing] = useState(false)
+  const [formDisplay, setFormDisplay] = useState('none')
+  const [newComment, setNewComment] = useState({ 
+    description: '', 
+    userId: user.id, 
+    featId: feat.id 
+  })
+
+  const renderForm = () => {
+    if (formDisplay === 'none') {
+      setFormDisplay('flex')
+    } else {
+      setFormDisplay('none')    }
+    // editing && setComment({...comment, description: comment.description})  
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     
@@ -35,3 +52,4 @@ const CommentForm = () => {
 }
 
 export default CommentForm
+
