@@ -40,7 +40,7 @@ const SignUpForm = ({ signUpValues, updateSignUpValues, submitSignUp }) => {
           type="text"
           id="username"
           name="username"
-          placeholder="2313308004"
+          placeholder="two31three30eight004"
           value={signUpValues.username}
           onInput={updateSignUpValues}
           required
