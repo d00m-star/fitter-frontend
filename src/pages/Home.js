@@ -5,9 +5,9 @@ import { SignUpUser, LoginUser } from '../services/AuthReq'
 import SignUpForm from '../components/SignUpForm'
 import LoginForm from '../components/LoginForm'
 
-const Home = ({ user, setUser }) => {
-  const [signUp, setSignUp] = useState(true)
-  const [upOrIn, setUpOrIn] = useState('Login')
+const Home = ({ user, setUser, signUp, setSignUp, upOrIn, setUpOrIn }) => {
+  // const [signUp, setSignUp] = useState(true)
+  // const [upOrIn, setUpOrIn] = useState('Login')
   const [signUpValues, setSignUpValues] = useState({
     name: '',
     age: '',

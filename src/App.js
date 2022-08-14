@@ -15,11 +15,15 @@ function App() {
   const [user, setUser] = useState(null)
   const [feats, setFeats] = useState(null)
   // const [comments, setComments] = useState([])
+  const [signUp, setSignUp] = useState(true)
+  const [upOrIn, setUpOrIn] = useState('Login')
 
   const logout = () => {
     setUser(null)
     setFeats(null)
     localStorage.clear()
+    setSignUp(false)
+    setUpOrIn('Sign Up')
   }
 
   const checkToken = async () => {
@@ -37,7 +41,18 @@ function App() {
       <NavBar user={user} logout={logout} />
       <main>
         <Routes>
-          <Route path="/" element={<Home setUser={setUser} />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                setUser={setUser}
+                signUp={signUp}
+                upOrIn={upOrIn}
+                setSignUp={setSignUp}
+                setUpOrIn={setUpOrIn}
+              />
+            }
+          />
           <Route
             path="/feed"
             element={<Feed feats={feats} setFeats={setFeats} />}
