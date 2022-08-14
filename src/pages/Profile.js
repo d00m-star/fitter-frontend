@@ -161,7 +161,7 @@ const Profile = ({ feats, user }) => {
       </section>
       <section id="user-feats">
         <button onClick={toggleFeatFormDisplay}>Share Feat!</button>
-        <h1 style={{ display: `${featFormDisplay}` }}>this works</h1>
+        {/* <h1 style={{ display: `${featFormDisplay}` }}>this works</h1> */}
         {/* <FeatForm style={{ display: `${featFormDisplay}` }} /> */}
         {userFeats?.map((feat) => (
           <FeatCard feat={feat} key={feat.id} />

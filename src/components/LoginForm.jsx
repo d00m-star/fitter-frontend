@@ -11,7 +11,7 @@ const LoginForm = ({ loginValues, updateLoginValues, submitLogin }) => {
           onInput={updateLoginValues}
           required
         />
-        <label htmlFor="login-password">Username</label>
+        <label htmlFor="login-password">Password</label>
         <input
           type="password"
           id="login-password"
