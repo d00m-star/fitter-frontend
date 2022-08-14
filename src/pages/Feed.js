@@ -13,7 +13,9 @@ const Feed = ({
   updateFeatFormValues,
   displayCreateFeat,
   submitFeatForm,
-  emoji
+  emoji,
+  reRender,
+  setReRender
 }) => {
   let navigate = useNavigate
 
@@ -27,12 +29,13 @@ const Feed = ({
       setFeats(data)
     }
     handleFeats()
-  }, [submitFeatForm])
+    setReRender(false)
+  }, [reRender])
 
   return (
     <div>
       <div className="feat-grid">
-        {feats?.map((feat) => (
+        {feats?.reverse().map((feat) => (
           <div key={feat.id} onClick={() => showFeat(feat)}>
             <FeatCard feat={feat} />
           </div>
