@@ -14,7 +14,9 @@ const Profile = ({
   updateFeatFormValues,
   displayCreateFeat,
   submitFeatForm,
-  emoji
+  emoji,
+  reRender,
+  setReRender
 }) => {
   const [userFeats, setUserFeats] = useState(null)
   const [passwordEditing, setPasswordEditing] = useState(false)
@@ -69,7 +71,8 @@ const Profile = ({
     } else {
       setUserFeats('Share a Feat!')
     }
-  }, [])
+    setReRender(false)
+  }, [reRender])
 
   return (
     <main>
@@ -124,7 +127,7 @@ const Profile = ({
         <button onClick={displayCreateFeat} disabled={active}>
           Share Feat!
         </button>
-        <h1 style={{ display: `${featFormDisplay}` }}>this works</h1>
+        {/* <h1 style={{ display: `${featFormDisplay}` }}>this works</h1> */}
         <FeatForm
           style={{ display: `${featFormDisplay}` }}
           displayCreateFeat={displayCreateFeat}
