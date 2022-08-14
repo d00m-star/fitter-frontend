@@ -59,7 +59,7 @@ const Feed = ({ feats, setFeats }) => {
 
   const submitFeatForm = async (e) => {
     e.preventDefault()
-    const data = await PostFeat()
+    const data = await PostFeat(featFormValues)
     setFeats(data)
     setFormDisplay('none')
   }
@@ -70,7 +70,7 @@ const Feed = ({ feats, setFeats }) => {
       setFeats(data)
     }
     handleFeats()
-  }, [])
+  }, [submitFeatForm])
 
   return (
     <div>
