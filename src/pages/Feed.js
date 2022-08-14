@@ -4,64 +4,21 @@ import { GetFeats, PostFeat } from '../services/FeatReq'
 import FeatCard from '../components/FeatCard'
 import FeatForm from '../components/FeatForm'
 
-const Feed = ({ feats, setFeats }) => {
+const Feed = ({
+  feats,
+  setFeats,
+  active,
+  featFormValues,
+  featFormDisplay,
+  updateFeatFormValues,
+  displayCreateFeat,
+  submitFeatForm,
+  emoji
+}) => {
   let navigate = useNavigate
-
-  const [formDisplay, setFormDisplay] = useState('none')
-  const [active, setActive] = useState(false)
-  const [featFormValues, setFeatFormValues] = useState({
-    type: '',
-    bodyPart: '',
-    intensity: 0,
-    description: '',
-    image: ''
-  })
-  const [emoji, setEmoji] = useState('')
 
   const showFeat = (feat) => {
     navigate(`/feats/${feat.id}`)
-  }
-
-  const displayCreateFeat = () => {
-    formDisplay === 'none' ? setFormDisplay('flex') : setFormDisplay('none')
-    !active ? setActive(true) : setActive(false)
-  }
-
-  const updateFeatFormValues = (e) => {
-    e.target.id === 'intensity'
-      ? setFeatFormValues({
-          ...featFormValues,
-          [e.target.id]: Number(e.target.value)
-        })
-      : setFeatFormValues({ ...featFormValues, [e.target.id]: e.target.value })
-    switch (featFormValues.intensity) {
-      case 0:
-        setEmoji('a')
-        break
-      case 1:
-        setEmoji('b')
-        break
-      case 2:
-        setEmoji('c')
-        break
-      case 3:
-        setEmoji('d')
-        break
-      case 4:
-        setEmoji('e')
-        break
-      case 5:
-        setEmoji('f')
-        break
-      default:
-    }
-  }
-
-  const submitFeatForm = async (e) => {
-    e.preventDefault()
-    const data = await PostFeat(featFormValues)
-    setFeats(data)
-    setFormDisplay('none')
   }
 
   useEffect(() => {
@@ -84,7 +41,7 @@ const Feed = ({ feats, setFeats }) => {
       <button className="btn" onClick={displayCreateFeat} disabled={active}>
         Create Feat
       </button>
-      <div style={{ display: `${formDisplay}` }}>
+      <div style={{ display: `${featFormDisplay}` }}>
         <FeatForm
           displayCreateFeat={displayCreateFeat}
           featFormValues={featFormValues}
