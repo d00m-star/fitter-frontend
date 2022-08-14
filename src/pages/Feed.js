@@ -81,7 +81,7 @@ const Feed = ({ feats, setFeats }) => {
           </div>
         ))}
       </div>
-      <button onClick={displayCreateFeat} disabled={active}>
+      <button className="btn" onClick={displayCreateFeat} disabled={active}>
         Create Feat
       </button>
       <div style={{ display: `${formDisplay}` }}>
