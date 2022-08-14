@@ -24,7 +24,8 @@ function App() {
     bodyPart: '',
     intensity: 0,
     description: '',
-    image: ''
+    image: '',
+    userId: ''
   })
   const [emoji, setEmoji] = useState('')
   const [active, setActive] = useState(false)
@@ -69,7 +70,9 @@ function App() {
 
   const submitFeatForm = async (e) => {
     e.preventDefault()
-    const data = await PostFeat()
+    setFeatFormValues({ ...featFormValues, userId: Number(user.id) })
+    const data = await PostFeat(featFormValues)
+    console.log(data)
     setFeats(data)
     setFeatFormDisplay('none')
     setReRender(true)
