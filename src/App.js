@@ -10,6 +10,7 @@ import Profile from './pages/Profile'
 
 import './App.css'
 import { CheckSession } from './services/AuthReq'
+import { PostFeat } from './services/FeatReq'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -17,6 +18,60 @@ function App() {
   // const [comments, setComments] = useState([])
   const [signUp, setSignUp] = useState(true)
   const [upOrIn, setUpOrIn] = useState('Login')
+  const [featFormDisplay, setFeatFormDisplay] = useState('none')
+  const [featFormValues, setFeatFormValues] = useState({
+    type: '',
+    bodyPart: '',
+    intensity: 0,
+    description: '',
+    image: ''
+  })
+  const [emoji, setEmoji] = useState('')
+  const [active, setActive] = useState(false)
+
+  const displayCreateFeat = () => {
+    featFormDisplay === 'none'
+      ? setFeatFormDisplay('flex')
+      : setFeatFormDisplay('none')
+    !active ? setActive(true) : setActive(false)
+  }
+
+  const updateFeatFormValues = (e) => {
+    e.target.id === 'intensity'
+      ? setFeatFormValues({
+          ...featFormValues,
+          [e.target.id]: Number(e.target.value)
+        })
+      : setFeatFormValues({ ...featFormValues, [e.target.id]: e.target.value })
+    switch (featFormValues.intensity) {
+      case 0:
+        setEmoji('a')
+        break
+      case 1:
+        setEmoji('b')
+        break
+      case 2:
+        setEmoji('c')
+        break
+      case 3:
+        setEmoji('d')
+        break
+      case 4:
+        setEmoji('e')
+        break
+      case 5:
+        setEmoji('f')
+        break
+      default:
+    }
+  }
+
+  const submitFeatForm = async (e) => {
+    e.preventDefault()
+    const data = await PostFeat()
+    setFeats(data)
+    setFeatFormDisplay('none')
+  }
 
   const logout = () => {
     setUser(null)
@@ -55,11 +110,32 @@ function App() {
           />
           <Route
             path="/feed"
-            element={<Feed feats={feats} setFeats={setFeats} />}
+            element={
+              <Feed
+                feats={feats}
+                active={active}
+                featFormValues={featFormValues}
+                featFormDisplay={featFormDisplay}
+                updateFeatFormValues={updateFeatFormValues}
+                displayCreateFeat={displayCreateFeat}
+                submitFeatForm={submitFeatForm}
+              />
+            }
           />
           <Route
             path="/profile"
-            element={<Profile user={user} feats={feats} />}
+            element={
+              <Profile
+                user={user}
+                feats={feats}
+                active={active}
+                featFormValues={featFormValues}
+                featFormDisplay={featFormDisplay}
+                updateFeatFormValues={updateFeatFormValues}
+                displayCreateFeat={displayCreateFeat}
+                submitFeatForm={submitFeatForm}
+              />
+            }
           />
           <Route
             path="/commentdeets/:comment_id"
