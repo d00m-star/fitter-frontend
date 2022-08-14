@@ -116,6 +116,8 @@ function App() {
                 active={active}
                 featFormValues={featFormValues}
                 featFormDisplay={featFormDisplay}
+                emoji={emoji}
+                setFeats={setFeats}
                 updateFeatFormValues={updateFeatFormValues}
                 displayCreateFeat={displayCreateFeat}
                 submitFeatForm={submitFeatForm}
@@ -131,6 +133,7 @@ function App() {
                 active={active}
                 featFormValues={featFormValues}
                 featFormDisplay={featFormDisplay}
+                emoji={emoji}
                 updateFeatFormValues={updateFeatFormValues}
                 displayCreateFeat={displayCreateFeat}
                 submitFeatForm={submitFeatForm}
