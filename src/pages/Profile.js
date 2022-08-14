@@ -136,7 +136,7 @@ const Profile = ({
           submitFeatForm={submitFeatForm}
           emoji={emoji}
         />
-        {userFeats?.map((feat) => (
+        {userFeats?.reverse().map((feat) => (
           <FeatCard feat={feat} key={feat.id} />
         ))}
       </section>
