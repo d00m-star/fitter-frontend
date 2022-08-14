@@ -28,6 +28,7 @@ function App() {
   })
   const [emoji, setEmoji] = useState('')
   const [active, setActive] = useState(false)
+  const [reRender, setReRender] = useState(false)
 
   const displayCreateFeat = () => {
     featFormDisplay === 'none'
@@ -71,6 +72,7 @@ function App() {
     const data = await PostFeat()
     setFeats(data)
     setFeatFormDisplay('none')
+    setReRender(true)
   }
 
   const logout = () => {
@@ -117,10 +119,12 @@ function App() {
                 featFormValues={featFormValues}
                 featFormDisplay={featFormDisplay}
                 emoji={emoji}
+                reRender={reRender}
                 setFeats={setFeats}
                 updateFeatFormValues={updateFeatFormValues}
                 displayCreateFeat={displayCreateFeat}
                 submitFeatForm={submitFeatForm}
+                setReRender={setReRender}
               />
             }
           />
@@ -134,9 +138,11 @@ function App() {
                 featFormValues={featFormValues}
                 featFormDisplay={featFormDisplay}
                 emoji={emoji}
+                reRender={reRender}
                 updateFeatFormValues={updateFeatFormValues}
                 displayCreateFeat={displayCreateFeat}
                 submitFeatForm={submitFeatForm}
+                setReRender={setReRender}
               />
             }
           />
