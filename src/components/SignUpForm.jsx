@@ -1,7 +1,7 @@
 const SignUpForm = ({ signUpValues, updateSignUpValues, submitSignUp }) => {
   return (
     <div>
-      <form onSubmit={submitSignUp}>
+      <form onSubmit={(e) => submitSignUp(e)}>
         <label htmlFor="name">Name:</label>
         <input
           type="text"

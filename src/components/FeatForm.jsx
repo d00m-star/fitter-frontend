@@ -11,7 +11,7 @@ const FeatForm = ({
   return (
     <div>
       <h1>FeatForm</h1>
-      <form onSubmit={submitFeatForm}>
+      <form onSubmit={(e) => submitFeatForm(e)}>
         <label htmlFor="type">Type:</label>
         <select
           name="type"
