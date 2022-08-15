@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { ChangePassword, UpdateFeat } from '../services/AuthReq'
+import { ChangePassword } from '../services/AuthReq'
 
 import FeatCard from '../components/FeatCard'
 import FeatForm from '../components/FeatForm'
@@ -35,40 +35,6 @@ const Profile = ({
   const [success, setSuccess] = useState('') // consider use case for this
   const [infoDisplay, setInfoDisplay] = useState('flex')
   const [passwordFormDisplay, setPasswordFormDisplay] = useState('none')
-
-  ///////// update feat > app.js////////////////
-
-  const [featEditing, setFeatEditing] = useState(false)
-  const [updateText, setUpdateText] = useState('Update Feat')
-
-  const displayEditFeat = () => {
-    if (!featEditing) {
-      setFeatEditing(true)
-      setUpdateText('Cancel')
-    } else {
-      setFeatEditing(false)
-      setUpdateText('Update Feat')
-    }
-  }
-
-  const submitFeatForm = async (e, featId) => {
-    e.preventDefault()
-    if (!featEditing) {
-      let formBody = { ...featFormValues, userId: Number(user.id) }
-      const data = await PostFeat(formBody)
-      console.log(data)
-      setFeats(data)
-    } else {
-      const data = await UpdateFeat(featId, featFormValues)
-      console.log(data)
-      setFeats(data)
-    }
-    setFormDisplay('none')
-    setFeatEditing(false)
-    setReRender(true)
-  }
-
-  /////////////////////////////////////////
 
   const renderPasswordEditing = () => {
     if (!passwordEditing) {
