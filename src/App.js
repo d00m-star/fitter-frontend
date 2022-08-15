@@ -137,8 +137,7 @@ function App() {
   }
 
   const deleteUserFeat = async (e, featId) => {
-    const data = await DeleteFeat(featId)
-    setFeats(data)
+    await DeleteFeat(featId)
     setReRender(true)
   }
 
@@ -163,9 +162,8 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) checkToken()
-    if (user) {
-      handleFeats()
-    }
+    if (user) setTimeout(handleFeats(), 500)
+    // setReRender(false)
   }, [])
 
   return (
