@@ -9,7 +9,7 @@ import Home from './pages/Home'
 import Profile from './pages/Profile'
 
 import './App.css'
-import { CheckSession } from './services/AuthReq'
+import { CheckSession, UpdateFeat } from './services/AuthReq'
 import { PostFeat } from './services/FeatReq'
 import { PostComment } from './services/ComReq'
 
@@ -37,6 +37,8 @@ function App() {
   const [emoji, setEmoji] = useState('')
   const [active, setActive] = useState(false)
   const [reRender, setReRender] = useState(false)
+  const [featEditing, setFeatEditing] = useState(false)
+  const [updateText, setUpdateText] = useState('Update Feat')
 
   const displayCreateForm = () => {
     formDisplay === 'none' ? setFormDisplay('flex') : setFormDisplay('none')
@@ -73,17 +75,34 @@ function App() {
     }
   }
 
+  const displayEditFeat = () => {
+    if (!featEditing) {
+      setFeatEditing(true)
+      setUpdateText('Cancel')
+    } else {
+      setFeatEditing(false)
+      setUpdateText('Update Feat')
+    }
+  }
+
   const showFeat = (feat) => {
     navigate(`/feats/${feat.id}`)
   }
 
-  const submitFeatForm = async (e) => {
+  const submitFeatForm = async (e, featId) => {
     e.preventDefault()
-    setFeatFormValues({ ...featFormValues, userId: Number(user.id) })
-    const data = await PostFeat(featFormValues)
-    console.log(data)
-    setFeats(data)
+    if (!featEditing) {
+      let formBody = { ...featFormValues, userId: Number(user.id) }
+      const data = await PostFeat(formBody)
+      console.log(data)
+      setFeats(data)
+    } else {
+      const data = await UpdateFeat(featId, featFormValues)
+      console.log(data)
+      setFeats(data)
+    }
     setFormDisplay('none')
+    setFeatEditing(false)
     setReRender(true)
   }
 
@@ -142,6 +161,8 @@ function App() {
                 emoji={emoji}
                 reRender={reRender}
                 user={user}
+                featEditing={featEditing}
+                updateText={updateText}
                 setFeats={setFeats}
                 updateFeatFormValues={updateFeatFormValues}
                 displayCreateForm={displayCreateForm}
@@ -149,6 +170,7 @@ function App() {
                 setReRender={setReRender}
                 showFeat={showFeat}
                 submitCommentForm={submitCommentForm}
+                displayEditFeat={displayEditFeat}
               />
             }
           />
@@ -163,6 +185,8 @@ function App() {
                 formDisplay={formDisplay}
                 emoji={emoji}
                 reRender={reRender}
+                featEditing={featEditing}
+                updateText={updateText}
                 updateFeatFormValues={updateFeatFormValues}
                 setActive={setActive}
                 setFormDisplay={setFormDisplay}
@@ -170,6 +194,7 @@ function App() {
                 submitFeatForm={submitFeatForm}
                 setReRender={setReRender}
                 showFeat={showFeat}
+                displayEditFeat={displayEditFeat}
               />
             }
           />
