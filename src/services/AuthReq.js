@@ -36,3 +36,12 @@ export const ChangePassword = async (data) => {
     throw e
   }
 }
+
+export const UpdateFeat = async (featId, data) => {
+  try {
+    const res = await Client.put(`/feats/${featId}`, data)
+    return res.data
+  } catch (e) {
+    throw e
+  }
+}

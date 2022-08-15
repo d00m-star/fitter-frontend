@@ -5,8 +5,6 @@ import { SignUpUser, LoginUser } from '../services/AuthReq'
 import SignUpForm from '../components/SignUpForm'
 import LoginForm from '../components/LoginForm'
 
-import '../Home.css'
-
 const Home = ({ user, setUser, signUp, setSignUp, upOrIn, setUpOrIn }) => {
   // const [signUp, setSignUp] = useState(true)
   // const [upOrIn, setUpOrIn] = useState('Login')
@@ -91,19 +89,19 @@ const Home = ({ user, setUser, signUp, setSignUp, upOrIn, setUpOrIn }) => {
         id="home-form-container-inner"
         style={{ transform: `rotateY(${rotate})` }}
       >
-        {/* {signUp ? ( */}
-        <SignUpForm
-          signUpValues={signUpValues}
-          updateSignUpValues={updateSignUpValues}
-          submitSignUp={submitSignUp}
-        />
-        {/* ) : ( */}
-        <LoginForm
-          loginValues={loginValues}
-          updateLoginValues={updateLoginValues}
-          submitLogin={submitLogin}
-        />
-        {/* )} */}
+        {signUp ? (
+          <SignUpForm
+            signUpValues={signUpValues}
+            updateSignUpValues={updateSignUpValues}
+            submitSignUp={submitSignUp}
+          />
+        ) : (
+          <LoginForm
+            loginValues={loginValues}
+            updateLoginValues={updateLoginValues}
+            submitLogin={submitLogin}
+          />
+        )}
       </main>
       <button disabled={user} onClick={changeUpOrIn}>
         {upOrIn}
