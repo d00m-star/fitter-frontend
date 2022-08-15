@@ -27,11 +27,6 @@ const Feed = ({
   setFeatFormValues
 }) => {
   useEffect(() => {
-    const handleFeats = async () => {
-      const data = await GetFeats()
-      setFeats(data)
-    }
-    handleFeats()
     setActive(false)
     setFormDisplay('none')
     setReRender(false)
@@ -41,9 +36,9 @@ const Feed = ({
     <div>
       <div className="feat-grid">
         {feats?.reverse().map((feat) => (
-          <div key={feat.id} onClick={() => showFeat(feat)}>
+          <div key={feat.id}>
             {!featEditing ? (
-              <FeatCard feat={feat} />
+              <FeatCard feat={feat} onClick={() => showFeat(feat)} />
             ) : (
               <FeatForm
                 feat={feat}
