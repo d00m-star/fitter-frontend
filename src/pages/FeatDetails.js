@@ -1,9 +1,24 @@
 import Client from '../services/api'
+import { useParams } from 'react-router-dom'
 
-const FeatDetails = ({ feat, comments }) => {
+const FeatDetails = ({
+  feat,
+  comments,
+  commentEditing,
+  commentFormValues,
+  setCommentFormValues,
+  CommentCard,
+  CommentForm,
+  updateComment,
+  updateComText,
+  submitCommentForm,
+  updateCommentFormValues,
+  deleteUserComment
+}) => {
+  const { featId } = useParams()
   return (
     <div className="feat-detail-container">
-      <div className="feat-detail" key={feat.id}>
+      <div className="feat-detail">
         <h3>{feat.author.username}</h3>
         <img src={feat.image} alt={feat.type} />
         <h3>{feat.type}</h3>
@@ -12,10 +27,22 @@ const FeatDetails = ({ feat, comments }) => {
         <p>{feat.description}</p>
       </div>
       <div className="feat-comments-container">
-        {comments.map((comment) => (
-          <div className="feat-comments-detail">
-            <h4>{comment.username}</h4>
-            <p>{comment.description}</p>
+        {comments?.reverse().map((comment) => (
+          <div>
+            {!commentEditing ? (
+              <CommentCard key={comment.id} />
+            ) : (
+              <CommentForm
+                featId={featId}
+                commentFormValues={commentFormValues}
+                commentEditing={commentEditing}
+                updateCommentFormValues={updateCommentFormValues}
+                submitCommentForm={submitCommentForm}
+                setCommentFormValues={setCommentFormValues}
+              />
+            )}
+            <button onClick={updateComment}>{updateComText}</button>
+            <button onClick={() => deleteUserComment(comment.id)}>X</button>
           </div>
         ))}
       </div>
