@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { ChangePassword } from '../services/AuthReq'
+import { ChangePassword, UpdateFeat } from '../services/AuthReq'
 
 import FeatCard from '../components/FeatCard'
 import FeatForm from '../components/FeatForm'
@@ -18,7 +18,8 @@ const Profile = ({
   reRender,
   setReRender,
   setActive,
-  setFormDisplay
+  setFormDisplay,
+  setFeatFormValues
 }) => {
   const [userFeats, setUserFeats] = useState(null)
   const [passwordEditing, setPasswordEditing] = useState(false)
@@ -31,6 +32,40 @@ const Profile = ({
   const [success, setSuccess] = useState('') // consider use case for this
   const [infoDisplay, setInfoDisplay] = useState('flex')
   const [passwordFormDisplay, setPasswordFormDisplay] = useState('none')
+
+  ///////// update feat > app.js////////////////
+
+  const [featEditing, setFeatEditing] = useState(false)
+  const [updateText, setUpdateText] = useState('Update Feat')
+
+  const displayEditFeat = () => {
+    if (!featEditing) {
+      setFeatEditing(true)
+      setUpdateText('Cancel')
+    } else {
+      setFeatEditing(false)
+      setUpdateText('Update Feat')
+    }
+  }
+
+  const submitFeatForm = async (e) => {
+    e.preventDefault()
+    if (!featEditing) {
+      setFeatFormValues({ ...featFormValues, userId: Number(user.id) })
+      const data = await PostFeat(featFormValues)
+      console.log(data)
+      setFeats(data)
+    } else {
+      const data = await UpdateFeat(featFormValues)
+      console.log(data)
+      setFeats(data)
+    }
+    setFormDisplay('none')
+    setFeatEditing(false)
+    setReRender(true)
+  }
+
+  /////////////////////////////////////////
 
   const renderPasswordEditing = () => {
     if (!passwordEditing) {
@@ -140,9 +175,28 @@ const Profile = ({
             emoji={emoji}
           />
         </div>
-        {userFeats?.reverse().map((feat) => (
-          <FeatCard feat={feat} key={feat.id} />
-        ))}
+        <div>
+          {userFeats?.reverse().map((feat) => {
+            if (!featEditing) {
+              return <FeatCard feat={feat} key={feat.id} />
+            } else {
+              setFeatFormValues({
+                ...featFormValues,
+                type: feat.type,
+                bodyPart: feat.bodyPart,
+                intensity: feat.intensity,
+                description: feat.description
+              })
+              return (
+                <FeatForm
+                  featFormValues={featFormValues}
+                  featEditing={featEditing}
+                />
+              )
+            }
+          })}
+          <button onClick={displayEditFeat}>{updateText}</button>
+        </div>
       </section>
     </main>
   )
