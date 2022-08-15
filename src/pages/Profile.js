@@ -4,6 +4,7 @@ import { ChangePassword } from '../services/AuthReq'
 
 import FeatCard from '../components/FeatCard'
 import FeatForm from '../components/FeatForm'
+import { GetUserFeats } from '../services/FeatReq'
 
 const Profile = ({
   feats,
@@ -71,13 +72,17 @@ const Profile = ({
     setPasswordFormDisplay('none')
   }
 
-  useEffect(() => {
-    if (feats) {
-      const getUserFeats = feats.filter((feat) => feat.userId === user.id)
-      setUserFeats(getUserFeats)
+  const renderUserFeats = async (userId) => {
+    const res = await GetUserFeats(userId)
+    if (res.length > 0) {
+      setUserFeats(res)
     } else {
       setUserFeats('Share a Feat!')
     }
+  }
+
+  useEffect(() => {
+    renderUserFeats(user.id)
     setActive(false)
     setFormDisplay('none')
     setReRender(false)
@@ -147,9 +152,9 @@ const Profile = ({
         </div>
         <div>
           {userFeats?.reverse().map((feat) => (
-            <div>
+            <div key={feat.id}>
               {!featEditing ? (
-                <FeatCard feat={feat} key={feat.id} />
+                <FeatCard feat={feat} />
               ) : (
                 <FeatForm
                   feat={feat}
