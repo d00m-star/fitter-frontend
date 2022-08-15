@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { GetFeats, PostFeat } from '../services/FeatReq'
+import { useEffect } from 'react'
+import { GetFeats } from '../services/FeatReq'
 import FeatCard from '../components/FeatCard'
 import FeatForm from '../components/FeatForm'
 
@@ -16,6 +16,8 @@ const Feed = ({
   updateFeatFormValues,
   submitFeatForm,
   setFeats,
+  setActive,
+  setFormDisplay,
   setReRender
 }) => {
   let navigate = useNavigate
