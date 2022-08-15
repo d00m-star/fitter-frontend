@@ -48,15 +48,15 @@ const Profile = ({
     }
   }
 
-  const submitFeatForm = async (e) => {
+  const submitFeatForm = async (e, featId) => {
     e.preventDefault()
     if (!featEditing) {
-      setFeatFormValues({ ...featFormValues, userId: Number(user.id) })
-      const data = await PostFeat(featFormValues)
+      let formBody = { ...featFormValues, userId: Number(user.id) }
+      const data = await PostFeat(formBody)
       console.log(data)
       setFeats(data)
     } else {
-      const data = await UpdateFeat(featFormValues)
+      const data = await UpdateFeat(featId, featFormValues)
       console.log(data)
       setFeats(data)
     }
@@ -185,12 +185,17 @@ const Profile = ({
                 type: feat.type,
                 bodyPart: feat.bodyPart,
                 intensity: feat.intensity,
-                description: feat.description
+                description: feat.description,
+                image: feat.image
               })
               return (
                 <FeatForm
+                  feat={feat}
                   featFormValues={featFormValues}
                   featEditing={featEditing}
+                  updateFeatFormValues={updateFeatFormValues}
+                  submitFeatForm={submitFeatForm}
+                  emoji={emoji}
                 />
               )
             }
