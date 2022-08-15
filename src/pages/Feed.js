@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import { DeleteFeat, GetFeats } from '../services/FeatReq'
+import { GetFeats } from '../services/FeatReq'
 import FeatCard from '../components/FeatCard'
 import FeatForm from '../components/FeatForm'
 
@@ -26,12 +26,6 @@ const Feed = ({
   setReRender,
   setFeatFormValues
 }) => {
-  const deleteUserFeat = async (e, featId) => {
-    const data = await DeleteFeat(featId)
-    setFeats(data)
-    setReRender(true)
-  }
-
   useEffect(() => {
     const handleFeats = async () => {
       const data = await GetFeats()

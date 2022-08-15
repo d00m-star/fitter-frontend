@@ -9,7 +9,7 @@ import Profile from './pages/Profile'
 
 import './App.css'
 import { CheckSession, UpdateFeat } from './services/AuthReq'
-import { PostFeat } from './services/FeatReq'
+import { PostFeat, DeleteFeat } from './services/FeatReq'
 import { PostComment, UpdateComment } from './services/ComReq'
 
 function App() {
@@ -136,6 +136,12 @@ function App() {
     setReRender(true)
   }
 
+  const deleteUserFeat = async (e, featId) => {
+    const data = await DeleteFeat(featId)
+    setFeats(data)
+    setReRender(true)
+  }
+
   const logout = () => {
     setUser(null)
     setFeats(null)
@@ -192,6 +198,10 @@ function App() {
                 showFeat={showFeat}
                 submitCommentForm={submitCommentForm}
                 displayEditFeat={displayEditFeat}
+                deleteUserFeat={deleteUserFeat}
+                setActive={setActive}
+                setFormDisplay={setFormDisplay}
+                setFeatFormValues={setFeatFormValues}
               />
             }
           />
@@ -216,11 +226,12 @@ function App() {
                 setReRender={setReRender}
                 showFeat={showFeat}
                 displayEditFeat={displayEditFeat}
+                deleteUserFeat={deleteUserFeat}
               />
             }
           />
           <Route
-            path="/feats/deets/:feat_Id"
+            path="/feats/deets/:featId"
             element={
               <FeatDetails
                 user={user}
