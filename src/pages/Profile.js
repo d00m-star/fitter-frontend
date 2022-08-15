@@ -19,7 +19,10 @@ const Profile = ({
   setReRender,
   setActive,
   setFormDisplay,
-  setFeatFormValues
+  setFeatFormValues,
+  featEditing,
+  updateText,
+  displayEditFeat
 }) => {
   const [userFeats, setUserFeats] = useState(null)
   const [passwordEditing, setPasswordEditing] = useState(false)
