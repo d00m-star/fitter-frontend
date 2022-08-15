@@ -45,6 +45,17 @@ const FeatDetails = ({
             <button onClick={() => deleteUserComment(comment.id)}>X</button>
           </div>
         ))}
+        <button className="create-comment-btn" onClick={displayCreateForm}>
+          Comment
+        </button>
+        <div style={{ display: `${formDisplay}` }}>
+          <CommentForm
+            displayCreateForm={displayCreateForm}
+            commentFormValues={commentFormValues}
+            updateCommentFormValues={updateCommentFormValues}
+            submitCommentForm={submitCommentForm}
+          />
+        </div>
       </div>
     </div>
   )
