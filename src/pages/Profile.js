@@ -10,13 +10,15 @@ const Profile = ({
   user,
   active,
   featFormValues,
-  featFormDisplay,
+  formDisplay,
   updateFeatFormValues,
-  displayCreateFeat,
+  displayCreateForm,
   submitFeatForm,
   emoji,
   reRender,
-  setReRender
+  setReRender,
+  setActive,
+  setFormDisplay
 }) => {
   const [userFeats, setUserFeats] = useState(null)
   const [passwordEditing, setPasswordEditing] = useState(false)
@@ -71,6 +73,8 @@ const Profile = ({
     } else {
       setUserFeats('Share a Feat!')
     }
+    setActive(false)
+    setFormDisplay('none')
     setReRender(false)
   }, [reRender])
 
@@ -124,18 +128,19 @@ const Profile = ({
         <button onClick={renderPasswordEditing}>Change Password</button>
       </section>
       <section id="user-feats">
-        <button onClick={displayCreateFeat} disabled={active}>
+        <button onClick={displayCreateForm} disabled={active}>
           Share Feat!
         </button>
         {/* <h1 style={{ display: `${featFormDisplay}` }}>this works</h1> */}
-        <FeatForm
-          style={{ display: `${featFormDisplay}` }}
-          displayCreateFeat={displayCreateFeat}
-          featFormValues={featFormValues}
-          updateFeatFormValues={updateFeatFormValues}
-          submitFeatForm={submitFeatForm}
-          emoji={emoji}
-        />
+        <div style={{ display: `${formDisplay}` }}>
+          <FeatForm
+            displayCreateForm={displayCreateForm}
+            featFormValues={featFormValues}
+            updateFeatFormValues={updateFeatFormValues}
+            submitFeatForm={submitFeatForm}
+            emoji={emoji}
+          />
+        </div>
         {userFeats?.reverse().map((feat) => (
           <FeatCard feat={feat} key={feat.id} />
         ))}

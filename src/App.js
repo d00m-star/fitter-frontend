@@ -18,7 +18,7 @@ function App() {
   // const [comments, setComments] = useState([])
   const [signUp, setSignUp] = useState(true)
   const [upOrIn, setUpOrIn] = useState('Login')
-  const [featFormDisplay, setFeatFormDisplay] = useState('none')
+  const [formDisplay, setFormDisplay] = useState('none')
   const [featFormValues, setFeatFormValues] = useState({
     type: '',
     bodyPart: '',
@@ -31,10 +31,8 @@ function App() {
   const [active, setActive] = useState(false)
   const [reRender, setReRender] = useState(false)
 
-  const displayCreateFeat = () => {
-    featFormDisplay === 'none'
-      ? setFeatFormDisplay('flex')
-      : setFeatFormDisplay('none')
+  const displayCreateForm = () => {
+    formDisplay === 'none' ? setFormDisplay('flex') : setFormDisplay('none')
     !active ? setActive(true) : setActive(false)
   }
 
@@ -74,7 +72,7 @@ function App() {
     const data = await PostFeat(featFormValues)
     console.log(data)
     setFeats(data)
-    setFeatFormDisplay('none')
+    setFormDisplay('none')
     setReRender(true)
   }
 
@@ -120,12 +118,13 @@ function App() {
                 feats={feats}
                 active={active}
                 featFormValues={featFormValues}
-                featFormDisplay={featFormDisplay}
+                formDisplay={formDisplay}
                 emoji={emoji}
                 reRender={reRender}
+                user={user}
                 setFeats={setFeats}
                 updateFeatFormValues={updateFeatFormValues}
-                displayCreateFeat={displayCreateFeat}
+                displayCreateForm={displayCreateForm}
                 submitFeatForm={submitFeatForm}
                 setReRender={setReRender}
               />
@@ -139,11 +138,13 @@ function App() {
                 feats={feats}
                 active={active}
                 featFormValues={featFormValues}
-                featFormDisplay={featFormDisplay}
+                formDisplay={formDisplay}
                 emoji={emoji}
                 reRender={reRender}
                 updateFeatFormValues={updateFeatFormValues}
-                displayCreateFeat={displayCreateFeat}
+                setActive={setActive}
+                setFormDisplay={setFormDisplay}
+                displayCreateForm={displayCreateForm}
                 submitFeatForm={submitFeatForm}
                 setReRender={setReRender}
               />
@@ -153,7 +154,25 @@ function App() {
             path="/commentdeets/:comment_id"
             element={<CommentDetails />}
           />
-          <Route path="/featdeets" element={<FeatDetails />} />
+          <Route
+            path="/featdeets"
+            element={
+              <FeatDetails
+                user={user}
+                active={active}
+                featFormValues={featFormValues}
+                formDisplay={formDisplay}
+                emoji={emoji}
+                reRender={reRender}
+                updateFeatFormValues={updateFeatFormValues}
+                setActive={setActive}
+                setFormDisplay={setFormDisplay}
+                displayCreateForm={displayCreateForm}
+                submitFeatForm={submitFeatForm}
+                setReRender={setReRender}
+              />
+            }
+          />
         </Routes>
       </main>
     </div>
