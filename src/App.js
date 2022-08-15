@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 
 import NavBar from './components/NavBar'
 import CommentDetails from './pages/CommentDetails'
@@ -11,21 +11,28 @@ import Profile from './pages/Profile'
 import './App.css'
 import { CheckSession } from './services/AuthReq'
 import { PostFeat } from './services/FeatReq'
+import { PostComment } from './services/ComReq'
 
 function App() {
+  let navigate = useNavigate()
+
   const [user, setUser] = useState(null)
   const [feats, setFeats] = useState(null)
-  // const [comments, setComments] = useState([])
+  const [comments, setComments] = useState(null)
   const [signUp, setSignUp] = useState(true)
   const [upOrIn, setUpOrIn] = useState('Login')
   const [formDisplay, setFormDisplay] = useState('none')
+  const [commentFormValues, setCommentFormValues] = useState({
+    description: '',
+    userId: '',
+    featId: ''
+  })
   const [featFormValues, setFeatFormValues] = useState({
     type: '',
     bodyPart: '',
     intensity: 0,
     description: '',
-    image: '',
-    userId: ''
+    image: ''
   })
   const [emoji, setEmoji] = useState('')
   const [active, setActive] = useState(false)
@@ -66,12 +73,25 @@ function App() {
     }
   }
 
+  const showFeat = (feat) => {
+    navigate(`/feats/${feat.id}`)
+  }
+
   const submitFeatForm = async (e) => {
     e.preventDefault()
     setFeatFormValues({ ...featFormValues, userId: Number(user.id) })
     const data = await PostFeat(featFormValues)
     console.log(data)
     setFeats(data)
+    setFormDisplay('none')
+    setReRender(true)
+  }
+
+  const submitCommentForm = async (e) => {
+    e.preventDefault()
+    setCommentFormValues({ ...commentFormValues, featId: Number(feats.id) })
+    const data = await PostComment(commentFormValues)
+    setComments(data)
     setFormDisplay('none')
     setReRender(true)
   }
@@ -127,6 +147,8 @@ function App() {
                 displayCreateForm={displayCreateForm}
                 submitFeatForm={submitFeatForm}
                 setReRender={setReRender}
+                showFeat={showFeat}
+                submitCommentForm={submitCommentForm}
               />
             }
           />
@@ -147,6 +169,7 @@ function App() {
                 displayCreateForm={displayCreateForm}
                 submitFeatForm={submitFeatForm}
                 setReRender={setReRender}
+                showFeat={showFeat}
               />
             }
           />
@@ -159,6 +182,7 @@ function App() {
             element={
               <FeatDetails
                 user={user}
+                feats={feats}
                 active={active}
                 featFormValues={featFormValues}
                 formDisplay={formDisplay}
