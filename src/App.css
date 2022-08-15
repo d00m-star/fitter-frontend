@@ -1,8 +1,21 @@
 * {
   margin: 0;
   padding: 0;
-  text-align: center;
+  box-sizing: border-box;
 }
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/*////////// global styling above //////////////////////*/
 
 .navbar {
   display: flex;
@@ -24,6 +37,57 @@
 .active {
   background-color: #0c0e19;
 }
+
+/*////////// navbar styling above //////////////////////*/
+
+#home-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 50vw;
+  height: 50vh;
+  border: 1px solid black;
+  background-color: transparent;
+  perspective: 1000px;
+}
+
+#home-form-container-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+#sign-up-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/*////////// home styling above //////////////////////*/
 
 .feat-grid {
   display: grid;
@@ -49,6 +113,8 @@
   box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1);
 }
 
+/*////////// feat-card styling above //////////////////////*/
+
 .btn {
   display: inline-block;
   padding: 0.5em 3em;
@@ -68,3 +134,5 @@
   color: #ab888a;
   border-color: #ab888a;
 }
+
+/*////////// create feat button styling above //////////////////////*/

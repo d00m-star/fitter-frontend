@@ -131,7 +131,6 @@ const Profile = ({
         <button onClick={displayCreateForm} disabled={active}>
           Share Feat!
         </button>
-        {/* <h1 style={{ display: `${featFormDisplay}` }}>this works</h1> */}
         <div style={{ display: `${formDisplay}` }}>
           <FeatForm
             displayCreateForm={displayCreateForm}
