@@ -17,9 +17,9 @@ export const DeleteComment = async (commentId) => {
   await Client.delete(`/comments/${commentId}`)
 }
 
-export const UpdateComment = async (featId, data) => {
+export const UpdateComment = async (commentId, data) => {
   try {
-    const response = await Client.put(`/feats/${featId}`, data)
+    const response = await Client.put(`/comments/${commentId}`, data)
     return response.data
   } catch (e) {
     throw e

@@ -115,19 +115,19 @@ function App() {
     setReRender(true)
   }
 
-  const submitCommentForm = async (e, featId) => {
+  const submitCommentForm = async (e, id) => {
     e.preventDefault()
     if (!commentEditing) {
       let commentBody = {
         ...commentFormValues,
-        featId: Number(featId),
+        // featId: Number(id),
         userId: Number(user.id)
       }
-      const data = await PostComment(commentBody)
+      const data = await PostComment(id, commentBody)
       console.log(data)
       setComments(data)
     } else {
-      const data = await UpdateComment(commentId, commentFormValues)
+      const data = await UpdateComment(id, commentFormValues)
       console.log(data)
       setComments(data)
     }
