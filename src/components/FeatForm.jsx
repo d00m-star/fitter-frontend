@@ -1,17 +1,30 @@
-import React from 'react'
-import { useState } from 'react'
+import { useEffect } from 'react'
 
 const FeatForm = ({
   featFormValues,
   emoji,
   displayCreateForm,
   updateFeatFormValues,
-  submitFeatForm
+  submitFeatForm,
+  feat,
+  featEditing,
+  setFeatFormValues
 }) => {
+  useEffect(() => {
+    if (featEditing) {
+      setFeatFormValues({
+        type: feat.type,
+        bodyPart: feat.bodyPart,
+        intensity: feat.intensity,
+        description: feat.description,
+        image: feat.image
+      })
+    }
+  }, [])
+
   return (
     <div>
-      <h1>Create Feat</h1>
-      <form onSubmit={(e) => submitFeatForm(e)}>
+      <form onSubmit={(e) => submitFeatForm(e, feat.id)}>
         <label htmlFor="type">Type:</label>
         <select
           name="type"

@@ -17,3 +17,12 @@ export const PostFeat = async (data) => {
     throw e
   }
 }
+
+export const DeleteFeat = async (featId) => {
+  try {
+    const response = await Client.delete(`/feats/${featId}`)
+    return response.data
+  } catch (e) {
+    throw e
+  }
+}
