@@ -28,14 +28,14 @@ const Home = ({ user, setUser, signUp, setSignUp, upOrIn, setUpOrIn }) => {
       setSignUp(false)
       setUpOrIn('Sign Up')
       // const fireRotate = () => {
-      //   setRotate('180deg')
+      setRotate('180deg')
       // }
       // await setTimeOut(fireRotate(), 1000)
       // setRotate('0deg')
-      setRotate('180deg')
-      setTimeOut(() => {
-        setRotate('0deg')
-      }, 1000)
+      // setRotate('180deg')
+      // setTimeout(() => {
+      //   setRotate('0deg')
+      // }, 1000)
     } else {
       setSignUp(true)
       setUpOrIn('Login')
@@ -45,7 +45,7 @@ const Home = ({ user, setUser, signUp, setSignUp, upOrIn, setUpOrIn }) => {
       // await fireRotate()
       // setRotate('0deg')
       setRotate('180deg')
-      setTimeOut(setRotate('0deg'), 1000)
+      // setTimeout(setRotate('0deg'), 1000)
     }
   }
 
@@ -91,19 +91,19 @@ const Home = ({ user, setUser, signUp, setSignUp, upOrIn, setUpOrIn }) => {
         id="home-form-container-inner"
         style={{ transform: `rotateY(${rotate})` }}
       >
-        {signUp ? (
-          <SignUpForm
-            signUpValues={signUpValues}
-            updateSignUpValues={updateSignUpValues}
-            submitSignUp={submitSignUp}
-          />
-        ) : (
-          <LoginForm
-            loginValues={loginValues}
-            updateLoginValues={updateLoginValues}
-            submitLogin={submitLogin}
-          />
-        )}
+        {/* {signUp ? ( */}
+        <SignUpForm
+          signUpValues={signUpValues}
+          updateSignUpValues={updateSignUpValues}
+          submitSignUp={submitSignUp}
+        />
+        {/* ) : ( */}
+        <LoginForm
+          loginValues={loginValues}
+          updateLoginValues={updateLoginValues}
+          submitLogin={submitLogin}
+        />
+        {/* )} */}
       </main>
       <button disabled={user} onClick={changeUpOrIn}>
         {upOrIn}
