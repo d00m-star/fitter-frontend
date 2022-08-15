@@ -20,12 +20,6 @@ const CommentForm = ({ feat, user, comment }) => {
     // editing && setComment({...comment, description: comment.description})  
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    
-  }
-
-
   return (
     <div className="comment-form-container">
       <div id='comment-info'>
