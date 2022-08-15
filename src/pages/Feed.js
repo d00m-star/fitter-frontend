@@ -5,16 +5,17 @@ import FeatCard from '../components/FeatCard'
 import FeatForm from '../components/FeatForm'
 
 const Feed = ({
+  user,
   feats,
-  setFeats,
-  active,
+  formDisplay,
   featFormValues,
-  featFormDisplay,
-  updateFeatFormValues,
-  displayCreateFeat,
-  submitFeatForm,
   emoji,
+  active,
   reRender,
+  displayCreateForm,
+  updateFeatFormValues,
+  submitFeatForm,
+  setFeats,
   setReRender
 }) => {
   let navigate = useNavigate
@@ -29,6 +30,8 @@ const Feed = ({
       setFeats(data)
     }
     handleFeats()
+    setActive(false)
+    setFormDisplay('none')
     setReRender(false)
   }, [reRender])
 
@@ -41,16 +44,16 @@ const Feed = ({
           </div>
         ))}
       </div>
-      <button className="btn" onClick={displayCreateFeat} disabled={active}>
+      <button className="btn" onClick={displayCreateForm} disabled={active}>
         Create Feat
       </button>
-      <div style={{ display: `${featFormDisplay}` }}>
+      <div style={{ display: `${formDisplay}` }}>
         <FeatForm
-          displayCreateFeat={displayCreateFeat}
           featFormValues={featFormValues}
+          emoji={emoji}
+          displayCreateForm={displayCreateForm}
           updateFeatFormValues={updateFeatFormValues}
           submitFeatForm={submitFeatForm}
-          emoji={emoji}
         />
       </div>
     </div>

@@ -2,15 +2,15 @@ import React from 'react'
 import { useState } from 'react'
 
 const FeatForm = ({
-  displayCreateFeat,
   featFormValues,
+  emoji,
+  displayCreateForm,
   updateFeatFormValues,
-  submitFeatForm,
-  emoji
+  submitFeatForm
 }) => {
   return (
     <div>
-      <h1>FeatForm</h1>
+      <h1>Create Feat</h1>
       <form onSubmit={(e) => submitFeatForm(e)}>
         <label htmlFor="type">Type:</label>
         <select
@@ -68,14 +68,18 @@ const FeatForm = ({
           cols="30"
           rows="10"
           placeholder="Please describe the workout in more detail"
-          value={featFormValues.desctiption}
+          value={featFormValues.description}
           onChange={updateFeatFormValues}
         ></textarea>
 
         <label htmlFor="image"></label>
 
-        <button type="summit">Post Feat</button>
-        <button onClick={displayCreateFeat}>Nevermind!</button>
+        <button type="submit" className="btn">
+          Post Feat
+        </button>
+        <button onClick={displayCreateForm} className="btn">
+          Nevermind!
+        </button>
       </form>
     </div>
   )
