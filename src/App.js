@@ -196,7 +196,6 @@ function App() {
                 submitFeatForm={submitFeatForm}
                 setReRender={setReRender}
                 showFeat={showFeat}
-                submitCommentForm={submitCommentForm}
                 displayEditFeat={displayEditFeat}
                 deleteUserFeat={deleteUserFeat}
                 setActive={setActive}
@@ -242,13 +241,14 @@ function App() {
                 formDisplay={formDisplay}
                 emoji={emoji}
                 reRender={reRender}
+                updateComText={updateComText}
                 updateFeatFormValues={updateFeatFormValues}
                 setActive={setActive}
                 setFormDisplay={setFormDisplay}
                 displayCreateForm={displayCreateForm}
                 submitFeatForm={submitFeatForm}
                 setReRender={setReRender}
-                updateComText={updateComText}
+                submitCommentForm={submitCommentForm}
               />
             }
           />
