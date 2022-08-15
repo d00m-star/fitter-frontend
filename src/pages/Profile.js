@@ -22,7 +22,8 @@ const Profile = ({
   setFeatFormValues,
   featEditing,
   updateText,
-  displayEditFeat
+  displayEditFeat,
+  deleteUserFeat
 }) => {
   const [userFeats, setUserFeats] = useState(null)
   const [passwordEditing, setPasswordEditing] = useState(false)
@@ -145,19 +146,11 @@ const Profile = ({
           />
         </div>
         <div>
-          {userFeats?.reverse().map((feat) => {
-            if (!featEditing) {
-              return <FeatCard feat={feat} key={feat.id} />
-            } else {
-              setFeatFormValues({
-                ...featFormValues,
-                type: feat.type,
-                bodyPart: feat.bodyPart,
-                intensity: feat.intensity,
-                description: feat.description,
-                image: feat.image
-              })
-              return (
+          {userFeats?.reverse().map((feat) => (
+            <div>
+              {!featEditing ? (
+                <FeatCard feat={feat} key={feat.id} />
+              ) : (
                 <FeatForm
                   feat={feat}
                   featFormValues={featFormValues}
@@ -165,11 +158,13 @@ const Profile = ({
                   updateFeatFormValues={updateFeatFormValues}
                   submitFeatForm={submitFeatForm}
                   emoji={emoji}
+                  setFeatFormValues={setFeatFormValues}
                 />
-              )
-            }
-          })}
-          <button onClick={displayEditFeat}>{updateText}</button>
+              )}
+              <button onClick={displayEditFeat}>{updateText}</button>
+              <button onClick={() => deleteUserFeat(feat.id)}>X</button>
+            </div>
+          ))}
         </div>
       </section>
     </main>
