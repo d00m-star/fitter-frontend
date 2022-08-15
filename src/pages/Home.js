@@ -6,8 +6,6 @@ import SignUpForm from '../components/SignUpForm'
 import LoginForm from '../components/LoginForm'
 
 const Home = ({ user, setUser, signUp, setSignUp, upOrIn, setUpOrIn }) => {
-  // const [signUp, setSignUp] = useState(true)
-  // const [upOrIn, setUpOrIn] = useState('Login')
   const [signUpValues, setSignUpValues] = useState({
     name: '',
     age: '',
@@ -25,25 +23,11 @@ const Home = ({ user, setUser, signUp, setSignUp, upOrIn, setUpOrIn }) => {
     if (signUp) {
       setSignUp(false)
       setUpOrIn('Sign Up')
-      // const fireRotate = () => {
       setRotate('180deg')
-      // }
-      // await setTimeOut(fireRotate(), 1000)
-      // setRotate('0deg')
-      // setRotate('180deg')
-      // setTimeout(() => {
-      //   setRotate('0deg')
-      // }, 1000)
     } else {
       setSignUp(true)
       setUpOrIn('Login')
-      // const fireRotate = () => {
-      //   setRotate('180deg')
-      // }
-      // await fireRotate()
-      // setRotate('0deg')
       setRotate('180deg')
-      // setTimeout(setRotate('0deg'), 1000)
     }
   }
 
@@ -87,7 +71,7 @@ const Home = ({ user, setUser, signUp, setSignUp, upOrIn, setUpOrIn }) => {
     <div id="home-form-container">
       <main
         id="home-form-container-inner"
-        style={{ transform: `rotateY(${rotate})` }}
+        // style={{ transform: `rotateY(${rotate})` }}
       >
         {signUp ? (
           <SignUpForm
