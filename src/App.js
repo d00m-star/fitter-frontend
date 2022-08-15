@@ -8,8 +8,8 @@ import Home from './pages/Home'
 import Profile from './pages/Profile'
 
 import './App.css'
-import { CheckSession, UpdateFeat } from './services/AuthReq'
-import { GetFeats, PostFeat, DeleteFeat } from './services/FeatReq'
+import { CheckSession } from './services/AuthReq'
+import { PostFeat, DeleteFeat, UpdateFeat } from './services/FeatReq'
 import { PostComment, UpdateComment } from './services/ComReq'
 
 function App() {
@@ -136,8 +136,9 @@ function App() {
     setReRender(true)
   }
 
-  const deleteUserFeat = async (e, featId) => {
-    await DeleteFeat(featId)
+  const deleteUserFeat = async (featId) => {
+    let res = await DeleteFeat(featId)
+    console.log(res)
     setReRender(true)
   }
 
@@ -154,16 +155,9 @@ function App() {
     setUser(user)
   }
 
-  const handleFeats = async () => {
-    const data = await GetFeats()
-    setFeats(data)
-  }
-
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) checkToken()
-    if (user) setTimeout(handleFeats(), 500)
-    // setReRender(false)
   }, [])
 
   return (
@@ -212,7 +206,7 @@ function App() {
             }
           />
           <Route
-            path="/profile"
+            path="/profile/:username"
             element={
               <Profile
                 user={user}
@@ -233,6 +227,7 @@ function App() {
                 showFeat={showFeat}
                 displayEditFeat={displayEditFeat}
                 deleteUserFeat={deleteUserFeat}
+                setFeatFormValues={setFeatFormValues}
               />
             }
           />

@@ -30,7 +30,7 @@ const NavBar = ({ user, logout }) => {
           <div className="nav-prof">
             {/* add profpic icon */}
             <NavLink
-              to="/profile"
+              to={`/profile/${user.username}`}
               className={({ isActive }) => (isActive ? 'active' : undefined)}
             >
               <img src="" alt="profile" />

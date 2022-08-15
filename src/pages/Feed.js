@@ -26,7 +26,13 @@ const Feed = ({
   setReRender,
   setFeatFormValues
 }) => {
+  const handleFeats = async () => {
+    const data = await GetFeats()
+    setFeats(data)
+  }
+
   useEffect(() => {
+    handleFeats()
     setActive(false)
     setFormDisplay('none')
     setReRender(false)
