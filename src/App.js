@@ -38,7 +38,9 @@ function App() {
   const [active, setActive] = useState(false)
   const [reRender, setReRender] = useState(false)
   const [featEditing, setFeatEditing] = useState(false)
-  const [updateText, setUpdateText] = useState('Update Feat')
+  const [updateText, setUpdateText] = useState('Edit Feat')
+  const [commentEditing, setCommentEditing] = useState(false)
+  const [updateComText, setUpdateComText] = useState('Edit Comment')
 
   const displayCreateForm = () => {
     formDisplay === 'none' ? setFormDisplay('flex') : setFormDisplay('none')
@@ -81,12 +83,22 @@ function App() {
       setUpdateText('Cancel')
     } else {
       setFeatEditing(false)
-      setUpdateText('Update Feat')
+      setUpdateText('Edit Feat')
+    }
+  }
+
+  const displayEditCom = () => {
+    if (!commentEditing) {
+      setCommentEditing(true)
+      setUpdateComText('Cancel')
+    } else {
+      setCommentEditing(false)
+      setUpdateComText('Edit Feat')
     }
   }
 
   const showFeat = (feat) => {
-    navigate(`/feats/${feat.id}`)
+    navigate(`/feats/deets/${feat.id}`)
   }
 
   const submitFeatForm = async (e, featId) => {
@@ -106,12 +118,20 @@ function App() {
     setReRender(true)
   }
 
-  const submitCommentForm = async (e) => {
+  const submitCommentForm = async (e, featId) => {
     e.preventDefault()
-    setCommentFormValues({ ...commentFormValues, featId: Number(feats.id) })
-    const data = await PostComment(commentFormValues)
-    setComments(data)
+    if (!commentEditing) {
+      let commentBody = {
+        ...commentFormValues,
+        featId: Number(featId),
+        userId: Number(user.id)
+      }
+      const data = await PostComment(commentBody)
+      console.log(data)
+      setComments(data)
+    }
     setFormDisplay('none')
+    setCommentEditing(false)
     setReRender(true)
   }
 
@@ -199,11 +219,7 @@ function App() {
             }
           />
           <Route
-            path="/commentdeets/:comment_id"
-            element={<CommentDetails />}
-          />
-          <Route
-            path="/featdeets"
+            path="/feats/deets/:feat_Id"
             element={
               <FeatDetails
                 user={user}
