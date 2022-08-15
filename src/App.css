@@ -34,8 +34,8 @@ main {
   align-items: center;
 }
 
-.active {
-  background-color: #0c0e19;
+.active IoHomeOutline {
+  fill: #ce00ed;
 }
 
 /*////////// navbar styling above //////////////////////*/

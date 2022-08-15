@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { IoHomeOutline, IoLogOutOutline } from 'react-icons/io5'
 
 const NavBar = ({ user, logout }) => {
   return (
@@ -17,14 +18,16 @@ const NavBar = ({ user, logout }) => {
               to="/feed"
               className={({ isActive }) => (isActive ? 'active' : undefined)}
             >
-              <img src="" alt="feed" />
+              <IoHomeOutline size="2em" color="#ffffff" />
+              {/* <img src="" alt="feed" /> */}
             </NavLink>
             <NavLink
               to="/"
               className={({ isActive }) => (isActive ? 'active' : undefined)}
               onClick={logout}
             >
-              <img src="" alt="logout" />
+              <IoLogOutOutline size="2em" color="#ffffff" />
+              {/* <img src="" alt="logout" /> */}
             </NavLink>
           </div>
           <div className="nav-prof">
