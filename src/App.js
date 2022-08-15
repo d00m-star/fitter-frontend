@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 
 import NavBar from './components/NavBar'
-import CommentDetails from './pages/CommentDetails'
 import FeatDetails from './pages/FeatDetails'
 import Feed from './pages/Feed'
 import Home from './pages/Home'
@@ -11,7 +10,7 @@ import Profile from './pages/Profile'
 import './App.css'
 import { CheckSession, UpdateFeat } from './services/AuthReq'
 import { PostFeat } from './services/FeatReq'
-import { PostComment } from './services/ComReq'
+import { PostComment, UpdateComment } from './services/ComReq'
 
 function App() {
   let navigate = useNavigate()
@@ -23,9 +22,7 @@ function App() {
   const [upOrIn, setUpOrIn] = useState('Login')
   const [formDisplay, setFormDisplay] = useState('none')
   const [commentFormValues, setCommentFormValues] = useState({
-    description: '',
-    userId: '',
-    featId: ''
+    description: ''
   })
   const [featFormValues, setFeatFormValues] = useState({
     type: '',
@@ -127,6 +124,10 @@ function App() {
         userId: Number(user.id)
       }
       const data = await PostComment(commentBody)
+      console.log(data)
+      setComments(data)
+    } else {
+      const data = await UpdateComment(commentId, commentFormValues)
       console.log(data)
       setComments(data)
     }
@@ -235,6 +236,7 @@ function App() {
                 displayCreateForm={displayCreateForm}
                 submitFeatForm={submitFeatForm}
                 setReRender={setReRender}
+                updateComText={updateComText}
               />
             }
           />
