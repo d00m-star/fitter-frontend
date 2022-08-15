@@ -12,8 +12,12 @@ const FeatDetails = ({ feat, comments }) => {
         <p>{feat.description}</p>
       </div>
       <div className="feat-comments-container">
-        comments.map((comment) => (<div className="feat-comments-detail"></div>)
-        )
+        {comments.map((comment) => (
+          <div className="feat-comments-detail">
+            <h4>{comment.username}</h4>
+            <p>{comment.description}</p>
+          </div>
+        ))}
       </div>
     </div>
   )
