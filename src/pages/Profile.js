@@ -31,8 +31,7 @@ const Profile = ({
   const [passwordFormValues, setPasswordFormValues] = useState({
     oldPassword: '',
     newPassword: '',
-    confirmNewPassword: '',
-    username: user.username
+    confirmNewPassword: ''
   })
   const [success, setSuccess] = useState('') // consider use case for this
   const [infoDisplay, setInfoDisplay] = useState('flex')
@@ -59,7 +58,11 @@ const Profile = ({
 
   const submitNewPassword = async (e) => {
     e.preventDefault()
-    const res = await ChangePassword(passwordFormValues)
+    let passwordBody = {
+      ...passwordFormValues,
+      username: user.username
+    }
+    const res = await ChangePassword(passwordBody)
     setSuccess(res.msg)
     setPasswordFormValues({
       ...passwordFormValues,

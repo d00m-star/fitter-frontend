@@ -13,7 +13,9 @@ const FeatDetails = ({
   updateComText,
   submitCommentForm,
   updateCommentFormValues,
-  deleteUserComment
+  deleteUserComment,
+  displayCreateForm,
+  formDisplay
 }) => {
   const { featId } = useParams()
   return (
