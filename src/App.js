@@ -9,7 +9,7 @@ import Profile from './pages/Profile'
 
 import './App.css'
 import { CheckSession, UpdateFeat } from './services/AuthReq'
-import { PostFeat, DeleteFeat } from './services/FeatReq'
+import { GetFeats, PostFeat, DeleteFeat } from './services/FeatReq'
 import { PostComment, UpdateComment } from './services/ComReq'
 
 function App() {
@@ -155,9 +155,17 @@ function App() {
     setUser(user)
   }
 
+  const handleFeats = async () => {
+    const data = await GetFeats()
+    setFeats(data)
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) checkToken()
+    if (user) {
+      handleFeats()
+    }
   }, [])
 
   return (
