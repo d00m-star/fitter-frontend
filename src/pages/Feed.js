@@ -13,14 +13,18 @@ const Feed = ({
   active,
   reRender,
   showFeat,
+  featEditing,
+  updateText,
   displayCreateForm,
   updateFeatFormValues,
   submitFeatForm,
+  displayEditFeat,
+  deleteUserFeat,
   setFeats,
   setActive,
   setFormDisplay,
   setReRender,
-  deleteUserFeat
+  setFeatFormValues
 }) => {
   const deleteUserFeat = async (e, featId) => {
     const data = await DeleteFeat(featId)
@@ -44,7 +48,21 @@ const Feed = ({
       <div className="feat-grid">
         {feats?.reverse().map((feat) => (
           <div key={feat.id} onClick={() => showFeat(feat)}>
-            <FeatCard feat={feat} />
+            {!featEditing ? (
+              <FeatCard feat={feat} />
+            ) : (
+              <FeatForm
+                feat={feat}
+                featFormValues={featFormValues}
+                featEditing={featEditing}
+                updateFeatFormValues={updateFeatFormValues}
+                submitFeatForm={submitFeatForm}
+                emoji={emoji}
+                setFeatFormValues={setFeatFormValues}
+              />
+            )}
+            <button onClick={displayEditFeat}>{updateText}</button>
+            <button onClick={() => deleteUserFeat(feat.id)}>X</button>
           </div>
         ))}
       </div>
