@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 
-import { ChangePassword } from '../services/AuthReq'
-
 import FeatCard from '../components/FeatCard'
 import FeatForm from '../components/FeatForm'
+
+import { ChangePassword } from '../services/AuthReq'
 import { GetUserFeats } from '../services/FeatReq'
 
 const Profile = ({
@@ -24,7 +24,10 @@ const Profile = ({
   featEditing,
   updateText,
   displayEditFeat,
-  deleteUserFeat
+  deleteUserFeat,
+  checkToken,
+  toggleAuthenticated,
+  authenticated
 }) => {
   const [userFeats, setUserFeats] = useState(null)
   const [passwordEditing, setPasswordEditing] = useState(false)
@@ -85,7 +88,24 @@ const Profile = ({
   }
 
   useEffect(() => {
+    const token = localStorage.getItem('token')
+    // if (token) checkToken().then(
+    //   )
+    if (token) checkToken()
     renderUserFeats(user.id)
+
+    // if (token) {
+    //   const awaitToken = async () => {
+    //     await checkToken()
+    //     await toggleAuthenticated(true)
+    //   }
+    //   awaitToken()
+    // }
+    // if (authenticated) {
+    //   let res = renderUserFeats(user.id)
+    //   // setUserFeats(res)
+    //   console.log(res)
+    // }
     setActive(false)
     setFormDisplay('none')
     setReRender(false)
@@ -151,6 +171,7 @@ const Profile = ({
             updateFeatFormValues={updateFeatFormValues}
             submitFeatForm={submitFeatForm}
             emoji={emoji}
+            checkToken={checkToken}
           />
         </div>
         <div>
