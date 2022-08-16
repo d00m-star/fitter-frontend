@@ -80,17 +80,7 @@ const Profile = ({
   const renderUserFeats = async (userId) => {
     const res = await GetUserFeats(userId)
     if (res.length > 0) {
-      setUserFeats(
-        res.sort((a, b) => {
-          if (a.createdAt > b.createdAt) {
-            return -1
-          }
-          if (a.createdAt < b.createdAt) {
-            return 1
-          }
-          return 0
-        })
-      )
+      setUserFeats(res)
     } else {
       setUserFeats(null)
     }
