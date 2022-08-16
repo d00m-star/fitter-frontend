@@ -198,15 +198,6 @@ const Profile = ({
               </div>
             ))
           ) : (
-            // .sort((a, b) => {
-            //   if (a.createdAt > b.createdAt) {
-            //     return 1
-            //   }
-            //   if (a.createdAt < b.createdAt) {
-            //     return -1
-            //   }
-            //   return 0
-            // })
             <h2>Share a Feat!</h2>
           )}
         </div>
