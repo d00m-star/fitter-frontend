@@ -7,12 +7,12 @@
   font-family: 'Barlow Condensed', sans-serif;
   letter-spacing: 1px;
   background-color: #2b2c28;
-  color: #f9f9f9;
 }
 
 body {
   width: 100vw;
   height: 100vh;
+  color: #f9f9f9;
 }
 
 main {
@@ -24,49 +24,58 @@ main {
 
 /*////////// global styling above //////////////////////*/
 
-a {
-  text-decoration: none;
-}
-
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   padding: 1em;
-  min-height: 2em;
+  min-height: 2.2em;
   font-size: 1.7em;
 }
 
 .nav-mid {
   display: flex;
   font-size: 1em;
-}
-
-.icon {
-  margin-right: 0.5em;
-  margin-left: 0.5em;
-  color: #f9f9f9;
+  height: 100%;
 }
 
 .nav-prof {
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-size: 1em;
+  height: 100%;
 }
 
-a .icon {
-  color: #00c8ff;
+.nav-prof h3 {
+  font-size: 0.95em;
 }
 
-a .active .icon {
-  color: #8c042b;
+a {
+  text-decoration: none;
+  color: #f9f9f9;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  margin: 0 0.5em;
+}
+
+.nav-prof a {
+  padding-top: 3%;
+}
+
+.active .icon {
+  color: #c32f27;
 }
 
 #logo img,
 a,
 .nav-prof h3,
 .nav-mid,
+.icon,
 .nav-prof,
 .navbar {
   background-color: #000000;
@@ -176,13 +185,24 @@ label {
   margin: 10px 20px;
   padding: 10px 20px;
   cursor: pointer;
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  /* border: 2px solid rgba(0, 0, 0, 0.1); */
   border-radius: 5px;
   /* transition: 0.5s; */
+  box-shadow: 2px 2px 10px 0px rgb(6, 6, 6) inset,
+    -1px -1px 3px 0px #676767 inset;
 }
+
+.feat-card,
+.feat-card h2,
+.feat-card h3,
+.feat-card p,
+.feat-card img {
+  background-color: #2a2a2a;
+}
+
 .feat-card:hover {
   /* transform: scale(1.1); */
-  box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: -3px -3px 5px 4px rgb(6, 6, 6), 3px 3px 5px #676767;
 }
 
 /*////////// feat-card styling above //////////////////////*/
