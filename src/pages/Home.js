@@ -16,18 +16,24 @@ const Home = ({ user, setUser, signUp, setSignUp, upOrIn, setUpOrIn }) => {
     confirmPassword: ''
   })
   const [loginValues, setLoginValues] = useState({ username: '', password: '' })
-  const [rotate, setRotate] = useState('0deg')
+  const [rotate, setRotate] = useState(false)
   let navigate = useNavigate()
+
+  const rotating = () => {
+    setRotate((rotated) => !rotated)
+  }
 
   const changeUpOrIn = async () => {
     if (signUp) {
       setSignUp(false)
       setUpOrIn('Sign Up')
-      setRotate('180deg')
+      rotating()
+      // setRotate(true)
     } else {
       setSignUp(true)
       setUpOrIn('Login')
-      setRotate('180deg')
+      rotating()
+      // setRotate(true)
     }
   }
 
@@ -69,27 +75,39 @@ const Home = ({ user, setUser, signUp, setSignUp, upOrIn, setUpOrIn }) => {
 
   return (
     <div id="home-form-container">
-      <main
+      <div
         id="home-form-container-inner"
         // style={{ transform: `rotateY(${rotate})` }}
+        className={`${rotate ? 'rotated' : ''}`}
       >
-        {signUp ? (
+        {/* {signUp ? ( */}
+        <div className="sign">
           <SignUpForm
             signUpValues={signUpValues}
             updateSignUpValues={updateSignUpValues}
             submitSignUp={submitSignUp}
           />
-        ) : (
+        </div>
+        {/* ) : ( */}
+        <div className="log">
           <LoginForm
             loginValues={loginValues}
             updateLoginValues={updateLoginValues}
             submitLogin={submitLogin}
           />
-        )}
-      </main>
-      <button disabled={user} onClick={changeUpOrIn}>
-        {upOrIn}
-      </button>
+        </div>
+        <div className="button">
+          <button
+            disabled={user}
+            // className="btn"
+            onClick={changeUpOrIn}
+            className={`${rotate ? 'rotated' : ''}`}
+            display="relative"
+          >
+            {upOrIn}
+          </button>
+        </div>
+      </div>
     </div>
   )
 }

@@ -66,14 +66,18 @@ main {
   flex-direction: column;
   align-items: center;
 
-  width: 50vw;
+  /* width: 50vw;
   height: 50vh;
   border: 1px solid black;
   background-color: transparent;
-  perspective: 1000px;
+  perspective: 1000px; */
 }
 
 #home-form-container-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   position: relative;
   width: 100%;
   height: 100%;
@@ -84,9 +88,10 @@ main {
 
 #sign-up-form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 
   position: absolute;
   width: 100%;
@@ -106,6 +111,44 @@ main {
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+
+.sign,
+.log {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  width: 15rem;
+  height: 25rem;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: relative;
+  /* vertical-align: middle; */
+  transition: transform 0.8s;
+  /* transform-style: preserve-3d; */
+}
+
+.sign {
+  transform: perspective(1000px) rotateY(0deg);
+  /* --rotate-y: 180deg; */
+}
+
+.log {
+  transform: perspective(1000px) rotateY(-180deg);
+  /* --rotate-y: 180deg; */
+}
+
+.rotated > .sign {
+  transform: perspective(1000px) rotateY(180deg);
+}
+
+.rotated > .log {
+  transform: perspective(1000px) rotateY(0deg);
+}
+
+.button {
+  display: flex;
 }
 
 /*////////// home styling above //////////////////////*/
