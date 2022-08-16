@@ -119,7 +119,8 @@ const FeatForm = ({
           value={featFormValues.description}
           onChange={updateFeatFormValues}
         ></textarea>
-        <label htmlFor="image">Choose Photo</label>
+
+        <label htmlFor="image">Choose Photo:</label>
         <input type="file" id="image" />
 
         <button type="submit" className="btn">
