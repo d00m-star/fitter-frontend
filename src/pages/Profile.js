@@ -82,10 +82,10 @@ const Profile = ({
     if (res.length > 0) {
       setUserFeats(
         res.sort((a, b) => {
-          if (a.updatedAt > b.updatedAt) {
+          if (a.createdAt > b.createdAt) {
             return -1
           }
-          if (a.updatedAt < b.updatedAt) {
+          if (a.createdAt < b.createdAt) {
             return 1
           }
           return 0
@@ -199,10 +199,10 @@ const Profile = ({
             ))
           ) : (
             // .sort((a, b) => {
-            //   if (a.updatedAt > b.updatedAt) {
+            //   if (a.createdAt > b.createdAt) {
             //     return 1
             //   }
-            //   if (a.updatedAt < b.updatedAt) {
+            //   if (a.createdAt < b.createdAt) {
             //     return -1
             //   }
             //   return 0
