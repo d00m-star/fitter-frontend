@@ -8,15 +8,9 @@ const FeatForm = ({
   submitFeatForm,
   feat,
   featEditing,
-  setFeatFormValues
+  setFeatFormValues,
+  selectedFeat
 }) => {
-  const [selectedFeat, setSelectedFeat] = useState({
-    id: 6
-  })
-
-  const getSelectedFeat = () => {
-    if (feat) setSelectedFeat(feat)
-  }
   useEffect(() => {
     if (featEditing) {
       setFeatFormValues({
@@ -27,7 +21,6 @@ const FeatForm = ({
         image: feat.image
       })
     }
-    getSelectedFeat()
   }, [])
 
   return (
@@ -37,38 +30,68 @@ const FeatForm = ({
         <select
           name="type"
           id="type"
+          type="select"
           value={featFormValues.type}
           onChange={updateFeatFormValues}
         >
-          <option value="" disabled hidden>
+          <option type="option" value="" disabled hidden>
             {' '}
           </option>
-          <option value="cardio">cardio</option>
-          <option value="weight">weight training</option>
-          <option value="stretching">stretching</option>
-          <option value="yoga">yoga</option>
-          <option value="pilates">pilates</option>
+          <option type="option" value="cardio">
+            cardio
+          </option>
+          <option type="option" value="weight">
+            weight training
+          </option>
+          <option type="option" value="stretching">
+            stretching
+          </option>
+          <option type="option" value="yoga">
+            yoga
+          </option>
+          <option type="option" value="pilates">
+            pilates
+          </option>
         </select>
 
         <label htmlFor="bodyPart">Body Part:</label>
         <select
           name="bodyPart"
           id="bodyPart"
+          type="select"
           value={featFormValues.bodyPart}
           onChange={updateFeatFormValues}
         >
-          <option value="" disabled hidden>
+          <option type="option" value="" disabled hidden>
             {' '}
           </option>
-          <option value="chest">chest</option>
-          <option value="back">back</option>
-          <option value="arms">arms</option>
-          <option value="abdominals">abdominals</option>
-          <option value="legs">legs</option>
-          <option value="shoulders">shoulders</option>
-          <option value="glutes">glutes</option>
-          <option value="lats">lats</option>
-          <option value="body">entire body</option>
+          <option type="option" value="chest">
+            chest
+          </option>
+          <option type="option" value="back">
+            back
+          </option>
+          <option type="option" value="arms">
+            arms
+          </option>
+          <option type="option" value="abdominals">
+            abdominals
+          </option>
+          <option type="option" value="legs">
+            legs
+          </option>
+          <option type="option" value="shoulders">
+            shoulders
+          </option>
+          <option type="option" value="glutes">
+            glutes
+          </option>
+          <option type="option" value="lats">
+            lats
+          </option>
+          <option type="option" value="body">
+            entire body
+          </option>
         </select>
 
         <label htmlFor="intensity">Intensity:</label>
@@ -85,6 +108,7 @@ const FeatForm = ({
 
         <label htmlFor="description">Description:</label>
         <textarea
+          type="textarea"
           id="description"
           cols="30"
           rows="10"
@@ -98,7 +122,7 @@ const FeatForm = ({
         <button type="submit" className="btn">
           Post Feat
         </button>
-        <button onClick={displayCreateForm} className="btn">
+        <button type="button" onClick={displayCreateForm} className="btn">
           Nevermind!
         </button>
       </form>
