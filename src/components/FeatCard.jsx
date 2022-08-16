@@ -10,7 +10,7 @@ const FeatCard = ({ feat }) => {
       <p>{feat.type}</p>
       <p>{feat.bodyPart}</p>
       <p>{feat.intensity}</p>
-      <p>{feat.description}</p>
+      <p id="feat-descript">{feat.description}</p>
     </div>
   )
 }

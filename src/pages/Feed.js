@@ -50,10 +50,23 @@ const Feed = ({
   }, [reRender])
 
   return (
-    <div>
+    <div id="feed-container">
+      <button className="btn" onClick={displayCreateForm} disabled={active}>
+        Create Feat
+      </button>
+      <div style={{ display: `${formDisplay}`, justifyContent: 'center' }}>
+        <FeatForm
+          featFormValues={featFormValues}
+          emoji={emoji}
+          displayCreateForm={displayCreateForm}
+          updateFeatFormValues={updateFeatFormValues}
+          submitFeatForm={submitFeatForm}
+          selectedFeat={selectedFeat}
+        />
+      </div>
       <div className="feat-grid">
         {feats?.map((feat) => (
-          <div key={feat.id}>
+          <div className="feat-card-container" key={feat.id}>
             {!featEditing ? (
               <FeatCard feat={feat} onClick={() => showFeat(feat)} />
             ) : selectedFeat.id === feat.id ? (
@@ -74,19 +87,6 @@ const Feed = ({
             <button onClick={() => deleteUserFeat(feat.id)}>X</button>
           </div>
         ))}
-      </div>
-      <button className="btn" onClick={displayCreateForm} disabled={active}>
-        Create Feat
-      </button>
-      <div style={{ display: `${formDisplay}`, justifyContent: 'center' }}>
-        <FeatForm
-          featFormValues={featFormValues}
-          emoji={emoji}
-          displayCreateForm={displayCreateForm}
-          updateFeatFormValues={updateFeatFormValues}
-          submitFeatForm={submitFeatForm}
-          selectedFeat={selectedFeat}
-        />
       </div>
     </div>
   )
