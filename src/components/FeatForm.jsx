@@ -25,7 +25,10 @@ const FeatForm = ({
 
   return (
     <div>
-      <form onSubmit={(e) => submitFeatForm(e, selectedFeat.id)}>
+      <form
+        onSubmit={(e) => submitFeatForm(e, selectedFeat.id)}
+        className="form"
+      >
         <label htmlFor="type">Type:</label>
         <select
           name="type"
@@ -116,8 +119,8 @@ const FeatForm = ({
           value={featFormValues.description}
           onChange={updateFeatFormValues}
         ></textarea>
-
-        <label htmlFor="image"></label>
+        <label htmlFor="image">Choose Photo</label>
+        <input type="file" id="image" />
 
         <button type="submit" className="btn">
           Post Feat
