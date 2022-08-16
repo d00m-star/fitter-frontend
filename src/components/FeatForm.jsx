@@ -122,9 +122,11 @@ const FeatForm = ({
         <button type="submit" className="btn">
           Post Feat
         </button>
-        <button type="button" onClick={displayCreateForm} className="btn">
-          Nevermind!
-        </button>
+        {!featEditing && (
+          <button type="button" onClick={displayCreateForm} className="btn">
+            Nevermind!
+          </button>
+        )}
       </form>
     </div>
   )

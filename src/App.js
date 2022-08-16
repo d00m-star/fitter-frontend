@@ -199,6 +199,7 @@ function App() {
                 user={user}
                 featEditing={featEditing}
                 updateText={updateText}
+                selectedFeat={selectedFeat}
                 setFeats={setFeats}
                 updateFeatFormValues={updateFeatFormValues}
                 displayCreateForm={displayCreateForm}
@@ -237,7 +238,6 @@ function App() {
                 displayEditFeat={displayEditFeat}
                 deleteUserFeat={deleteUserFeat}
                 setFeatFormValues={setFeatFormValues}
-                checkToken={checkToken}
               />
             }
           />

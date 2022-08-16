@@ -15,6 +15,7 @@ const Feed = ({
   showFeat,
   featEditing,
   updateText,
+  selectedFeat,
   displayCreateForm,
   updateFeatFormValues,
   submitFeatForm,
@@ -55,7 +56,7 @@ const Feed = ({
           <div key={feat.id}>
             {!featEditing ? (
               <FeatCard feat={feat} onClick={() => showFeat(feat)} />
-            ) : (
+            ) : selectedFeat.id === feat.id ? (
               <FeatForm
                 feat={feat}
                 featFormValues={featFormValues}
@@ -64,7 +65,10 @@ const Feed = ({
                 submitFeatForm={submitFeatForm}
                 emoji={emoji}
                 setFeatFormValues={setFeatFormValues}
+                selectedFeat={selectedFeat}
               />
+            ) : (
+              <FeatCard feat={feat} onClick={() => showFeat(feat)} />
             )}
             <button onClick={() => displayEditFeat(feat)}>{updateText}</button>
             <button onClick={() => deleteUserFeat(feat.id)}>X</button>
@@ -81,6 +85,7 @@ const Feed = ({
           displayCreateForm={displayCreateForm}
           updateFeatFormValues={updateFeatFormValues}
           submitFeatForm={submitFeatForm}
+          selectedFeat={selectedFeat}
         />
       </div>
     </div>
