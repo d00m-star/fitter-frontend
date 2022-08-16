@@ -154,25 +154,29 @@ const Profile = ({
           />
         </div>
         <div>
-          {userFeats?.reverse().map((feat) => (
-            <div key={feat.id}>
-              {!featEditing ? (
-                <FeatCard feat={feat} />
-              ) : (
-                <FeatForm
-                  feat={feat}
-                  featFormValues={featFormValues}
-                  featEditing={featEditing}
-                  updateFeatFormValues={updateFeatFormValues}
-                  submitFeatForm={submitFeatForm}
-                  emoji={emoji}
-                  setFeatFormValues={setFeatFormValues}
-                />
-              )}
-              <button onClick={displayEditFeat}>{updateText}</button>
-              <button onClick={() => deleteUserFeat(feat.id)}>X</button>
-            </div>
-          ))}
+          {userFeats ? (
+            userFeats.reverse().map((feat) => (
+              <div key={feat.id}>
+                {!featEditing ? (
+                  <FeatCard feat={feat} />
+                ) : (
+                  <FeatForm
+                    feat={feat}
+                    featFormValues={featFormValues}
+                    featEditing={featEditing}
+                    updateFeatFormValues={updateFeatFormValues}
+                    submitFeatForm={submitFeatForm}
+                    emoji={emoji}
+                    setFeatFormValues={setFeatFormValues}
+                  />
+                )}
+                <button onClick={displayEditFeat}>{updateText}</button>
+                <button onClick={() => deleteUserFeat(feat.id)}>X</button>
+              </div>
+            ))
+          ) : (
+            <h2>Share a Feat!</h2>
+          )}
         </div>
       </section>
     </main>
