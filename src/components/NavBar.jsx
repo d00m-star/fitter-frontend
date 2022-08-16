@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { IoHomeOutline, IoLogOutOutline } from 'react-icons/io5'
+import { CgProfile, CgHome, CgLogOut } from 'react-icons/cg'
 
 const NavBar = ({ user, logout }) => {
   return (
@@ -12,31 +13,27 @@ const NavBar = ({ user, logout }) => {
             <img src="" alt="logo" />
           </Link>
           {/* <div className="nav-links"> */}
-          <div>
-            {/* add feed/home, logout icon */}
+          <div className="nav-mid">
             <NavLink
               to="/feed"
-              className={({ isActive }) => (isActive ? 'active' : undefined)}
+              className={`nav-link ({ isActive }) => (isActive ? 'active' : undefined)`}
             >
-              <IoHomeOutline size="2em" color="#ffffff" />
-              {/* <img src="" alt="feed" /> */}
+              <CgHome className="icon" />
             </NavLink>
             <NavLink
               to="/"
-              className={({ isActive }) => (isActive ? 'active' : undefined)}
+              className={`nav-link ({ isActive }) => (isActive ? 'active' : undefined)`}
               onClick={logout}
             >
-              <IoLogOutOutline size="2em" color="#ffffff" />
-              {/* <img src="" alt="logout" /> */}
+              <CgLogOut className="icon" size="1.15em" />
             </NavLink>
           </div>
           <div className="nav-prof">
-            {/* add profpic icon */}
             <NavLink
               to={`/profile/${user.username}`}
-              className={({ isActive }) => (isActive ? 'active' : undefined)}
+              className={`nav-link ({ isActive }) => (isActive ? 'active' : undefined)`}
             >
-              <img src="" alt="profile" />
+              <CgProfile className="icon" />
             </NavLink>
             <h3>Hi, {user.username} </h3>
           </div>
