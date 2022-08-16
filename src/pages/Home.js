@@ -77,37 +77,28 @@ const Home = ({ user, setUser, signUp, setSignUp, upOrIn, setUpOrIn }) => {
     <div id="home-form-container">
       <div
         id="home-form-container-inner"
-        // style={{ transform: `rotateY(${rotate})` }}
         className={`${rotate ? 'rotated' : ''}`}
       >
-        {/* {signUp ? ( */}
-        <div className="sign">
-          <SignUpForm
-            signUpValues={signUpValues}
-            updateSignUpValues={updateSignUpValues}
-            submitSignUp={submitSignUp}
-          />
-        </div>
-        {/* ) : ( */}
-        <div className="log">
-          <LoginForm
-            loginValues={loginValues}
-            updateLoginValues={updateLoginValues}
-            submitLogin={submitLogin}
-          />
-        </div>
-        <div className="button">
-          <button
-            disabled={user}
-            // className="btn"
-            onClick={changeUpOrIn}
-            className={`${rotate ? 'rotated' : ''}`}
-            display="relative"
-          >
-            {upOrIn}
-          </button>
-        </div>
+        <SignUpForm
+          signUpValues={signUpValues}
+          updateSignUpValues={updateSignUpValues}
+          submitSignUp={submitSignUp}
+        />
+        <LoginForm
+          loginValues={loginValues}
+          updateLoginValues={updateLoginValues}
+          submitLogin={submitLogin}
+        />
       </div>
+      <button
+        disabled={user}
+        id="up-or-in-btn"
+        className={`${rotate ? 'rotated' : ''}`}
+        onClick={changeUpOrIn}
+        display="relative"
+      >
+        {upOrIn}
+      </button>
     </div>
   )
 }
