@@ -28,7 +28,17 @@ const Feed = ({
 }) => {
   const handleFeats = async () => {
     const data = await GetFeats()
-    setFeats(data)
+    setFeats(
+      data.sort((a, b) => {
+        if (a.createdAt > b.createdAt) {
+          return -1
+        }
+        if (a.createdAt < b.createdAt) {
+          return 1
+        }
+        return 0
+      })
+    )
   }
 
   useEffect(() => {
@@ -41,7 +51,7 @@ const Feed = ({
   return (
     <div>
       <div className="feat-grid">
-        {feats?.reverse().map((feat) => (
+        {feats?.map((feat) => (
           <div key={feat.id}>
             {!featEditing ? (
               <FeatCard feat={feat} onClick={() => showFeat(feat)} />
@@ -56,7 +66,7 @@ const Feed = ({
                 setFeatFormValues={setFeatFormValues}
               />
             )}
-            <button onClick={displayEditFeat}>{updateText}</button>
+            <button onClick={() => displayEditFeat(feat)}>{updateText}</button>
             <button onClick={() => deleteUserFeat(feat.id)}>X</button>
           </div>
         ))}
