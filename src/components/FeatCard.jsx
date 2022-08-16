@@ -3,6 +3,7 @@ import React from 'react'
 const FeatCard = ({ feat }) => {
   return (
     <div className="feat-card">
+      {feat.createdAt !== feat.updatedAt && <p id="edited">(edited)</p>}
       <h2>{feat.author.username}</h2>
       <h3>{feat.likes}</h3>
       <img src={feat.image} alt={feat.type} />
