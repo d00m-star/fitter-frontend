@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 
 import NavBar from './components/NavBar'
@@ -38,6 +38,7 @@ function App() {
   const [updateText, setUpdateText] = useState('Edit Feat')
   const [commentEditing, setCommentEditing] = useState(false)
   const [updateComText, setUpdateComText] = useState('Edit Comment')
+  const [authenticated, toggleAuthenticated] = useState(false)
 
   const displayCreateForm = () => {
     formDisplay === 'none' ? setFormDisplay('flex') : setFormDisplay('none')
@@ -151,8 +152,8 @@ function App() {
   }
 
   const checkToken = async () => {
-    const user = await CheckSession()
-    setUser(user)
+    const userCheck = await CheckSession()
+    setUser(userCheck)
   }
 
   useEffect(() => {
@@ -217,6 +218,7 @@ function App() {
                 reRender={reRender}
                 featEditing={featEditing}
                 updateText={updateText}
+                authenticated={authenticated}
                 updateFeatFormValues={updateFeatFormValues}
                 setActive={setActive}
                 setFormDisplay={setFormDisplay}
@@ -227,6 +229,8 @@ function App() {
                 displayEditFeat={displayEditFeat}
                 deleteUserFeat={deleteUserFeat}
                 setFeatFormValues={setFeatFormValues}
+                checkToken={checkToken}
+                toggleAuthenticated={toggleAuthenticated}
               />
             }
           />
