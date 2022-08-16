@@ -8,6 +8,16 @@ export const GetFeats = async () => {
     throw e
   }
 }
+
+export const GetFeatById = async (featId) => {
+  try {
+    const response = await Client.get(`/feats/${featId}`)
+    return response.data
+  } catch (e) {
+    throw e
+  }
+}
+
 export const GetUserFeats = async (userId) => {
   try {
     const response = await Client.get(`/feats/user/${userId}`)
