@@ -155,7 +155,7 @@ function App() {
     setUser(null)
     setFeats(null)
     localStorage.clear()
-    setSignUp(false)
+    setSignUp(true)
     setUpOrIn('Login')
   }
 
