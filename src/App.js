@@ -17,7 +17,9 @@ function App() {
 
   const [user, setUser] = useState(null)
   const [feats, setFeats] = useState(null)
-  const [comments, setComments] = useState(null)
+  const [selectedFeat, setSelectedFeat] = useState({
+    id: 0
+  })
   const [signUp, setSignUp] = useState(true)
   const [upOrIn, setUpOrIn] = useState('Login')
   const [formDisplay, setFormDisplay] = useState('none')
@@ -38,11 +40,11 @@ function App() {
   const [updateText, setUpdateText] = useState('Edit Feat')
   const [commentEditing, setCommentEditing] = useState(false)
   const [updateComText, setUpdateComText] = useState('Edit Comment')
-  const [authenticated, toggleAuthenticated] = useState(false)
 
   const displayCreateForm = () => {
     formDisplay === 'none' ? setFormDisplay('flex') : setFormDisplay('none')
     !active ? setActive(true) : setActive(false)
+    // setReRender(true)
   }
 
   const updateFeatFormValues = (e) => {
@@ -75,10 +77,11 @@ function App() {
     }
   }
 
-  const displayEditFeat = () => {
+  const displayEditFeat = (feat) => {
     if (!featEditing) {
       setFeatEditing(true)
       setUpdateText('Cancel')
+      setSelectedFeat(feat)
     } else {
       setFeatEditing(false)
       setUpdateText('Edit Feat')
@@ -91,7 +94,7 @@ function App() {
       setUpdateComText('Cancel')
     } else {
       setCommentEditing(false)
-      setUpdateComText('Edit Feat')
+      setUpdateComText('Edit Comment')
     }
   }
 
@@ -104,16 +107,22 @@ function App() {
     if (!featEditing) {
       let formBody = { ...featFormValues, userId: Number(user.id) }
       const data = await PostFeat(formBody)
-      console.log(data)
-      setFeats(data)
+      console.log(formBody)
     } else {
       const data = await UpdateFeat(featId, featFormValues)
       console.log(data)
-      setFeats(data)
     }
+    setFeatFormValues({
+      type: '',
+      bodyPart: '',
+      intensity: 0,
+      description: '',
+      image: ''
+    })
     setFormDisplay('none')
     setFeatEditing(false)
     setReRender(true)
+    setUpdateText('Edit Feat')
   }
 
   const submitCommentForm = async (e, id) => {
@@ -126,15 +135,14 @@ function App() {
       }
       const data = await PostComment(id, commentBody)
       console.log(data)
-      setComments(data)
     } else {
       const data = await UpdateComment(id, commentFormValues)
       console.log(data)
-      setComments(data)
     }
     setFormDisplay('none')
     setCommentEditing(false)
     setReRender(true)
+    setUpdateComText('Edit Comment')
   }
 
   const deleteUserFeat = async (featId) => {
@@ -148,7 +156,7 @@ function App() {
     setFeats(null)
     localStorage.clear()
     setSignUp(false)
-    setUpOrIn('Sign Up')
+    setUpOrIn('Login')
   }
 
   const checkToken = async () => {
@@ -218,7 +226,7 @@ function App() {
                 reRender={reRender}
                 featEditing={featEditing}
                 updateText={updateText}
-                authenticated={authenticated}
+                selectedFeat={selectedFeat}
                 updateFeatFormValues={updateFeatFormValues}
                 setActive={setActive}
                 setFormDisplay={setFormDisplay}
@@ -230,7 +238,6 @@ function App() {
                 deleteUserFeat={deleteUserFeat}
                 setFeatFormValues={setFeatFormValues}
                 checkToken={checkToken}
-                toggleAuthenticated={toggleAuthenticated}
               />
             }
           />

@@ -26,8 +26,7 @@ const Profile = ({
   displayEditFeat,
   deleteUserFeat,
   checkToken,
-  toggleAuthenticated,
-  authenticated
+  selectedFeat
 }) => {
   const [userFeats, setUserFeats] = useState(null)
   const [passwordEditing, setPasswordEditing] = useState(false)
@@ -83,7 +82,7 @@ const Profile = ({
     if (res.length > 0) {
       setUserFeats(res)
     } else {
-      setUserFeats('Share a Feat!')
+      setUserFeats(null)
     }
   }
 
@@ -167,7 +166,7 @@ const Profile = ({
               <div key={feat.id}>
                 {!featEditing ? (
                   <FeatCard feat={feat} />
-                ) : (
+                ) : selectedFeat.id === feat.id ? (
                   <FeatForm
                     feat={feat}
                     featFormValues={featFormValues}
@@ -176,9 +175,14 @@ const Profile = ({
                     submitFeatForm={submitFeatForm}
                     emoji={emoji}
                     setFeatFormValues={setFeatFormValues}
+                    selectedFeat={selectedFeat}
                   />
+                ) : (
+                  <FeatCard feat={feat} />
                 )}
-                <button onClick={displayEditFeat}>{updateText}</button>
+                <button onClick={() => displayEditFeat(feat)}>
+                  {updateText}
+                </button>
                 <button onClick={() => deleteUserFeat(feat.id)}>X</button>
               </div>
             ))

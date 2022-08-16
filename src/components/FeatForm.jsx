@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const FeatForm = ({
   featFormValues,
@@ -10,6 +10,13 @@ const FeatForm = ({
   featEditing,
   setFeatFormValues
 }) => {
+  const [selectedFeat, setSelectedFeat] = useState({
+    id: 6
+  })
+
+  const getSelectedFeat = () => {
+    if (feat) setSelectedFeat(feat)
+  }
   useEffect(() => {
     if (featEditing) {
       setFeatFormValues({
@@ -20,11 +27,12 @@ const FeatForm = ({
         image: feat.image
       })
     }
+    getSelectedFeat()
   }, [])
 
   return (
     <div>
-      <form onSubmit={(e) => submitFeatForm(e, feat.id)}>
+      <form onSubmit={(e) => submitFeatForm(e, selectedFeat.id)}>
         <label htmlFor="type">Type:</label>
         <select
           name="type"
