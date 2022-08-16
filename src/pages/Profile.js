@@ -88,78 +88,65 @@ const Profile = ({
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    // if (token) checkToken().then(
-    //   )
-    if (token) checkToken()
-    renderUserFeats(user.id)
-
-    // if (token) {
-    //   const awaitToken = async () => {
-    //     await checkToken()
-    //     await toggleAuthenticated(true)
-    //   }
-    //   awaitToken()
-    // }
-    // if (authenticated) {
-    //   let res = renderUserFeats(user.id)
-    //   // setUserFeats(res)
-    //   console.log(res)
-    // }
+    user && renderUserFeats(user.id)
     setActive(false)
     setFormDisplay('none')
     setReRender(false)
-  }, [reRender])
+  }, [reRender, !user])
 
   return (
     <main>
-      <section id="user-info-container">
-        <div id="user-info" style={{ display: `${infoDisplay}` }}>
-          <h2>{user.username}</h2>
-          <h3>{user.email}</h3>
-          <h3>{user.location}</h3>
-        </div>
-        <form
-          id="user-info-form"
-          style={{ display: `${passwordFormDisplay}` }}
-          onSubmit={(e) => submitNewPassword(e)}
-        >
-          <input
-            type="password"
-            name="oldPassword"
-            value={passwordFormValues.oldPassword}
-            onInput={updatePasswordValues}
-            required
-          />
-          <input
-            type="password"
-            name="newPassword"
-            value={passwordFormValues.newPassword}
-            onInput={updatePasswordValues}
-            required
-          />
-          <input
-            type="password"
-            name="confirmNewPassword"
-            value={passwordFormValues.confirmNewPassword}
-            onInput={updatePasswordValues}
-            required
-          />
-          <button
-            type="submit"
-            disabled={
-              !passwordFormValues.oldPassword ||
-              !passwordFormValues.newPassword ||
-              !passwordFormValues.confirmNewPassword ||
-              passwordFormValues.newPassword !==
-                passwordFormValues.confirmNewPassword
-            }
+      {user ? (
+        <section id="user-info-container">
+          <div id="user-info" style={{ display: `${infoDisplay}` }}>
+            <h2>{user.username}</h2>
+            <h3>{user.email}</h3>
+            <h3>{user.location}</h3>
+          </div>
+          <form
+            id="user-info-form"
+            style={{ display: `${passwordFormDisplay}` }}
+            onSubmit={(e) => submitNewPassword(e)}
           >
-            Submit
-          </button>
-        </form>
-        <button onClick={renderPasswordEditing}>Change Password</button>
-      </section>
+            <input
+              type="password"
+              name="oldPassword"
+              value={passwordFormValues.oldPassword}
+              onInput={updatePasswordValues}
+              required
+            />
+            <input
+              type="password"
+              name="newPassword"
+              value={passwordFormValues.newPassword}
+              onInput={updatePasswordValues}
+              required
+            />
+            <input
+              type="password"
+              name="confirmNewPassword"
+              value={passwordFormValues.confirmNewPassword}
+              onInput={updatePasswordValues}
+              required
+            />
+            <button
+              type="submit"
+              disabled={
+                !passwordFormValues.oldPassword ||
+                !passwordFormValues.newPassword ||
+                !passwordFormValues.confirmNewPassword ||
+                passwordFormValues.newPassword !==
+                  passwordFormValues.confirmNewPassword
+              }
+            >
+              Submit
+            </button>
+          </form>
+          <button onClick={renderPasswordEditing}>Change Password</button>
+        </section>
+      ) : (
+        <h1>Loading Profile</h1>
+      )}
       <section id="user-feats">
         <button onClick={displayCreateForm} disabled={active}>
           Share Feat!
