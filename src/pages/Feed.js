@@ -78,7 +78,7 @@ const Feed = ({
       <button className="btn" onClick={displayCreateForm} disabled={active}>
         Create Feat
       </button>
-      <div style={{ display: `${formDisplay}` }}>
+      <div style={{ display: `${formDisplay}`, justifyContent: 'center' }}>
         <FeatForm
           featFormValues={featFormValues}
           emoji={emoji}
