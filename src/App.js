@@ -107,7 +107,7 @@ function App() {
     if (!featEditing) {
       let formBody = { ...featFormValues, userId: Number(user.id) }
       const data = await PostFeat(formBody)
-      console.log(formBody)
+      console.log(data)
     } else {
       const data = await UpdateFeat(featId, featFormValues)
       console.log(data)

@@ -80,7 +80,17 @@ const Profile = ({
   const renderUserFeats = async (userId) => {
     const res = await GetUserFeats(userId)
     if (res.length > 0) {
-      setUserFeats(res)
+      setUserFeats(
+        res.sort((a, b) => {
+          if (a.updatedAt > b.updatedAt) {
+            return -1
+          }
+          if (a.updatedAt < b.updatedAt) {
+            return 1
+          }
+          return 0
+        })
+      )
     } else {
       setUserFeats(null)
     }
@@ -158,11 +168,12 @@ const Profile = ({
             submitFeatForm={submitFeatForm}
             emoji={emoji}
             checkToken={checkToken}
+            selectedFeat={selectedFeat}
           />
         </div>
         <div>
           {userFeats ? (
-            userFeats.reverse().map((feat) => (
+            userFeats.map((feat) => (
               <div key={feat.id}>
                 {!featEditing ? (
                   <FeatCard feat={feat} />
@@ -187,6 +198,15 @@ const Profile = ({
               </div>
             ))
           ) : (
+            // .sort((a, b) => {
+            //   if (a.updatedAt > b.updatedAt) {
+            //     return 1
+            //   }
+            //   if (a.updatedAt < b.updatedAt) {
+            //     return -1
+            //   }
+            //   return 0
+            // })
             <h2>Share a Feat!</h2>
           )}
         </div>
