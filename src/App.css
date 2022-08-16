@@ -6,6 +6,8 @@
   box-sizing: border-box;
   font-family: 'Barlow Condensed', sans-serif;
   letter-spacing: 1px;
+  background-color: #2b2c28;
+  color: #f9f9f9;
 }
 
 body {
@@ -17,35 +19,34 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  text-align: center;
 }
 
 /*////////// global styling above //////////////////////*/
+
+a {
+  text-decoration: none;
+}
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
-  background-color: #0e2c45;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   padding: 1em;
   min-height: 2em;
+  font-size: 1.7em;
 }
 
 .nav-mid {
   display: flex;
-  /* font-size: 2em; */
-}
-
-.nav-link {
-  display: flex;
-  align-items: center;
-  color: #ffffff;
-  font-size: 2em;
+  font-size: 1em;
 }
 
 .icon {
   margin-right: 0.5em;
   margin-left: 0.5em;
+  color: #f9f9f9;
 }
 
 .nav-prof {
@@ -54,8 +55,21 @@ main {
   align-items: center;
 }
 
-.active .icon {
-  color: #f2bd73;
+a .icon {
+  color: #00c8ff;
+}
+
+a .active .icon {
+  color: #8c042b;
+}
+
+#logo img,
+a,
+.nav-prof h3,
+.nav-mid,
+.nav-prof,
+.navbar {
+  background-color: #000000;
 }
 
 /*////////// navbar styling above //////////////////////*/
@@ -180,17 +194,24 @@ label {
   border-radius: 5px;
   margin: 0 0.3em 0.3em 0;
   box-sizing: border-box;
-  color: #0e2c45;
   text-align: center;
   transition: 0.5s;
   text-transform: uppercase;
   cursor: pointer;
   font-weight: 550;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .btn:hover {
-  color: #ab888a;
+  color: #8c042b;
   border-color: #ab888a;
 }
 
 /*////////// create feat button styling above //////////////////////*/
+
+.form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: center;
+}
