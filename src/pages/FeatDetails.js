@@ -1,4 +1,3 @@
-import Client from '../services/api'
 import { useParams } from 'react-router-dom'
 
 const FeatDetails = ({

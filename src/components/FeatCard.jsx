@@ -1,8 +1,8 @@
 import React from 'react'
 
-const FeatCard = ({ feat }) => {
+const FeatCard = ({ feat, showFeat }) => {
   return (
-    <div className="feat-card">
+    <div className="feat-card" onClick={() => showFeat(feat)}>
       {feat.createdAt !== feat.updatedAt && <p id="edited">(edited)</p>}
       <h2>{feat.author.username}</h2>
       <h3>{feat.likes}</h3>
