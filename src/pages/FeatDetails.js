@@ -20,7 +20,8 @@ const FeatDetails = ({
   setFormDisplay,
   editing,
   setEditing,
-  displayEditCom
+  displayEditCom,
+  selectedComment
 }) => {
   const [singleFeat, setSingleFeat] = useState(null)
   const { featId } = useParams()
