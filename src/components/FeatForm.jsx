@@ -46,24 +46,6 @@ const FeatForm = ({
     console.log(reader)
   }, [img])
 
-  // const handleImage = (e) => {
-  //   const file = e.target.files[0]
-  //   console.log(file)
-  //   const reader = new FileReader()
-  //   // console.log(reader)
-  //   reader.onload = () => {
-  //     if (reader.readyState === 2) {
-  //       console.log(reader.result)
-  //       setImg(reader.result)
-  //     }
-  //     console.log(img)
-  //   }
-  //   reader.readAsDataURL(img)
-  //   console.log(reader)
-  //   console.log(reader.readyState === 2)
-  //   console.log(reader.readAsDataURL(file))
-  // }
-
   useEffect(() => {
     if (featEditing) {
       setFeatFormValues({
