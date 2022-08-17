@@ -47,6 +47,7 @@ const FeatForm = ({
       <form
         onSubmit={(e) => submitFeatForm(e, selectedFeat.id)}
         className="form"
+        enctype="multipart/form-data"
       >
         <label htmlFor="type">Type:</label>
         <select
@@ -140,7 +141,13 @@ const FeatForm = ({
         ></textarea>
 
         <label htmlFor="image">Photo:</label>
-        <input type="file" id="image" accept="image/*" onChange={handleImage} />
+        <input
+          type="file"
+          name="featImage"
+          id="image"
+          accept="image/*"
+          onChange={handleImage}
+        />
         <img src={preview} alt="preview" id="preview" />
         <button type="submit" className="btn">
           Post Feat
