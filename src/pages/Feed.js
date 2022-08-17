@@ -68,7 +68,7 @@ const Feed = ({
         {feats?.map((feat) => (
           <div className="feat-card-container" key={feat.id}>
             {!featEditing ? (
-              <FeatCard feat={feat} onClick={() => showFeat(feat)} />
+              <FeatCard feat={feat} showFeat={showFeat} />
             ) : selectedFeat.id === feat.id ? (
               <FeatForm
                 feat={feat}
@@ -81,7 +81,7 @@ const Feed = ({
                 selectedFeat={selectedFeat}
               />
             ) : (
-              <FeatCard feat={feat} onClick={() => showFeat(feat)} />
+              <FeatCard feat={feat} showFeat={showFeat} />
             )}
             {user && user.id === feat.userId ? (
               <button onClick={() => displayEditFeat(feat)}>
