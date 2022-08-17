@@ -10,13 +10,12 @@ export const PostComment = async (featId, data) => {
 }
 
 export const DeleteComment = async (commentId) => {
-  const willDelete = window.confirm('Are you sure?')
-  if (!willDelete) {
-    return
+  try {
+    await Client.delete(`/comments/${commentId}`)
+  } catch (e) {
+    throw e
   }
-  await Client.delete(`/comments/${commentId}`)
 }
-
 export const UpdateComment = async (commentId, data) => {
   try {
     const response = await Client.put(`/comments/${commentId}`, data)

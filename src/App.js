@@ -10,7 +10,7 @@ import Profile from './pages/Profile'
 import './App.css'
 import { CheckSession } from './services/AuthReq'
 import { PostFeat, DeleteFeat, UpdateFeat } from './services/FeatReq'
-import { PostComment, UpdateComment } from './services/ComReq'
+import { DeleteComment, PostComment, UpdateComment } from './services/ComReq'
 import {
   DeleteCommentLike,
   DeleteFeatLike,
@@ -211,6 +211,12 @@ function App() {
     setReRender(true)
   }
 
+  const deleteUserComment = async (commentId) => {
+    let res = await DeleteComment(commentId)
+    console.log(res)
+    setReRender(true)
+  }
+
   const removeCommentLike = async (commentId) => {
     let res = await DeleteCommentLike(commentId)
     console.log(res)
@@ -335,6 +341,7 @@ function App() {
                 addCommentLike={addCommentLike}
                 addFeatLike={addFeatLike}
                 commentFormValues={commentFormValues}
+                deleteUserComment={deleteUserComment}
                 displayCreateForm={displayCreateForm}
                 displayEditCom={displayEditCom}
                 emoji={emoji}

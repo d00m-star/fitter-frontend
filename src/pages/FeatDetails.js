@@ -54,6 +54,7 @@ const FeatDetails = ({
           <div style={{ display: `${formDisplay}` }}>
             <CommentForm
               commentFormValues={commentFormValues}
+              displayCreateForm={displayCreateForm}
               updateCommentFormValues={updateCommentFormValues}
               submitCommentForm={submitCommentForm}
               editing={editing}
@@ -76,12 +77,16 @@ const FeatDetails = ({
                       submitCommentForm={submitCommentForm}
                       setCommentFormValues={setCommentFormValues}
                       displayEditCom={displayEditCom}
+                      displayCreateForm={displayCreateForm}
                       selectedComment={selectedComment}
                     />
                   ) : (
                     <CommentCard comment={comment} />
                   )}
-                  <button onClick={updateComment} className="btn">
+                  <button
+                    onClick={() => displayEditCom(comment)}
+                    className="btn"
+                  >
                     {updateComText}
                   </button>
                   <button

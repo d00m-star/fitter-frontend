@@ -5,6 +5,7 @@ const CommentForm = ({
   editing,
   selectedComment,
   displayEditCom,
+  displayCreateForm,
   submitCommentForm,
   commentFormValues,
   setCommentFormValues,
@@ -39,7 +40,7 @@ const CommentForm = ({
           🏋️
         </button>
         {!editing && (
-          <button type="button" onClick={displayEditCom} className="btn">
+          <button type="button" onClick={displayCreateForm} className="btn">
             Nevermind!
           </button>
         )}
