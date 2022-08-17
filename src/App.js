@@ -36,10 +36,15 @@ function App() {
   const [emoji, setEmoji] = useState('')
   const [active, setActive] = useState(false)
   const [reRender, setReRender] = useState(false)
-  const [featEditing, setFeatEditing] = useState(false)
   const [updateText, setUpdateText] = useState('Edit Feat')
   const [commentEditing, setCommentEditing] = useState(false)
   const [updateComText, setUpdateComText] = useState('Edit Comment')
+  const [editing, setEditing] = useState(false)
+  const [newComment, setNewComment] = useState({
+    description: '',
+    userId: user.id,
+    featId: feats.id
+  })
 
   const displayCreateForm = () => {
     formDisplay === 'none' ? setFormDisplay('flex') : setFormDisplay('none')
@@ -78,12 +83,12 @@ function App() {
   }
 
   const displayEditFeat = (feat) => {
-    if (!featEditing) {
-      setFeatEditing(true)
+    if (!editing) {
+      setEditing(true)
       setUpdateText('Cancel')
       setSelectedFeat(feat)
     } else {
-      setFeatEditing(false)
+      setEditing(false)
       setUpdateText('Edit Feat')
     }
   }
@@ -104,7 +109,7 @@ function App() {
 
   const submitFeatForm = async (e, featId) => {
     e.preventDefault()
-    if (!featEditing) {
+    if (!editing) {
       let formBody = { ...featFormValues, userId: Number(user.id) }
       const data = await PostFeat(formBody)
       console.log(data)
@@ -120,7 +125,7 @@ function App() {
       image: ''
     })
     setFormDisplay('none')
-    setFeatEditing(false)
+    setEditing(false)
     setReRender(true)
     setUpdateText('Edit Feat')
   }
@@ -197,7 +202,7 @@ function App() {
                 emoji={emoji}
                 reRender={reRender}
                 user={user}
-                featEditing={featEditing}
+                editing={editing}
                 updateText={updateText}
                 selectedFeat={selectedFeat}
                 setFeats={setFeats}
@@ -225,7 +230,7 @@ function App() {
                 formDisplay={formDisplay}
                 emoji={emoji}
                 reRender={reRender}
-                featEditing={featEditing}
+                editing={editing}
                 updateText={updateText}
                 selectedFeat={selectedFeat}
                 updateFeatFormValues={updateFeatFormValues}
@@ -238,6 +243,8 @@ function App() {
                 displayEditFeat={displayEditFeat}
                 deleteUserFeat={deleteUserFeat}
                 setFeatFormValues={setFeatFormValues}
+                newComment={newComment}
+                setNewComment={setNewComment}
               />
             }
           />
@@ -260,6 +267,8 @@ function App() {
                 submitFeatForm={submitFeatForm}
                 setReRender={setReRender}
                 submitCommentForm={submitCommentForm}
+                editing={editing}
+                setEditing={setEditing}
               />
             }
           />

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-
+import CommentCard from '../components/CommentCard'
+import CommentForm from '../components/CommentForm'
 import { GetFeatById } from '../services/FeatReq'
 
 const FeatDetails = ({
@@ -9,69 +10,82 @@ const FeatDetails = ({
   commentEditing,
   commentFormValues,
   setCommentFormValues,
-  CommentCard,
-  CommentForm,
   updateComment,
   updateComText,
   submitCommentForm,
   updateCommentFormValues,
   deleteUserComment,
   displayCreateForm,
-  formDisplay
+  formDisplay,
+  setFormDisplay,
+  editing,
+  setEditing
 }) => {
   const [singleFeat, setSingleFeat] = useState(null)
   const { featId } = useParams()
 
   const getFeat = async (featId) => {
     let res = await GetFeatById(featId)
-    console.log(res)
     setSingleFeat(res)
+    console.log(res)
   }
 
   useEffect(() => {
     getFeat(featId)
+    setFormDisplay('none')
   }, [])
   return (
     <div className="feat-detail-container">
-      {/* <div className="feat-detail">
-        <h3>{singleFeat.author.username}</h3> */}
-      {/* <img src={singleFeat.image} alt={feat.type} />
-        <h3>{singleFeat.type}</h3>
-        <h3>{singleFeat.bodyPart}</h3>
-        <h3>{singleFeat.intensity}</h3>
-        <p>{singleFeat.description}</p> */}
-      {/* </div> */}
-      {/* <div className="feat-comments-container">
-        {comments?.reverse().map((comment) => (
-          <div>
-            {!commentEditing ? (
-              <CommentCard key={comment.id} />
+      {singleFeat ? (
+        <main>
+          <div className="feat-detail">
+            <h3>{singleFeat.author.username}</h3>
+            <img src={singleFeat.image} alt={singleFeat.type} />
+            <h3>{singleFeat.type}</h3>
+            <h3>{singleFeat.bodyPart}</h3>
+            <h3>{singleFeat.intensity}</h3>
+            <p>{singleFeat.description}</p>
+          </div>
+          <div className="feat-comments-container">
+            {singleFeat.comment_list.length > 0 ? (
+              singleFeat.comment_list.map((comment) => (
+                <div key={comment.id}>
+                  {!commentEditing ? (
+                    <CommentCard />
+                  ) : (
+                    <CommentForm
+                      featId={featId}
+                      commentFormValues={commentFormValues}
+                      commentEditing={commentEditing}
+                      updateCommentFormValues={updateCommentFormValues}
+                      submitCommentForm={submitCommentForm}
+                      setCommentFormValues={setCommentFormValues}
+                    />
+                  )}
+                  <button onClick={updateComment}>{updateComText}</button>
+                  <button onClick={() => deleteUserComment(comment.id)}>
+                    X
+                  </button>
+                </div>
+              ))
             ) : (
+              <h1>No Comments</h1>
+            )}
+            <div style={{ display: `${formDisplay}` }}>
               <CommentForm
-                featId={featId}
                 commentFormValues={commentFormValues}
-                commentEditing={commentEditing}
                 updateCommentFormValues={updateCommentFormValues}
                 submitCommentForm={submitCommentForm}
-                setCommentFormValues={setCommentFormValues}
+                editing={editing}
+                setEditing={setEditing}
               />
-            )}
-            <button onClick={updateComment}>{updateComText}</button>
-            <button onClick={() => deleteUserComment(comment.id)}>X</button>
+              <button onClick={displayCreateForm}></button>
+            </div>
           </div>
-        ))}
-        <button className="create-comment-btn" onClick={displayCreateForm}>
-          Comment
-        </button>
-        <div style={{ display: `${formDisplay}` }}>
-          <CommentForm
-            displayCreateForm={displayCreateForm}
-            commentFormValues={commentFormValues}
-            updateCommentFormValues={updateCommentFormValues}
-            submitCommentForm={submitCommentForm}
-          />
-        </div> */}
-      {/* </div> */}
+        </main>
+      ) : (
+        <h1>Loading Feat...</h1>
+      )}
     </div>
   )
 }
