@@ -29,6 +29,7 @@ const Feed = ({
 }) => {
   const handleFeats = async () => {
     const data = await GetFeats()
+    console.log(data)
     setFeats(
       data.sort((a, b) => {
         if (a.createdAt > b.createdAt) {
@@ -68,7 +69,7 @@ const Feed = ({
         {feats?.map((feat) => (
           <div className="feat-card-container" key={feat.id}>
             {!featEditing ? (
-              <FeatCard feat={feat} showFeat={showFeat} />
+              <FeatCard feat={feat} showFeat={showFeat} user={user} />
             ) : selectedFeat.id === feat.id ? (
               <FeatForm
                 feat={feat}
