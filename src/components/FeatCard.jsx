@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FeatCard = ({ feat, showFeat, user }) => {
+const FeatCard = ({ feat, showFeat, user, addFeatLike, removeFeatLike }) => {
   return (
     <div className="feat-card" onClick={() => showFeat(feat)}>
       {feat.createdAt !== feat.updatedAt && <p id="edited">(edited)</p>}
@@ -13,6 +13,13 @@ const FeatCard = ({ feat, showFeat, user }) => {
       <p id="feat-descript">{feat.description}</p>
       {feat.feat_likes.length > 0 && (
         <p
+          onClick={() =>
+            feat.feat_likes.some((like) =>
+              like.id === user.id
+                ? addFeatLike(feat.id)
+                : removeFeatLike(feat.id)
+            )
+          }
           className={() =>
             feat.feat_likes.some((like) =>
               like.id === user.id ? 'user-like' : undefined

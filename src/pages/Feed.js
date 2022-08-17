@@ -13,7 +13,7 @@ const Feed = ({
   active,
   reRender,
   showFeat,
-  featEditing,
+  editing,
   updateText,
   selectedFeat,
   displayCreateForm,
@@ -68,13 +68,13 @@ const Feed = ({
       <div className="feat-grid">
         {feats?.map((feat) => (
           <div className="feat-card-container" key={feat.id}>
-            {!featEditing ? (
+            {!editing ? (
               <FeatCard feat={feat} showFeat={showFeat} user={user} />
             ) : selectedFeat.id === feat.id ? (
               <FeatForm
                 feat={feat}
                 featFormValues={featFormValues}
-                featEditing={featEditing}
+                editing={editing}
                 updateFeatFormValues={updateFeatFormValues}
                 submitFeatForm={submitFeatForm}
                 emoji={emoji}

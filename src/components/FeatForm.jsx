@@ -7,7 +7,7 @@ const FeatForm = ({
   updateFeatFormValues,
   submitFeatForm,
   feat,
-  featEditing,
+  editing,
   setFeatFormValues,
   selectedFeat,
   img,
@@ -31,7 +31,7 @@ const FeatForm = ({
   }, [img])
 
   useEffect(() => {
-    if (featEditing) {
+    if (editing) {
       setFeatFormValues({
         type: feat.type,
         bodyPart: feat.bodyPart,
@@ -145,7 +145,7 @@ const FeatForm = ({
         <button type="submit" className="btn">
           Post Feat
         </button>
-        {!featEditing && (
+        {!editing && (
           <button type="button" onClick={displayCreateForm} className="btn">
             Nevermind!
           </button>

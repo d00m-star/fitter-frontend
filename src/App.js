@@ -14,7 +14,8 @@ import { PostComment, UpdateComment } from './services/ComReq'
 import {
   DeleteCommentLike,
   DeleteFeatLike,
-  PostFeatLike
+  PostFeatLike,
+  PostCommentLike
 } from './services/LikeReq'
 
 function App() {
@@ -182,6 +183,9 @@ function App() {
   }
 
   ////// post requests
+  // const updateFeatLike = async (featId) => {
+
+  // }
   const addFeatLike = async (featId) => {
     let res = await PostFeatLike(featId)
     console.log(res)
@@ -189,7 +193,7 @@ function App() {
   }
 
   const addCommentLike = async (commentId) => {
-    let res = await PostCommenttLike(commentId)
+    let res = await PostCommentLike(commentId)
     console.log(res)
     setReRender(true)
   }
