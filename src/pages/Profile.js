@@ -7,29 +7,33 @@ import { ChangePassword } from '../services/AuthReq'
 import { GetUserFeats } from '../services/FeatReq'
 
 const Profile = ({
-  feats,
-  user,
   active,
-  featFormValues,
-  formDisplay,
-  updateFeatFormValues,
-  displayCreateForm,
-  submitFeatForm,
-  emoji,
-  reRender,
-  setReRender,
-  setActive,
-  setFormDisplay,
-  setFeatFormValues,
-  editing,
-  updateText,
-  displayEditFeat,
-  deleteUserFeat,
-  checkToken,
-  selectedFeat,
-  showFeat,
   addFeatLike,
-  removeFeatLike
+  deleteUserFeat,
+  displayCreateForm,
+  displayEditFeat,
+  editing,
+  emoji,
+  featFormValues,
+  feats,
+  formDisplay,
+  handleImage,
+  img,
+  preview,
+  removeFeatLike,
+  reRender,
+  selectedFeat,
+  setActive,
+  setFeatFormValues,
+  setFormDisplay,
+  setImg,
+  setPreview,
+  setReRender,
+  showFeat,
+  submitFeatForm,
+  updateFeatFormValues,
+  updateText,
+  user
 }) => {
   const [userFeats, setUserFeats] = useState(null)
   const [passwordEditing, setPasswordEditing] = useState(false)
@@ -160,8 +164,12 @@ const Profile = ({
             updateFeatFormValues={updateFeatFormValues}
             submitFeatForm={submitFeatForm}
             emoji={emoji}
-            checkToken={checkToken}
             selectedFeat={selectedFeat}
+            handleImage={handleImage}
+            img={img}
+            preview={preview}
+            setPreview={setPreview}
+            setImg={setImg}
           />
         </div>
         <div>
@@ -170,14 +178,19 @@ const Profile = ({
               <div key={feat.id}>
                 {editing && selectedFeat.id === feat.id ? (
                   <FeatForm
+                    editing={editing}
+                    emoji={emoji}
                     feat={feat}
                     featFormValues={featFormValues}
-                    editing={editing}
-                    updateFeatFormValues={updateFeatFormValues}
-                    submitFeatForm={submitFeatForm}
-                    emoji={emoji}
-                    setFeatFormValues={setFeatFormValues}
+                    handleImage={handleImage}
+                    img={img}
+                    preview={preview}
                     selectedFeat={selectedFeat}
+                    setFeatFormValues={setFeatFormValues}
+                    setImg={setImg}
+                    setPreview={setPreview}
+                    submitFeatForm={submitFeatForm}
+                    updateFeatFormValues={updateFeatFormValues}
                   />
                 ) : (
                   <FeatCard
