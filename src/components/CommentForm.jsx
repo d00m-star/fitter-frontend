@@ -6,6 +6,7 @@ const CommentForm = ({
   displayEditCom,
   submitCommentForm,
   commentFormValues,
+  setCommentFormValues,
   updateCommentFormValues
 }) => {
   useEffect(() => {

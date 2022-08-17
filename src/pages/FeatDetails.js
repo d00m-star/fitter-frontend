@@ -47,13 +47,22 @@ const FeatDetails = ({
             <h3>{singleFeat.intensity}</h3>
             <p>{singleFeat.description}</p>
           </div>
+          <div style={{ display: `${formDisplay}` }}>
+            <CommentForm
+              commentFormValues={commentFormValues}
+              updateCommentFormValues={updateCommentFormValues}
+              submitCommentForm={submitCommentForm}
+              editing={editing}
+              setEditing={setEditing}
+              setCommentFormValues={setCommentFormValues}
+            />
+            <button onClick={displayCreateForm}></button>
+          </div>
           <div className="feat-comments-container">
             {singleFeat.comment_list.length > 0 ? (
               singleFeat.comment_list.map((comment) => (
                 <div key={comment.id}>
-                  {!commentEditing ? (
-                    <CommentCard />
-                  ) : (
+                  {editing && selectedComment.id === comment.id ? (
                     <CommentForm
                       featId={featId}
                       commentFormValues={commentFormValues}
@@ -63,6 +72,8 @@ const FeatDetails = ({
                       setCommentFormValues={setCommentFormValues}
                       displayEditCom={displayEditCom}
                     />
+                  ) : (
+                    <CommentCard />
                   )}
                   <button onClick={updateComment}>{updateComText}</button>
                   <button onClick={() => deleteUserComment(comment.id)}>
@@ -73,16 +84,6 @@ const FeatDetails = ({
             ) : (
               <h1>No Comments</h1>
             )}
-            <div style={{ display: `${formDisplay}` }}>
-              <CommentForm
-                commentFormValues={commentFormValues}
-                updateCommentFormValues={updateCommentFormValues}
-                submitCommentForm={submitCommentForm}
-                editing={editing}
-                setEditing={setEditing}
-              />
-              <button onClick={displayCreateForm}></button>
-            </div>
           </div>
         </main>
       ) : (
