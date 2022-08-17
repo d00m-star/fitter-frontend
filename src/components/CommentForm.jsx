@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom'
 
 const CommentForm = ({ feat, user, comment, editing, setEditing, newComment }) => {
   useEffect(() => {
@@ -15,10 +15,11 @@ const CommentForm = ({ feat, user, comment, editing, setEditing, newComment }) =
   let navigate = useNavigate()
   return (
     <div className="comment-form-container">
-      <div id='comment-info'>
+      <div id="comment-info">
         <h3>{comment.username}</h3>
         <h3>{comment.description}</h3>
       </div>
+
       <form id='comment-info-form'onSubmit={(e) => submitCommentForm(e, selectedComment.id)}>
         <textarea
           type="text"
@@ -29,15 +30,16 @@ const CommentForm = ({ feat, user, comment, editing, setEditing, newComment }) =
           onChange={newComment}
           required
         />
+
         <button
           type="submit" className="btn">
           🏋️
         </button>
         {!editing && ( <button type="button" onClick={displayCreateForm} className="btn">Nevermind!</button>)}
+
       </form>
     </div>
   )
 }
 
 export default CommentForm
-

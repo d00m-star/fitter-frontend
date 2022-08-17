@@ -26,7 +26,8 @@ const Profile = ({
   displayEditFeat,
   deleteUserFeat,
   checkToken,
-  selectedFeat
+  selectedFeat,
+  showFeat
 }) => {
   const [userFeats, setUserFeats] = useState(null)
   const [passwordEditing, setPasswordEditing] = useState(false)
@@ -166,7 +167,7 @@ const Profile = ({
             userFeats.map((feat) => (
               <div key={feat.id}>
                 {!featEditing ? (
-                  <FeatCard feat={feat} />
+                  <FeatCard feat={feat} showFeat={showFeat} user={user} />
                 ) : selectedFeat.id === feat.id ? (
                   <FeatForm
                     feat={feat}
