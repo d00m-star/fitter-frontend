@@ -9,29 +9,13 @@ const FeatForm = ({
   feat,
   featEditing,
   setFeatFormValues,
-  selectedFeat
-  // img,
-  // setImg,
-  // preview,
-  // setPreview
+  selectedFeat,
+  img,
+  setImg,
+  preview,
+  setPreview,
+  handleImage
 }) => {
-  // storing the image
-  const [img, setImg] = useState(null)
-  // storing the preview
-  const [preview, setPreview] = useState()
-
-  // to store an img
-  const handleImage = (e) => {
-    const file = e.target.files[0]
-    if (file) {
-      setImg(file)
-    } else {
-      setImg(null)
-    }
-    console.log(file)
-    console.log({ img })
-  }
-
   // to show a preview whenever we have an img stored
   useEffect(() => {
     const reader = new FileReader()
