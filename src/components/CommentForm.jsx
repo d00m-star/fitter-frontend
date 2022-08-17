@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 
-const CommentForm = ({ feat, user, comment, editing, setEditing }) => {
+const CommentForm = ({ feat, user, comment, editing, setEditing, newComment }) => {
   useEffect(() => {
     if (editing) {
       setFeatFormValues({
@@ -19,21 +19,21 @@ const CommentForm = ({ feat, user, comment, editing, setEditing }) => {
         <h3>{comment.username}</h3>
         <h3>{comment.description}</h3>
       </div>
-      <form id='comment-info-form'onSubmit={submitComment}>
+      <form id='comment-info-form'onSubmit={(e) => submitCommentForm(e, selectedComment.id)}>
         <textarea
           type="text"
           id={comment.username}
-          name="newComment"
+          name="new-comment"
           placeholder={comment.description}
           value={newComment.description}
-          onInput={newComment}
+          onChange={newComment}
           required
         />
         <button
-          type="submit">
+          type="submit" className="btn">
           🏋️
         </button>
-        {!editing && ( <button type="button" onClick={displayCreateForm} className="cancel">Nevermind!</button>)}
+        {!editing && ( <button type="button" onClick={displayCreateForm} className="btn">Nevermind!</button>)}
       </form>
     </div>
   )
