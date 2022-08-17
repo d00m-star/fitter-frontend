@@ -19,7 +19,8 @@ const FeatDetails = ({
   formDisplay,
   setFormDisplay,
   editing,
-  setEditing
+  setEditing,
+  displayEditCom
 }) => {
   const [singleFeat, setSingleFeat] = useState(null)
   const { featId } = useParams()
@@ -60,6 +61,7 @@ const FeatDetails = ({
                       updateCommentFormValues={updateCommentFormValues}
                       submitCommentForm={submitCommentForm}
                       setCommentFormValues={setCommentFormValues}
+                      displayEditCom={displayEditCom}
                     />
                   )}
                   <button onClick={updateComment}>{updateComText}</button>

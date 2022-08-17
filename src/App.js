@@ -58,6 +58,13 @@ function App() {
     // setReRender(true)
   }
 
+  const updateCommentFormValues = (e) => {
+    setCommentFormValues({
+      ...commentFormValues,
+      [e.target.id]: e.target.value
+    })
+  }
+
   const updateFeatFormValues = (e) => {
     e.target.id === 'intensity'
       ? setFeatFormValues({
@@ -142,7 +149,6 @@ function App() {
     if (!editing) {
       let commentBody = {
         ...commentFormValues,
-        // featId: Number(id),
         userId: Number(user.id)
       }
       const data = await PostComment(id, commentBody)
@@ -202,27 +208,31 @@ function App() {
             path="/feed"
             element={
               <Feed
-                feats={feats}
                 active={active}
+                displayCreateForm={displayCreateForm}
+                displayEditFeat={displayEditFeat}
+                deleteUserFeat={deleteUserFeat}
+                emoji={emoji}
+                editing={editing}
+                feats={feats}
                 featFormValues={featFormValues}
                 formDisplay={formDisplay}
-                emoji={emoji}
+                img={img}
+                preview={preview}
                 reRender={reRender}
-                user={user}
-                editing={editing}
-                updateText={updateText}
                 selectedFeat={selectedFeat}
                 setFeats={setFeats}
-                updateFeatFormValues={updateFeatFormValues}
-                displayCreateForm={displayCreateForm}
                 submitFeatForm={submitFeatForm}
                 setReRender={setReRender}
                 showFeat={showFeat}
-                displayEditFeat={displayEditFeat}
-                deleteUserFeat={deleteUserFeat}
-                setActive={setActive}
                 setFormDisplay={setFormDisplay}
+                setActive={setActive}
                 setFeatFormValues={setFeatFormValues}
+                user={user}
+                setImg={setImg}
+                setPreivew={setPreview}
+                updateText={updateText}
+                updateFeatFormValues={updateFeatFormValues}
               />
             }
           />
@@ -230,26 +240,30 @@ function App() {
             path="/profile/:username"
             element={
               <Profile
-                user={user}
-                feats={feats}
                 active={active}
+                deleteUserFeat={deleteUserFeat}
+                displayEditFeat={displayEditFeat}
+                displayCreateForm={displayCreateForm}
+                emoji={emoji}
+                editing={editing}
+                feats={feats}
                 featFormValues={featFormValues}
                 formDisplay={formDisplay}
-                emoji={emoji}
+                img={img}
+                preview={preview}
                 reRender={reRender}
-                editing={editing}
-                updateText={updateText}
                 selectedFeat={selectedFeat}
-                updateFeatFormValues={updateFeatFormValues}
-                setActive={setActive}
                 setFormDisplay={setFormDisplay}
-                displayCreateForm={displayCreateForm}
+                setActive={setActive}
                 submitFeatForm={submitFeatForm}
                 setReRender={setReRender}
                 showFeat={showFeat}
-                displayEditFeat={displayEditFeat}
-                deleteUserFeat={deleteUserFeat}
                 setFeatFormValues={setFeatFormValues}
+                setImg={setImg}
+                setPreview={setPreview}
+                user={user}
+                updateText={updateText}
+                updateFeatFormValues={updateFeatFormValues}
               />
             }
           />
@@ -257,26 +271,27 @@ function App() {
             path="/feats/deets/:featId"
             element={
               <FeatDetails
-                user={user}
-                feats={feats}
                 active={active}
+                displayCreateForm={displayCreateForm}
+                displayEditCom={displayEditCom}
+                emoji={emoji}
+                editing={editing}
+                feats={feats}
                 featFormValues={featFormValues}
                 formDisplay={formDisplay}
-                emoji={emoji}
                 reRender={reRender}
-                updateComText={updateComText}
-                editing={editing}
                 selectedComment={selectedComment}
-                updateFeatFormValues={updateFeatFormValues}
                 setActive={setActive}
                 setFormDisplay={setFormDisplay}
-                displayCreateForm={displayCreateForm}
                 submitFeatForm={submitFeatForm}
                 setReRender={setReRender}
                 submitCommentForm={submitCommentForm}
                 setEditing={setEditing}
-                displayEditCom={displayEditCom}
                 setSelectedComment={setSelectedComment}
+                user={user}
+                updateComText={updateComText}
+                updateFeatFormValues={updateFeatFormValues}
+                updateCommentFormValues={updateCommentFormValues}
               />
             }
           />
