@@ -11,6 +11,11 @@ import './App.css'
 import { CheckSession } from './services/AuthReq'
 import { PostFeat, DeleteFeat, UpdateFeat } from './services/FeatReq'
 import { PostComment, UpdateComment } from './services/ComReq'
+import {
+  DeleteCommentLike,
+  DeleteFeatLike,
+  PostFeatLike
+} from './services/LikeReq'
 
 function App() {
   let navigate = useNavigate()
@@ -44,6 +49,8 @@ function App() {
     description: '',
     image: ''
   })
+  const [img, setImg] = useState(null)
+  const [preview, setPreview] = useState()
 
   /////// text due to toggle state
   const [upOrIn, setUpOrIn] = useState('Login')
@@ -52,11 +59,36 @@ function App() {
   const [updateText, setUpdateText] = useState('Edit Feat')
   const [updateComText, setUpdateComText] = useState('Edit Comment')
 
+  ////// display forms
   const displayCreateForm = () => {
     formDisplay === 'none' ? setFormDisplay('flex') : setFormDisplay('none')
     !active ? setActive(true) : setActive(false)
     // setReRender(true)
   }
+
+  const displayEditFeat = (feat) => {
+    if (!editing) {
+      setEditing(true)
+      setUpdateText('Cancel')
+      setSelectedFeat(feat)
+    } else {
+      setEditing(false)
+      setUpdateText('Edit Feat')
+    }
+  }
+
+  const displayEditCom = (comment) => {
+    if (!editing) {
+      setEditing(true)
+      setUpdateComText('Cancel')
+      setSelectedComment(comment)
+    } else {
+      setEditing(false)
+      setUpdateComText('Edit Comment')
+    }
+  }
+
+  //////// update form values
 
   const updateCommentFormValues = (e) => {
     setCommentFormValues({
@@ -95,32 +127,18 @@ function App() {
     }
   }
 
-  const displayEditFeat = (feat) => {
-    if (!editing) {
-      setEditing(true)
-      setUpdateText('Cancel')
-      setSelectedFeat(feat)
+  const handleImage = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      setImg(file)
     } else {
-      setEditing(false)
-      setUpdateText('Edit Feat')
+      setImg(null)
     }
+    console.log(file)
+    console.log({ img })
   }
 
-  const displayEditCom = (comment) => {
-    if (!editing) {
-      setEditing(true)
-      setUpdateComText('Cancel')
-      setSelectedComment(comment)
-    } else {
-      setEditing(false)
-      setUpdateComText('Edit Comment')
-    }
-  }
-
-  const showFeat = (feat) => {
-    navigate(`/feats/deets/${feat.id}`)
-  }
-
+  /////// submit form
   const submitFeatForm = async (e, featId) => {
     e.preventDefault()
     if (!editing) {
@@ -163,10 +181,41 @@ function App() {
     setUpdateComText('Edit Comment')
   }
 
+  ////// post requests
+  const addFeatLike = async (featId) => {
+    let res = await PostFeatLike(featId)
+    console.log(res)
+    setReRender(true)
+  }
+
+  const addCommentLike = async (commentId) => {
+    let res = await PostCommenttLike(commentId)
+    console.log(res)
+    setReRender(true)
+  }
+
+  ////// delete requests
   const deleteUserFeat = async (featId) => {
     let res = await DeleteFeat(featId)
     console.log(res)
     setReRender(true)
+  }
+
+  const removeFeatLike = async (featId) => {
+    let res = await DeleteFeatLike(featId)
+    console.log(res)
+    setReRender(true)
+  }
+
+  const removeCommentLike = async (commentId) => {
+    let res = await DeleteCommentLike(commentId)
+    console.log(res)
+    setReRender(true)
+  }
+
+  ////// logout/navigate away
+  const showFeat = (feat) => {
+    navigate(`/feats/deets/${feat.id}`)
   }
 
   const logout = () => {
@@ -177,6 +226,7 @@ function App() {
     setUpOrIn('Login')
   }
 
+  //////// session check
   const checkToken = async () => {
     const userCheck = await CheckSession()
     setUser(userCheck)
@@ -209,6 +259,7 @@ function App() {
             element={
               <Feed
                 active={active}
+                addFeatLike={addFeatLike}
                 displayCreateForm={displayCreateForm}
                 displayEditFeat={displayEditFeat}
                 deleteUserFeat={deleteUserFeat}
@@ -217,8 +268,10 @@ function App() {
                 feats={feats}
                 featFormValues={featFormValues}
                 formDisplay={formDisplay}
+                handleImage={handleImage}
                 img={img}
                 preview={preview}
+                removeFeatLike={removeFeatLike}
                 reRender={reRender}
                 selectedFeat={selectedFeat}
                 setFeats={setFeats}
@@ -241,6 +294,7 @@ function App() {
             element={
               <Profile
                 active={active}
+                addFeatLike={addFeatLike}
                 deleteUserFeat={deleteUserFeat}
                 displayEditFeat={displayEditFeat}
                 displayCreateForm={displayCreateForm}
@@ -249,8 +303,10 @@ function App() {
                 feats={feats}
                 featFormValues={featFormValues}
                 formDisplay={formDisplay}
+                handleImage={handleImage}
                 img={img}
                 preview={preview}
+                removeFeatLike={removeFeatLike}
                 reRender={reRender}
                 selectedFeat={selectedFeat}
                 setFormDisplay={setFormDisplay}
@@ -272,6 +328,9 @@ function App() {
             element={
               <FeatDetails
                 active={active}
+                addCommentLike={addCommentLike}
+                addFeatLike={addFeatLike}
+                commentFormValues={commentFormValues}
                 displayCreateForm={displayCreateForm}
                 displayEditCom={displayEditCom}
                 emoji={emoji}
@@ -279,6 +338,8 @@ function App() {
                 feats={feats}
                 featFormValues={featFormValues}
                 formDisplay={formDisplay}
+                removeCommentLike={removeCommentLike}
+                removeFeatLike={removeFeatLike}
                 reRender={reRender}
                 selectedComment={selectedComment}
                 setActive={setActive}
