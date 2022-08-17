@@ -282,3 +282,9 @@ label {
 form * {
   color: #f9f9f9;
 }
+
+#preview {
+  width: 230px;
+  height: 200px;
+}
+/*////////// form styling above //////////////////////*/

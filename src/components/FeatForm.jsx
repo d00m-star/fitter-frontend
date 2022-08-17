@@ -10,7 +10,60 @@ const FeatForm = ({
   featEditing,
   setFeatFormValues,
   selectedFeat
+  // img,
+  // setImg,
+  // preview,
+  // setPreview
 }) => {
+  // storing the image
+  const [img, setImg] = useState(null)
+  // storing the preview
+  const [preview, setPreview] = useState()
+
+  // to store an img
+  const handleImage = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      setImg(file)
+    } else {
+      setImg(null)
+    }
+    console.log(file)
+    console.log({ img })
+  }
+
+  // to show a preview whenever we have an img stored
+  useEffect(() => {
+    const reader = new FileReader()
+    if (img) {
+      reader.onloadend = () => {
+        setPreview(reader.result)
+      }
+      reader.readAsDataURL(img)
+    } else {
+      setPreview('')
+    }
+    console.log(reader)
+  }, [img])
+
+  // const handleImage = (e) => {
+  //   const file = e.target.files[0]
+  //   console.log(file)
+  //   const reader = new FileReader()
+  //   // console.log(reader)
+  //   reader.onload = () => {
+  //     if (reader.readyState === 2) {
+  //       console.log(reader.result)
+  //       setImg(reader.result)
+  //     }
+  //     console.log(img)
+  //   }
+  //   reader.readAsDataURL(img)
+  //   console.log(reader)
+  //   console.log(reader.readyState === 2)
+  //   console.log(reader.readAsDataURL(file))
+  // }
+
   useEffect(() => {
     if (featEditing) {
       setFeatFormValues({
@@ -120,9 +173,9 @@ const FeatForm = ({
           onChange={updateFeatFormValues}
         ></textarea>
 
-        <label htmlFor="image">Choose Photo:</label>
-        <input type="file" id="image" />
-
+        <label htmlFor="image">Photo:</label>
+        <input type="file" id="image" accept="image/*" onChange={handleImage} />
+        <img src={preview} alt="preview" id="preview" />
         <button type="submit" className="btn">
           Post Feat
         </button>
