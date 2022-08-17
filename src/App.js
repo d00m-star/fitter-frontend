@@ -15,36 +15,42 @@ import { PostComment, UpdateComment } from './services/ComReq'
 function App() {
   let navigate = useNavigate()
 
+  //////// user and feat values
   const [user, setUser] = useState(null)
   const [feats, setFeats] = useState(null)
+
+  ////////specific feat or comment
   const [selectedFeat, setSelectedFeat] = useState({
     id: 0
   })
-  const [signUp, setSignUp] = useState(true)
-  const [upOrIn, setUpOrIn] = useState('Login')
-  const [formDisplay, setFormDisplay] = useState('none')
+  const [selectedComment, setSelectedComment] = useState({
+    id: 0
+  })
+
+  //////// condition toggles
+  const [signUp, setSignUp] = useState(true) ///// only value starting true
+  const [active, setActive] = useState(false)
+  const [reRender, setReRender] = useState(false)
+  const [editing, setEditing] = useState(false)
+
+  /////// forms
   const [commentFormValues, setCommentFormValues] = useState({
-    description: ''
+    description: '' //////// either blank, or filled by selectedComment
   })
   const [featFormValues, setFeatFormValues] = useState({
-    type: '',
+    type: '', /////// all fields either blank or filled by selectedFeat
     bodyPart: '',
     intensity: 0,
     description: '',
     image: ''
   })
+
+  /////// text due to toggle state
+  const [upOrIn, setUpOrIn] = useState('Login')
+  const [formDisplay, setFormDisplay] = useState('none')
   const [emoji, setEmoji] = useState('')
-  const [active, setActive] = useState(false)
-  const [reRender, setReRender] = useState(false)
   const [updateText, setUpdateText] = useState('Edit Feat')
-  const [commentEditing, setCommentEditing] = useState(false)
   const [updateComText, setUpdateComText] = useState('Edit Comment')
-  const [editing, setEditing] = useState(false)
-  const [newComment, setNewComment] = useState({
-    description: '',
-    userId: user.id,
-    featId: feats.id
-  })
 
   const displayCreateForm = () => {
     formDisplay === 'none' ? setFormDisplay('flex') : setFormDisplay('none')
@@ -93,12 +99,13 @@ function App() {
     }
   }
 
-  const displayEditCom = () => {
-    if (!commentEditing) {
-      setCommentEditing(true)
+  const displayEditCom = (comment) => {
+    if (!editing) {
+      setEditing(true)
       setUpdateComText('Cancel')
+      setSelectedComment(comment)
     } else {
-      setCommentEditing(false)
+      setEditing(false)
       setUpdateComText('Edit Comment')
     }
   }
@@ -132,7 +139,7 @@ function App() {
 
   const submitCommentForm = async (e, id) => {
     e.preventDefault()
-    if (!commentEditing) {
+    if (!editing) {
       let commentBody = {
         ...commentFormValues,
         // featId: Number(id),
@@ -145,7 +152,7 @@ function App() {
       console.log(data)
     }
     setFormDisplay('none')
-    setCommentEditing(false)
+    setEditing(false)
     setReRender(true)
     setUpdateComText('Edit Comment')
   }
@@ -243,8 +250,6 @@ function App() {
                 displayEditFeat={displayEditFeat}
                 deleteUserFeat={deleteUserFeat}
                 setFeatFormValues={setFeatFormValues}
-                newComment={newComment}
-                setNewComment={setNewComment}
               />
             }
           />
@@ -260,6 +265,8 @@ function App() {
                 emoji={emoji}
                 reRender={reRender}
                 updateComText={updateComText}
+                editing={editing}
+                selectedComment={selectedComment}
                 updateFeatFormValues={updateFeatFormValues}
                 setActive={setActive}
                 setFormDisplay={setFormDisplay}
@@ -267,8 +274,9 @@ function App() {
                 submitFeatForm={submitFeatForm}
                 setReRender={setReRender}
                 submitCommentForm={submitCommentForm}
-                editing={editing}
                 setEditing={setEditing}
+                displayEditCom={displayEditCom}
+                setSelectedComment={setSelectedComment}
               />
             }
           />
