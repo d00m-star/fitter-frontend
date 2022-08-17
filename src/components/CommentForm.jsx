@@ -1,15 +1,12 @@
-import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
 const CommentForm = ({
-  feat,
-  user,
-  comment,
   editing,
-  setEditing,
   selectedComment,
   displayEditCom,
-  submitCommentForm
+  submitCommentForm,
+  commentFormValues,
+  updateCommentFormValues
 }) => {
   useEffect(() => {
     if (editing) {
@@ -26,13 +23,14 @@ const CommentForm = ({
       >
         <textarea
           type="text"
-          id={selectedComment.username}
-          name="new-comment"
-          placeholder={selectedComment.description}
-          value={selectedComment.description}
-          onChange={selectedComment.value}
-          required
-        />
+          id="description"
+          name="comment"
+          placeholder="Add your comment"
+          value={commentFormValues.description}
+          onChange={updateCommentFormValues}
+          required>
+        </textarea>
+        
 
         <button type="submit" className="btn">
           🏋️
