@@ -81,8 +81,13 @@ const FeatDetails = ({
                   ) : (
                     <CommentCard comment={comment} />
                   )}
-                  <button onClick={updateComment}>{updateComText}</button>
-                  <button onClick={() => deleteUserComment(comment.id)}>
+                  <button onClick={updateComment} className="btn">
+                    {updateComText}
+                  </button>
+                  <button
+                    onClick={() => deleteUserComment(comment.id)}
+                    className="btn"
+                  >
                     X
                   </button>
                 </div>
