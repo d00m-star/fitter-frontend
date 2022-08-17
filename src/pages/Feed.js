@@ -83,8 +83,14 @@ const Feed = ({
             ) : (
               <FeatCard feat={feat} onClick={() => showFeat(feat)} />
             )}
-            <button onClick={() => displayEditFeat(feat)}>{updateText}</button>
-            <button onClick={() => deleteUserFeat(feat.id)}>X</button>
+            {user && user.id === feat.userId ? (
+              <button onClick={() => displayEditFeat(feat)}>
+                {updateText}
+              </button>
+            ) : null}
+            {user && user.id === feat.userId ? (
+              <button onClick={() => deleteUserFeat(feat.id)}>X</button>
+            ) : null}
           </div>
         ))}
       </div>
