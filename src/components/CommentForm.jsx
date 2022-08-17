@@ -1,25 +1,18 @@
-import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-const CommentForm = ({ feat, user, comment }) => {
-
+const CommentForm = ({ feat, user, comment, editing, setEditing }) => {
+  useEffect(() => {
+    if (editing) {
+      setFeatFormValues({
+        type: feat.type,
+        bodyPart: feat.bodyPart,
+        intensity: feat.intensity,
+        description: feat.description,
+        image: feat.image
+      })
+    }
+  }, [])
   let navigate = useNavigate()
-  const [editing, setEditing] = useState(false)
-  const [formDisplay, setFormDisplay] = useState('none')
-  const [newComment, setNewComment] = useState({ 
-    description: '', 
-    userId: user.id, 
-    featId: feat.id 
-  })
-
-  const renderForm = () => {
-    if (formDisplay === 'none') {
-      setFormDisplay('flex')
-    } else {
-      setFormDisplay('none')    }
-    // editing && setComment({...comment, description: comment.description})  
-  }
-
   return (
     <div className="comment-form-container">
       <div id='comment-info'>
@@ -40,6 +33,7 @@ const CommentForm = ({ feat, user, comment }) => {
           type="submit">
           🏋️
         </button>
+        {!editing && ( <button type="button" onClick={displayCreateForm} className="cancel">Nevermind!</button>)}
       </form>
     </div>
   )
