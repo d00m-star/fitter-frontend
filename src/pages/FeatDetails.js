@@ -74,7 +74,7 @@ const FeatDetails = ({
                       displayEditCom={displayEditCom}
                     />
                   ) : (
-                    <CommentCard />
+                    <CommentCard comment={comment} />
                   )}
                   <button onClick={updateComment}>{updateComText}</button>
                   <button onClick={() => deleteUserComment(comment.id)}>

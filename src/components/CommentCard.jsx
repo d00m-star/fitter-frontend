@@ -2,7 +2,7 @@ const CommentCard = ({ user, comment, addCommentLike, removeCommentLike }) => {
   return (
     <div className="comment-list">
         <div className="comment-card">
-          <h4>{comment.username}</h4>
+          <h4>{comment.commenter}</h4>
           <h2>{comment.description}</h2>
           {/* {comment.comment_likes.length > 0 && (
         <p
