@@ -1,15 +1,21 @@
-import { useNavigate } from 'react-router-dom'
-
-const CommentCard = ({ comment }) => {
+const CommentCard = ({ user, comment, addCommentLike, removeCommentLike }) => {
   return (
     <div className="comment-list">
-      {comments.map((comment) => (
-        <div className="comment-card" key={comment.id}>
+        <div className="comment-card">
           <h4>{comment.username}</h4>
           <h2>{comment.description}</h2>
-          <button onClick={() => showComment(comment)}>Update</button>
+          {/* {comment.comment_likes.length > 0 && (
+        <p
+          className={() =>
+            comment.comment_likes.some((like) =>
+              like.id === user.id ? 'user-like' : undefined
+            )
+          }
+        >
+          {comment.comment_likes.length}
+        </p>
+      )} */}
         </div>
-      ))}
     </div>
   )
 }
