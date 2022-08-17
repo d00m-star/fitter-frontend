@@ -21,13 +21,15 @@ const Profile = ({
   setActive,
   setFormDisplay,
   setFeatFormValues,
-  featEditing,
+  editing,
   updateText,
   displayEditFeat,
   deleteUserFeat,
   checkToken,
   selectedFeat,
-  showFeat
+  showFeat,
+  addFeatLike,
+  removeFeatLike
 }) => {
   const [userFeats, setUserFeats] = useState(null)
   const [passwordEditing, setPasswordEditing] = useState(false)
@@ -166,13 +168,11 @@ const Profile = ({
           {userFeats ? (
             userFeats.map((feat) => (
               <div key={feat.id}>
-                {!featEditing ? (
-                  <FeatCard feat={feat} showFeat={showFeat} user={user} />
-                ) : selectedFeat.id === feat.id ? (
+                {editing && selectedFeat.id === feat.id ? (
                   <FeatForm
                     feat={feat}
                     featFormValues={featFormValues}
-                    featEditing={featEditing}
+                    editing={editing}
                     updateFeatFormValues={updateFeatFormValues}
                     submitFeatForm={submitFeatForm}
                     emoji={emoji}
@@ -180,7 +180,13 @@ const Profile = ({
                     selectedFeat={selectedFeat}
                   />
                 ) : (
-                  <FeatCard feat={feat} />
+                  <FeatCard
+                    feat={feat}
+                    showFeat={showFeat}
+                    user={user}
+                    addFeatLike={addFeatLike}
+                    removeFeatLike={removeFeatLike}
+                  />
                 )}
                 <button onClick={() => displayEditFeat(feat)}>
                   {updateText}
