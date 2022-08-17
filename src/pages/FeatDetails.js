@@ -1,4 +1,7 @@
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+
+import { GetFeatById } from '../services/FeatReq'
 
 const FeatDetails = ({
   feat,
@@ -16,18 +19,29 @@ const FeatDetails = ({
   displayCreateForm,
   formDisplay
 }) => {
+  const [singleFeat, setSingleFeat] = useState(null)
   const { featId } = useParams()
+
+  const getFeat = async (featId) => {
+    let res = await GetFeatById(featId)
+    console.log(res)
+    setSingleFeat(res)
+  }
+
+  useEffect(() => {
+    getFeat(featId)
+  }, [])
   return (
     <div className="feat-detail-container">
-      <div className="feat-detail">
-        <h3>{feat.author.username}</h3>
-        <img src={feat.image} alt={feat.type} />
-        <h3>{feat.type}</h3>
-        <h3>{feat.bodyPart}</h3>
-        <h3>{feat.intensity}</h3>
-        <p>{feat.description}</p>
-      </div>
-      <div className="feat-comments-container">
+      {/* <div className="feat-detail">
+        <h3>{singleFeat.author.username}</h3> */}
+      {/* <img src={singleFeat.image} alt={feat.type} />
+        <h3>{singleFeat.type}</h3>
+        <h3>{singleFeat.bodyPart}</h3>
+        <h3>{singleFeat.intensity}</h3>
+        <p>{singleFeat.description}</p> */}
+      {/* </div> */}
+      {/* <div className="feat-comments-container">
         {comments?.reverse().map((comment) => (
           <div>
             {!commentEditing ? (
@@ -56,8 +70,8 @@ const FeatDetails = ({
             updateCommentFormValues={updateCommentFormValues}
             submitCommentForm={submitCommentForm}
           />
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </div>
   )
 }

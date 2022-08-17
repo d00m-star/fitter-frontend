@@ -11,7 +11,7 @@ export const GetFeats = async () => {
 
 export const GetFeatById = async (featId) => {
   try {
-    const response = await Client.get(`/feats/deets/${featId}`)
+    const response = await Client.get(`/feats/${featId}`)
     return response.data
   } catch (e) {
     throw e
