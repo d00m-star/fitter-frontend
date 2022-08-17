@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
 const CommentForm = ({
   editing,
@@ -9,6 +10,8 @@ const CommentForm = ({
   setCommentFormValues,
   updateCommentFormValues
 }) => {
+  let { featId } = useParams()
+
   useEffect(() => {
     if (editing) {
       setCommentFormValues({
@@ -20,7 +23,7 @@ const CommentForm = ({
     <div className="comment-form-container">
       <form
         id="comment-info-form"
-        onSubmit={(e) => submitCommentForm(e, selectedComment.id)}
+        onSubmit={(e) => submitCommentForm(e, featId, selectedComment.id)}
       >
         <textarea
           type="text"
@@ -29,9 +32,8 @@ const CommentForm = ({
           placeholder="Add your comment"
           value={commentFormValues.description}
           onChange={updateCommentFormValues}
-          required>
-        </textarea>
-        
+          required
+        ></textarea>
 
         <button type="submit" className="btn">
           🏋️

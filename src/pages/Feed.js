@@ -5,27 +5,34 @@ import FeatCard from '../components/FeatCard'
 import FeatForm from '../components/FeatForm'
 
 const Feed = ({
-  user,
+  active,
+  addFeatLike,
+  deleteUserFeat,
+  displayCreateForm,
+  displayEditFeat,
+  editing,
+  emoji,
+  featFormValues,
   feats,
   formDisplay,
-  featFormValues,
-  emoji,
-  active,
+  handleImage,
+  img,
+  preview,
+  removeFeatLike,
   reRender,
-  showFeat,
-  editing,
-  updateText,
   selectedFeat,
-  displayCreateForm,
-  updateFeatFormValues,
-  submitFeatForm,
-  displayEditFeat,
-  deleteUserFeat,
-  setFeats,
   setActive,
+  setFeats,
+  setFeatFormValues,
   setFormDisplay,
+  setImg,
+  setPreview,
   setReRender,
-  setFeatFormValues
+  showFeat,
+  submitFeatForm,
+  updateFeatFormValues,
+  updateText,
+  user
 }) => {
   const handleFeats = async () => {
     const data = await GetFeats()
@@ -63,26 +70,40 @@ const Feed = ({
           updateFeatFormValues={updateFeatFormValues}
           submitFeatForm={submitFeatForm}
           selectedFeat={selectedFeat}
+          handleImage={handleImage}
+          img={img}
+          preview={preview}
+          setPreview={setPreview}
+          setImg={setImg}
         />
       </div>
       <div className="feat-grid">
         {feats?.map((feat) => (
           <div className="feat-card-container" key={feat.id}>
-            {!editing ? (
-              <FeatCard feat={feat} showFeat={showFeat} user={user} />
-            ) : selectedFeat.id === feat.id ? (
+            {editing && selectedFeat.id === feat.id ? (
               <FeatForm
+                editing={editing}
+                emoji={emoji}
                 feat={feat}
                 featFormValues={featFormValues}
-                editing={editing}
-                updateFeatFormValues={updateFeatFormValues}
-                submitFeatForm={submitFeatForm}
-                emoji={emoji}
-                setFeatFormValues={setFeatFormValues}
+                handleImage={handleImage}
+                img={img}
+                preview={preview}
                 selectedFeat={selectedFeat}
+                setFeatFormValues={setFeatFormValues}
+                setImg={setImg}
+                setPreview={setPreview}
+                submitFeatForm={submitFeatForm}
+                updateFeatFormValues={updateFeatFormValues}
               />
             ) : (
-              <FeatCard feat={feat} showFeat={showFeat} />
+              <FeatCard
+                feat={feat}
+                showFeat={showFeat}
+                user={user}
+                addFeatLike={addFeatLike}
+                removeFeatLike={removeFeatLike}
+              />
             )}
             {user && user.id === feat.userId ? (
               <button onClick={() => displayEditFeat(feat)}>

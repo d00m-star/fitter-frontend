@@ -19,7 +19,9 @@ const FeatDetails = ({
   formDisplay,
   setFormDisplay,
   editing,
+  reRender,
   setEditing,
+  setReRender,
   displayEditCom,
   selectedComment
 }) => {
@@ -35,7 +37,8 @@ const FeatDetails = ({
   useEffect(() => {
     getFeat(featId)
     setFormDisplay('none')
-  }, [])
+    setReRender(false)
+  }, [reRender])
   return (
     <div className="feat-detail-container">
       {singleFeat ? (
@@ -56,9 +59,10 @@ const FeatDetails = ({
               editing={editing}
               setEditing={setEditing}
               setCommentFormValues={setCommentFormValues}
+              selectedComment={selectedComment}
             />
-            <button onClick={displayCreateForm}></button>
           </div>
+          <button onClick={displayCreateForm}></button>
           <div className="feat-comments-container">
             {singleFeat.comment_list.length > 0 ? (
               singleFeat.comment_list.map((comment) => (
@@ -72,6 +76,7 @@ const FeatDetails = ({
                       submitCommentForm={submitCommentForm}
                       setCommentFormValues={setCommentFormValues}
                       displayEditCom={displayEditCom}
+                      selectedComment={selectedComment}
                     />
                   ) : (
                     <CommentCard />

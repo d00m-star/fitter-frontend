@@ -163,17 +163,17 @@ function App() {
     setUpdateText('Edit Feat')
   }
 
-  const submitCommentForm = async (e, id) => {
+  const submitCommentForm = async (e, featId, commentId) => {
     e.preventDefault()
     if (!editing) {
       let commentBody = {
         ...commentFormValues,
         userId: Number(user.id)
       }
-      const data = await PostComment(id, commentBody)
+      const data = await PostComment(featId, commentBody)
       console.log(data)
     } else {
-      const data = await UpdateComment(id, commentFormValues)
+      const data = await UpdateComment(commentId, commentFormValues)
       console.log(data)
     }
     setFormDisplay('none')
@@ -287,7 +287,7 @@ function App() {
                 setFeatFormValues={setFeatFormValues}
                 user={user}
                 setImg={setImg}
-                setPreivew={setPreview}
+                setPreview={setPreview}
                 updateText={updateText}
                 updateFeatFormValues={updateFeatFormValues}
               />
