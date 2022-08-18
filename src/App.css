@@ -15,7 +15,7 @@ body {
   color: #f9f9f9;
 }
 
-main {
+#app-main {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -28,6 +28,7 @@ main {
 
 header {
   height: 10vh;
+  min-height: max-content;
   width: 100%;
   /* position: fixed; */
 }
@@ -38,6 +39,7 @@ header {
   align-items: center;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   padding: 1em;
+  /* min-height: max-content; */
   min-height: 2.2em;
   font-size: 1.7em;
 }
@@ -273,8 +275,101 @@ label {
   overflow: hidden;
 } */
 
-/*////////// feat-card styling above //////////////////////*/
+/*////////// feed and feat-card styling above //////////////////////*/
 
+.feat-detail-page {
+  width: 100%;
+  height: 100%;
+}
+
+.feat-detail-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+}
+
+.user-info,
+.feat-detail {
+  margin-right: 1%;
+}
+
+.fd-comment-container,
+.user-info,
+.feat-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 30%;
+}
+
+.fd-comment-feed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  overflow-y: scroll;
+  height: 60%;
+  width: 100%;
+}
+
+/*////////// feat detail styling above //////////////////////*/
+
+.com-card-form-container {
+  width: 100%;
+  height: 40%;
+}
+
+.comment-card {
+  width: 100%;
+  height: 70%;
+}
+
+.comment-info {
+  width: 100%;
+  height: 75%;
+}
+
+.comment-likes {
+  width: 100%;
+  height: 15%;
+}
+
+.comment-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 30%;
+}
+
+.edit-btn,
+.delete-btn {
+  max-height: 100%;
+  padding: 0.25em 0.7em;
+  border: 0.16em solid #dddddd;
+  border-radius: 5px;
+  margin: 0 0.3em 0 0;
+  box-sizing: border-box;
+  text-align: center;
+  transition: 0.5s;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #f9f9f9;
+}
+
+/*////////// comment card styling above //////////////////////*/
 .btn {
   display: inline-block;
   padding: 0.5em 3em;

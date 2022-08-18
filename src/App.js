@@ -251,7 +251,7 @@ function App() {
   return (
     <div className="">
       <NavBar user={user} logout={logout} />
-      <main>
+      <main id="app-main">
         <Routes>
           <Route
             path="/"
