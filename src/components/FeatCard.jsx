@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
 
 const FeatCard = ({
-  feat,
-  showFeat,
-  user,
   addFeatLike,
+  feat,
+  // likeActive,
+  // setLikeActive,
+  setReRender,
+  showFeat,
   removeFeatLike,
   reRender,
-  setReRender
+  user
 }) => {
   const [likeActive, setLikeActive] = useState(false)
-
   const match = (like) => like.id === user.id
 
   const makeLikeActive = (feat) => {

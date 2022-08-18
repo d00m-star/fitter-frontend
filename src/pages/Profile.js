@@ -19,6 +19,7 @@ const Profile = ({
   formDisplay,
   handleImage,
   img,
+  // likeActive,
   preview,
   removeFeatLike,
   reRender,
@@ -27,6 +28,7 @@ const Profile = ({
   setFeatFormValues,
   setFormDisplay,
   setImg,
+  // setLikeActive,
   setPreview,
   setReRender,
   showFeat,
@@ -194,13 +196,15 @@ const Profile = ({
                   />
                 ) : (
                   <FeatCard
-                    feat={feat}
-                    showFeat={showFeat}
-                    user={user}
                     addFeatLike={addFeatLike}
+                    feat={feat}
+                    // likeActive={likeActive}
                     removeFeatLike={removeFeatLike}
                     reRender={reRender}
+                    // setLikeActive={setLikeActive}
                     setReRender={setReRender}
+                    showFeat={showFeat}
+                    user={user}
                   />
                 )}
                 <button onClick={() => displayEditFeat(feat)}>
