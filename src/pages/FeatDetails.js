@@ -57,20 +57,20 @@ const FeatDetails = ({
           </section>
           <section className="fd-comment-container">
             <button id="open-comment" onClick={displayCreateForm}>
-              <div style={{ display: `${formDisplay}` }}>
-                <CommentForm
-                  commentFormValues={commentFormValues}
-                  displayCreateForm={displayCreateForm}
-                  updateCommentFormValues={updateCommentFormValues}
-                  submitCommentForm={submitCommentForm}
-                  editing={editing}
-                  setEditing={setEditing}
-                  setCommentFormValues={setCommentFormValues}
-                  selectedComment={selectedComment}
-                />
-              </div>
               Comment
             </button>
+            <div style={{ display: `${formDisplay}` }}>
+              <CommentForm
+                commentFormValues={commentFormValues}
+                displayCreateForm={displayCreateForm}
+                updateCommentFormValues={updateCommentFormValues}
+                submitCommentForm={submitCommentForm}
+                editing={editing}
+                setEditing={setEditing}
+                setCommentFormValues={setCommentFormValues}
+                selectedComment={selectedComment}
+              />
+            </div>
             <div className="fd-comment-feed">
               {singleFeat.comment_list.length > 0 ? (
                 singleFeat.comment_list.map((comment) => (
