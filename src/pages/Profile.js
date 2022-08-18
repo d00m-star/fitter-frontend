@@ -112,6 +112,7 @@ const Profile = ({
             style={{ display: `${passwordFormDisplay}` }}
             onSubmit={(e) => submitNewPassword(e)}
           >
+            <label>Old Password:</label>
             <input
               type="password"
               name="oldPassword"
@@ -119,6 +120,7 @@ const Profile = ({
               onInput={updatePasswordValues}
               required
             />
+            <label>New Password:</label>
             <input
               type="password"
               name="newPassword"
@@ -126,6 +128,7 @@ const Profile = ({
               onInput={updatePasswordValues}
               required
             />
+            <label>Confirm New Password:</label>
             <input
               type="password"
               name="confirmNewPassword"
@@ -142,17 +145,30 @@ const Profile = ({
                 passwordFormValues.newPassword !==
                   passwordFormValues.confirmNewPassword
               }
+              className="btn"
+              id="fc-pass-submit-button"
             >
               Submit
             </button>
           </form>
-          <button onClick={renderPasswordEditing}>Change Password</button>
+          <button
+            onClick={renderPasswordEditing}
+            className="btn"
+            id="fc-changepass-button"
+          >
+            Change Password
+          </button>
         </section>
       ) : (
         <h1>Loading Profile</h1>
       )}
       <section id="user-feats">
-        <button onClick={displayCreateForm} disabled={active}>
+        <button
+          onClick={displayCreateForm}
+          disabled={active}
+          className="btn"
+          id="fc-share-button"
+        >
           Share Feat!
         </button>
         <div style={{ display: `${formDisplay}` }}>
@@ -201,10 +217,20 @@ const Profile = ({
                     user={user}
                   />
                 )}
-                <button onClick={() => displayEditFeat(feat)}>
+                <button
+                  onClick={() => displayEditFeat(feat)}
+                  className="btn"
+                  id="fc-edit-button"
+                >
                   {updateText}
                 </button>
-                <button onClick={() => deleteUserFeat(feat.id)}>X</button>
+                <button
+                  onClick={() => deleteUserFeat(feat.id)}
+                  className="btn"
+                  id="fc-delete-button"
+                >
+                  X
+                </button>
               </div>
             ))
           ) : (

@@ -59,7 +59,11 @@ const FeatDetails = ({
             <p>"{singleFeat.description}"</p>
           </section>
           <section className="fd-comment-container">
-            <button id="open-comment" onClick={displayCreateForm}>
+            <button
+              className="btn"
+              id="open-comment"
+              onClick={displayCreateForm}
+            >
               Comment
             </button>
             <div style={{ display: `${formDisplay}` }}>

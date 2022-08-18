@@ -214,19 +214,31 @@ label {
 .feat-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-
+  justify-content: space-between;
   cursor: pointer;
   border-radius: 5px;
   box-shadow: 2px 2px 10px 0px rgb(6, 6, 6) inset,
     -1px -1px 3px 0px #676767 inset;
   overflow: hidden;
   width: 100%;
-  height: 100%;
+  height: 90%;
   padding: 1% 1%;
 }
 
+#fc-edit-button {
+  margin-top: 5%;
+}
+
+#fc-changepass-button {
+  height: 15%;
+  font-size: .20em;
+}
+
+.edit-user {
+  display: flex;
+  align-items: center;
+}
 
 
 .feat-card,
@@ -239,11 +251,15 @@ label {
 
 .feat-card h2,
 .feat-card h3,
-.feat-card p,
-.feat-card img {
+.feat-card p {
   width: 100%;
   height: 8%;
   text-align: center;
+}
+
+.feat-card img {
+  width: 30%;
+  height: 50%;
 }
 
 .feat-card:hover {
@@ -254,6 +270,11 @@ label {
 .feat-card:hover h2 {
   color: #c32f27;
   font-size: 2em;
+}
+
+.edit-user {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .fc-button-container {
@@ -275,21 +296,21 @@ label {
 }
 
 .fc-button-container span p:first-child {
-  
-
   border-right: 1px solid black;
   width: 50%;
-  margin-right: 2%
+  margin-right: 2%;
 }
 
 .fc-info {
   width: 95%;
+  height: 60%;
 }
 
 .fc-info > p {
-  padding: 0px 75px 0px 75px;
+  padding: 0px 33px 0px 33px;
   font-size: 15px;
-  margin: 3%;
+  margin: 1%;
+  background-color: #c32f2781;
 }
 
 .user-name {
@@ -317,11 +338,50 @@ label {
   font-size: .2em;
   height: 8em;
 }
+
+
 /* .feat-card #feat-descript {
   overflow: hidden;
 } */
 
 /*////////// feed and feat-card styling above //////////////////////*/
+
+#user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#user-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 30%;
+  font-size: .8em;
+}
+
+#user-info-form {
+  flex-direction: column;
+  width: 15%;
+}
+
+#user-info-container > button {
+  width: 8%;
+}
+
+#user-feats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#user-feats button {
+  margin-bottom: 2%;
+}
+
+/* ///////////////////////Profile ^^ ///////////////////////////////////*/
+
 
 .feat-detail-page {
   width: 100%;
@@ -359,21 +419,16 @@ label {
   color: #c32f27;
   font-size: 1.5em;
   margin-bottom: 2%;
+  background-color: #161616;
 }
 
 .user-info, .user-info > * {
-  background-color: #777777;
+  background-color: #424242;
   width: 100vw;
   height: 20%;
   font-size: 1em;
 }
 
-.user-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
 .fd-comment-container {
   display: flex;
@@ -383,6 +438,7 @@ label {
 
   height: 45%;
   width: 100vw;
+  margin-top: 10%;
 }
 
 .fd-comment-feed {
@@ -405,7 +461,10 @@ label {
 #comment-info-form {
   display: flex;
   flex-direction: column;
+}
 
+#comment-info-form button {
+  margin: 2%;
 }
 
 .com-card-form-container {
@@ -483,15 +542,25 @@ label {
 
 /*////////// create feat button styling above //////////////////////*/
 
+.feat-form-container {
+  background-color: #161616;
+  border: 3px solid white;
+  border-radius: 5px;
+  z-index: 9;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   text-align: left;
   justify-content: center;
+  height: 50%;
+  width: 100%;
 }
 
 form * {
   color: #f9f9f9;
+  background-color: #161616;
 }
 
 #preview {
