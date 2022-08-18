@@ -33,7 +33,7 @@ textarea {
 /*////////// global styling above //////////////////////*/
 
 header {
-  height: 10vh;
+  height: 5%;
   min-height: max-content;
   width: 100%;
   /* position: fixed; */
@@ -43,7 +43,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.619);
   padding: 1em;
   /* min-height: max-content; */
   min-height: 2.2em;
@@ -205,11 +205,11 @@ label {
 .feat-card-container {
   display: flex;
   flex-direction: column;
-
   width: 25%;
-  height: 40%;
+  height: 45%;
   margin: 1% 2%;
 }
+
 
 .feat-card {
   display: flex;
@@ -226,6 +226,8 @@ label {
   height: 100%;
   padding: 1% 1%;
 }
+
+
 
 .feat-card,
 .feat-card h2,
@@ -261,17 +263,27 @@ label {
   align-items: center;
 
   margin-top: 2%;
-  width: 100%;
+  width: 95%;
 }
 
-.fc-button-container span:first-child {
+.fc-button-container span {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+.fc-button-container span p:first-child {
+  
 
   border-right: 1px solid black;
   width: 50%;
+  margin-right: 2%
+}
+
+.fc-info {
+  width: 95%;
 }
 
 .fc-info > p {
@@ -287,6 +299,24 @@ label {
 .user-like, .user-comment {
   color: #c32f27;
 }
+
+.feat-btn-container {
+  display: flex;
+  justify-content: space-evenly;
+  height: 20%;
+  width: 100%;
+  margin-top: 2%
+}
+
+#feat-edit-btn {
+  font-size: .2em;
+  height: 8em;
+}
+
+#feat-delete-btn {
+  font-size: .2em;
+  height: 8em;
+}
 /* .feat-card #feat-descript {
   overflow: hidden;
 } */
@@ -301,18 +331,24 @@ label {
 .feat-detail-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
 
-  height: 100vh;
+  height: 100%;
   width: 100vw;
 }
 
 
 .feat-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 1%;
   background-color: #c32f273e;
-  border-bottom: 3px solid #c32f27
+  border-bottom: 3px solid #c32f27;
+  border-radius: 20px;
+  width: 50%;
+  height: 20%;
 }
 
 .feat-detail > * {
@@ -321,27 +357,23 @@ label {
 
 #fd-user-name {
   color: #c32f27;
-  font-size: 20px;
+  font-size: 1.5em;
+  margin-bottom: 2%;
 }
 
 .user-info, .user-info > * {
-  background-color: #b0b0b086;
+  background-color: #777777;
   width: 100vw;
-  height: 50px
+  height: 20%;
+  font-size: 1em;
 }
 
-
-
-#user-info-container,
-#feat-detail-container {
+.user-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  width: 100vw;
-  height: 25vh;
-} 
+}
 
 .fd-comment-container {
   display: flex;
@@ -349,7 +381,7 @@ label {
   justify-content: center;
   align-items: center;
 
-  height: 25vh;
+  height: 45%;
   width: 100vw;
 }
 
@@ -360,12 +392,12 @@ label {
   align-items: center;
 
   overflow-y: scroll;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 }
 
 .fd-comment-feed * {
-  margin-bottom: 20px;
+  margin-bottom: 1%;
 }
 
 /*////////// feat detail styling above //////////////////////*/
@@ -394,6 +426,10 @@ label {
 .comment-likes {
   width: 100%;
   height: 15%;
+}
+
+.comment-likes > p {
+  text-align: center;
 }
 
 .comment-btns {

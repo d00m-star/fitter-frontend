@@ -78,7 +78,7 @@ const Feed = ({
       </div>
       <div className="feat-grid">
         {feats?.map((feat) => (
-          <div className="feat-card-container" key={feat.id}>
+          <div className="feat-card-container" id={feat.value} key={feat.id}>
             {editing && selectedFeat.id === feat.id ? (
               <FeatForm
                 editing={editing}
@@ -106,24 +106,26 @@ const Feed = ({
                 user={user}
               />
             )}
-            {user && user.id === feat.userId ? (
-              <button
-                onClick={() => displayEditFeat(feat)}
-                className="btn"
-                id="feat-edit-btn"
-              >
-                {updateText}
-              </button>
-            ) : null}
-            {user && user.id === feat.userId ? (
-              <button
-                onClick={() => deleteUserFeat(feat.id)}
-                className="btn"
-                id="feat-delete-btn"
-              >
-                X
-              </button>
-            ) : null}
+            <div className="feat-btn-container">
+              {user && user.id === feat.userId ? (
+                <button
+                  onClick={() => displayEditFeat(feat)}
+                  className="btn"
+                  id="feat-edit-btn"
+                >
+                  {updateText}
+                </button>
+              ) : null}
+              {user && user.id === feat.userId ? (
+                <button
+                  onClick={() => deleteUserFeat(feat.id)}
+                  className="btn"
+                  id="feat-delete-btn"
+                >
+                  X
+                </button>
+              ) : null}
+            </div>
           </div>
         ))}
       </div>
