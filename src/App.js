@@ -360,6 +360,7 @@ function App() {
                 reRender={reRender}
                 selectedComment={selectedComment}
                 setActive={setActive}
+                setCommentFormValues={setCommentFormValues}
                 setFormDisplay={setFormDisplay}
                 // setLikeActive={setLikeActive}
                 submitFeatForm={submitFeatForm}
