@@ -1,18 +1,29 @@
 import { useEffect, useState } from 'react'
 
+import { BsFillSuitHeartFill } from 'react-icons/bs'
+import { FaRegCommentDots } from 'react-icons/fa'
+
 const FeatCard = ({
   addFeatLike,
   feat,
-  // likeActive,
-  // setLikeActive,
   setReRender,
   showFeat,
   removeFeatLike,
-  reRender,
   user
 }) => {
   const [likeActive, setLikeActive] = useState(false)
   const [commentActive, setCommentActive] = useState(false)
+
+  const toggleLikeActive = async (user, feat) => {
+    if (!likeActive) {
+      await addFeatLike(user.id, feat.id)
+      setLikeActive(likeActive)
+    } else {
+      await removeFeatLike(user.id, feat.id)
+      let likeToggle = false
+      setLikeActive(likeToggle)
+    }
+  }
 
   const likeMatch = (like) => like.id === user.id
   const commentMatch = (comment) => comment.commenter.id === user.id
@@ -31,7 +42,7 @@ const FeatCard = ({
     makeLikeActive(feat)
     makeCommentActive(feat)
     setReRender(false)
-  }, [reRender])
+  }, [likeActive, toggleLikeActive, !feat])
 
   return (
     <div className="feat-card">
@@ -49,24 +60,26 @@ const FeatCard = ({
         <span>
           {feat.feat_likes.length > 0 ? (
             <p
-              onClick={() =>
-                !likeActive
-                  ? addFeatLike(user.id, feat.id)
-                  : removeFeatLike(user.id, feat.id)
-              }
+              onClick={() => toggleLikeActive(user, feat)}
               className={likeActive ? 'user-like' : undefined}
             >
+              <BsFillSuitHeartFill className="feat-like-icon" />{' '}
               {feat.feat_likes.length}
             </p>
           ) : (
-            <p onClick={() => addFeatLike(user.id, feat.id)}>Like</p>
+            <p onClick={() => addFeatLike(user.id, feat.id)}>
+              <BsFillSuitHeartFill className="feat-like-icon" />
+            </p>
           )}
           {feat.comment_list.length > 0 ? (
             <p className={commentActive ? 'user-comment' : undefined}>
+              <FaRegCommentDots className="comment-icon" />{' '}
               {feat.comment_list.length}
             </p>
           ) : (
-            <p>Comments</p>
+            <p>
+              <FaRegCommentDots className="comment-icon" />
+            </p>
           )}
         </span>
       </div>

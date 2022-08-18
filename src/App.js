@@ -185,7 +185,7 @@ function App() {
   ////// post requests
   const addFeatLike = async (userId, featId) => {
     await PostFeatLike(userId, featId)
-    await setReRender(true)
+    setReRender(true)
   }
 
   const addCommentLike = async (commentId) => {
