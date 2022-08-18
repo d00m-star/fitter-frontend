@@ -12,15 +12,24 @@ const FeatCard = ({
   user
 }) => {
   const [likeActive, setLikeActive] = useState(false)
-  const match = (like) => like.id === user.id
+  const [commentActive, setCommentActive] = useState(false)
+
+  const likeMatch = (like) => like.id === user.id
+  const commentMatch = (comment) => comment.commenter.id === user.id
 
   const makeLikeActive = (feat) => {
-    let activeLike = feat.feat_likes.some(match)
+    let activeLike = feat.feat_likes.some(likeMatch)
     activeLike && setLikeActive(activeLike)
+  }
+
+  const makeCommentActive = (feat) => {
+    let activeComment = feat.comment_list.some(commentMatch)
+    activeComment && setCommentActive(activeComment)
   }
 
   useEffect(() => {
     makeLikeActive(feat)
+    makeCommentActive(feat)
     setReRender(false)
   }, [reRender])
 
@@ -52,17 +61,13 @@ const FeatCard = ({
           ) : (
             <p onClick={() => addFeatLike(user.id, feat.id)}>Like</p>
           )}
-          {/* {feat.comment_list.length > 0 ? (
-            <p
-              className={likeActive ? 'user-comment' : undefined
-                )
-              }
-            >
+          {feat.comment_list.length > 0 ? (
+            <p className={commentActive ? 'user-comment' : undefined}>
               {feat.comment_list.length}
             </p>
           ) : (
             <p>Comments</p>
-          )} */}
+          )}
         </span>
       </div>
     </div>
