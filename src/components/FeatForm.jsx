@@ -47,7 +47,7 @@ const FeatForm = ({
       <form
         onSubmit={(e) => submitFeatForm(e, selectedFeat.id)}
         className="form"
-        enctype="multipart/form-data"
+        // enctype="multipart/form-data"
       >
         <label htmlFor="type">Type:</label>
         <select
