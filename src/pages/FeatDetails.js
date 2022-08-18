@@ -5,6 +5,7 @@ import CommentForm from '../components/CommentForm'
 import { GetFeatById } from '../services/FeatReq'
 
 const FeatDetails = ({
+  addCommentLike,
   commentEditing,
   commentFormValues,
   comments,
@@ -15,6 +16,7 @@ const FeatDetails = ({
   feat,
   formDisplay,
   reRender,
+  removeCommentLike,
   selectedComment,
   setCommentFormValues,
   setEditing,
@@ -23,7 +25,8 @@ const FeatDetails = ({
   submitCommentForm,
   updateComment,
   updateCommentFormValues,
-  updateComText
+  updateComText,
+  user
 }) => {
   const [singleFeat, setSingleFeat] = useState(null)
   const { featId } = useParams()
@@ -43,17 +46,21 @@ const FeatDetails = ({
     <div className="feat-detail-page">
       {singleFeat ? (
         <main className="feat-detail-container">
-          <section className="user-info">
-            <h3>{singleFeat.author.username}</h3>
-            <h3>{singleFeat.author.age}</h3>
-            <h3>{singleFeat.author.location}</h3>
-          </section>
+          <div id="user-info-container">
+            <section className="user-info">
+              <h3 id="fd-user-name">{singleFeat.author.username}</h3>
+              <h3>Age: {singleFeat.author.age}</h3>
+              <h3>Location: {singleFeat.author.location}</h3>
+            </section>
+          </div>
           <section className="feat-detail">
-            <img src={singleFeat.image} alt={singleFeat.type} />
-            <h3>{singleFeat.type}</h3>
-            <h3>{singleFeat.bodyPart}</h3>
-            <h3>{singleFeat.intensity}</h3>
-            <p>{singleFeat.description}</p>
+            <div id="feat-detail-container">
+              <img src={singleFeat.image} alt={singleFeat.type} />
+              <h3>Category: {singleFeat.type}</h3>
+              <h3>Area: {singleFeat.bodyPart}</h3>
+              <h3>Intensity: {singleFeat.intensity}</h3>
+              <p>"{singleFeat.description}"</p>
+            </div>
           </section>
           <section className="fd-comment-container">
             <button id="open-comment" onClick={displayCreateForm}>
@@ -89,7 +96,13 @@ const FeatDetails = ({
                         selectedComment={selectedComment}
                       />
                     ) : (
-                      <CommentCard comment={comment} />
+                      <CommentCard
+                        addCommentLike={addCommentLike}
+                        comment={comment}
+                        removeCommentLike={removeCommentLike}
+                        setReRender={setReRender}
+                        user={user}
+                      />
                     )}
                     <div className="comment-btns">
                       <button
