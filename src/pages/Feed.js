@@ -111,12 +111,22 @@ const Feed = ({
               />
             )}
             {user && user.id === feat.userId ? (
-              <button onClick={() => displayEditFeat(feat)}>
+              <button
+                onClick={() => displayEditFeat(feat)}
+                className="btn"
+                id="feat-edit-btn"
+              >
                 {updateText}
               </button>
             ) : null}
             {user && user.id === feat.userId ? (
-              <button onClick={() => deleteUserFeat(feat.id)}>X</button>
+              <button
+                onClick={() => deleteUserFeat(feat.id)}
+                className="btn"
+                id="feat-delete-btn"
+              >
+                X
+              </button>
             ) : null}
           </div>
         ))}
