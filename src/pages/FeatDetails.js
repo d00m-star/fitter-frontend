@@ -40,67 +40,77 @@ const FeatDetails = ({
     setReRender(false)
   }, [reRender])
   return (
-    <div className="feat-detail-container">
+    <div className="feat-detail-page">
       {singleFeat ? (
-        <main>
-          <div className="feat-detail">
+        <main className="feat-detail-container">
+          <section className="user-info">
             <h3>{singleFeat.author.username}</h3>
+            <h3>{singleFeat.author.age}</h3>
+            <h3>{singleFeat.author.location}</h3>
+          </section>
+          <section className="feat-detail">
             <img src={singleFeat.image} alt={singleFeat.type} />
             <h3>{singleFeat.type}</h3>
             <h3>{singleFeat.bodyPart}</h3>
             <h3>{singleFeat.intensity}</h3>
             <p>{singleFeat.description}</p>
-          </div>
-          <div style={{ display: `${formDisplay}` }}>
-            <CommentForm
-              commentFormValues={commentFormValues}
-              displayCreateForm={displayCreateForm}
-              updateCommentFormValues={updateCommentFormValues}
-              submitCommentForm={submitCommentForm}
-              editing={editing}
-              setEditing={setEditing}
-              setCommentFormValues={setCommentFormValues}
-              selectedComment={selectedComment}
-            />
-          </div>
-          <button onClick={displayCreateForm}></button>
-          <div className="feat-comments-container">
-            {singleFeat.comment_list.length > 0 ? (
-              singleFeat.comment_list.map((comment) => (
-                <div key={comment.id}>
-                  {editing && selectedComment.id === comment.id ? (
-                    <CommentForm
-                      featId={featId}
-                      commentFormValues={commentFormValues}
-                      commentEditing={commentEditing}
-                      updateCommentFormValues={updateCommentFormValues}
-                      submitCommentForm={submitCommentForm}
-                      setCommentFormValues={setCommentFormValues}
-                      displayEditCom={displayEditCom}
-                      displayCreateForm={displayCreateForm}
-                      selectedComment={selectedComment}
-                    />
-                  ) : (
-                    <CommentCard comment={comment} />
-                  )}
-                  <button
-                    onClick={() => displayEditCom(comment)}
-                    className="btn"
-                  >
-                    {updateComText}
-                  </button>
-                  <button
-                    onClick={() => deleteUserComment(comment.id)}
-                    className="btn"
-                  >
-                    X
-                  </button>
-                </div>
-              ))
-            ) : (
-              <h1>No Comments</h1>
-            )}
-          </div>
+          </section>
+          <section className="fd-comment-container">
+            <button id="open-comment" onClick={displayCreateForm}>
+              <div style={{ display: `${formDisplay}` }}>
+                <CommentForm
+                  commentFormValues={commentFormValues}
+                  displayCreateForm={displayCreateForm}
+                  updateCommentFormValues={updateCommentFormValues}
+                  submitCommentForm={submitCommentForm}
+                  editing={editing}
+                  setEditing={setEditing}
+                  setCommentFormValues={setCommentFormValues}
+                  selectedComment={selectedComment}
+                />
+              </div>
+              Comment
+            </button>
+            <div className="fd-comment-feed">
+              {singleFeat.comment_list.length > 0 ? (
+                singleFeat.comment_list.map((comment) => (
+                  <div className="com-card-form-container" key={comment.id}>
+                    {editing && selectedComment.id === comment.id ? (
+                      <CommentForm
+                        featId={featId}
+                        commentFormValues={commentFormValues}
+                        commentEditing={commentEditing}
+                        updateCommentFormValues={updateCommentFormValues}
+                        submitCommentForm={submitCommentForm}
+                        setCommentFormValues={setCommentFormValues}
+                        displayEditCom={displayEditCom}
+                        displayCreateForm={displayCreateForm}
+                        selectedComment={selectedComment}
+                      />
+                    ) : (
+                      <CommentCard comment={comment} />
+                    )}
+                    <div className="comment-btns">
+                      <button
+                        onClick={() => displayEditCom(comment)}
+                        className="edit-btn"
+                      >
+                        {updateComText}
+                      </button>
+                      <button
+                        onClick={() => deleteUserComment(comment.id)}
+                        className="delete-btn"
+                      >
+                        X
+                      </button>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <h1>No Comments</h1>
+              )}
+            </div>
+          </section>
         </main>
       ) : (
         <h1>Loading Feat...</h1>
