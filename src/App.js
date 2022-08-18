@@ -43,14 +43,14 @@ function App() {
   const [commentFormValues, setCommentFormValues] = useState({
     description: '' //////// either blank, or filled by selectedComment
   })
+  const [img, setImg] = useState(null)
   const [featFormValues, setFeatFormValues] = useState({
     type: '', /////// all fields either blank or filled by selectedFeat
     bodyPart: '',
     intensity: 0,
     description: '',
-    image: ''
+    image: img
   })
-  const [img, setImg] = useState(null)
   const [preview, setPreview] = useState()
 
   /////// text due to toggle state
@@ -131,12 +131,13 @@ function App() {
   const handleImage = (e) => {
     const file = e.target.files[0]
     if (file) {
-      setImg(file)
+      setFeatFormValues({ ...featFormValues, image: file })
     } else {
-      setImg(null)
+      setFeatFormValues({ ...featFormValues, image: '' })
     }
     console.log(file)
     console.log({ img })
+    console.log(featFormValues.image)
   }
 
   /////// submit form
