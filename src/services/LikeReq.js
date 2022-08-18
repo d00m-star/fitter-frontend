@@ -13,7 +13,6 @@ export const DeleteFeatLike = async (userId, featId) => {
   try {
     console.log(userId, featId)
     const response = await Client.delete(`/likes/feat/${userId}/${featId}`)
-    console.log(response.data)
     return response.data
   } catch (e) {
     throw e

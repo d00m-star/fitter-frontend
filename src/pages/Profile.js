@@ -19,7 +19,6 @@ const Profile = ({
   formDisplay,
   handleImage,
   img,
-  // likeActive,
   preview,
   removeFeatLike,
   reRender,
@@ -28,7 +27,6 @@ const Profile = ({
   setFeatFormValues,
   setFormDisplay,
   setImg,
-  // setLikeActive,
   setPreview,
   setReRender,
   showFeat,
@@ -44,7 +42,6 @@ const Profile = ({
     newPassword: '',
     confirmNewPassword: ''
   })
-  const [success, setSuccess] = useState('') // consider use case for this
   const [infoDisplay, setInfoDisplay] = useState('flex')
   const [passwordFormDisplay, setPasswordFormDisplay] = useState('none')
 
@@ -74,7 +71,6 @@ const Profile = ({
       username: user.username
     }
     const res = await ChangePassword(passwordBody)
-    setSuccess(res.msg)
     setPasswordFormValues({
       ...passwordFormValues,
       oldPassword: '',
@@ -198,10 +194,8 @@ const Profile = ({
                   <FeatCard
                     addFeatLike={addFeatLike}
                     feat={feat}
-                    // likeActive={likeActive}
                     removeFeatLike={removeFeatLike}
                     reRender={reRender}
-                    // setLikeActive={setLikeActive}
                     setReRender={setReRender}
                     showFeat={showFeat}
                     user={user}

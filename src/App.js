@@ -184,27 +184,23 @@ function App() {
 
   ////// post requests
   const addFeatLike = async (userId, featId) => {
-    let res = await PostFeatLike(userId, featId)
-    console.log(res)
-    setReRender(true)
+    await PostFeatLike(userId, featId)
+    await setReRender(true)
   }
 
   const addCommentLike = async (commentId) => {
-    let res = await PostCommentLike(commentId)
-    console.log(res)
+    await PostCommentLike(commentId)
     setReRender(true)
   }
 
   ////// delete requests
   const deleteUserFeat = async (featId) => {
-    let res = await DeleteFeat(featId)
-    console.log(res)
+    await DeleteFeat(featId)
     setReRender(true)
   }
 
   const deleteUserComment = async (commentId) => {
-    let res = await DeleteComment(commentId)
-    console.log(res)
+    await DeleteComment(commentId)
     setReRender(true)
   }
 
@@ -213,8 +209,7 @@ function App() {
       featId: featId,
       userId: userId
     })
-    let res = await DeleteFeatLike(userId, featId)
-    console.log(res)
+    await DeleteFeatLike(userId, featId)
     setReRender(true)
   }
 
@@ -281,7 +276,6 @@ function App() {
                 formDisplay={formDisplay}
                 handleImage={handleImage}
                 img={img}
-                // likeActive={likeActive}
                 preview={preview}
                 removeFeatLike={removeFeatLike}
                 reRender={reRender}
@@ -295,7 +289,6 @@ function App() {
                 setFeatFormValues={setFeatFormValues}
                 user={user}
                 setImg={setImg}
-                // setLikeActive={setLikeActive}
                 setPreview={setPreview}
                 updateText={updateText}
                 updateFeatFormValues={updateFeatFormValues}
@@ -318,7 +311,6 @@ function App() {
                 formDisplay={formDisplay}
                 handleImage={handleImage}
                 img={img}
-                // likeActive={likeActive}
                 preview={preview}
                 removeFeatLike={removeFeatLike}
                 reRender={reRender}
@@ -330,7 +322,6 @@ function App() {
                 showFeat={showFeat}
                 setFeatFormValues={setFeatFormValues}
                 setImg={setImg}
-                // setLikeActive={setLikeActive}
                 setPreview={setPreview}
                 user={user}
                 updateText={updateText}
@@ -354,7 +345,6 @@ function App() {
                 feats={feats}
                 featFormValues={featFormValues}
                 formDisplay={formDisplay}
-                // likeActive={likeActive}
                 removeCommentLike={removeCommentLike}
                 removeFeatLike={removeFeatLike}
                 reRender={reRender}
@@ -362,7 +352,6 @@ function App() {
                 setActive={setActive}
                 setCommentFormValues={setCommentFormValues}
                 setFormDisplay={setFormDisplay}
-                // setLikeActive={setLikeActive}
                 submitFeatForm={submitFeatForm}
                 setReRender={setReRender}
                 submitCommentForm={submitCommentForm}

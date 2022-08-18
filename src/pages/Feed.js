@@ -16,7 +16,6 @@ const Feed = ({
   formDisplay,
   handleImage,
   img,
-  // likeActive,
   preview,
   removeFeatLike,
   reRender,
@@ -26,7 +25,6 @@ const Feed = ({
   setFeatFormValues,
   setFormDisplay,
   setImg,
-  // setLikeActive,
   setPreview,
   setReRender,
   showFeat,
@@ -101,10 +99,8 @@ const Feed = ({
               <FeatCard
                 addFeatLike={addFeatLike}
                 feat={feat}
-                // likeActive={likeActive}
                 removeFeatLike={removeFeatLike}
                 reRender={reRender}
-                // setLikeActive={setLikeActive}
                 setReRender={setReRender}
                 showFeat={showFeat}
                 user={user}
