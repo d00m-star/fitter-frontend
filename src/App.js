@@ -281,6 +281,7 @@ function App() {
                 formDisplay={formDisplay}
                 handleImage={handleImage}
                 img={img}
+                // likeActive={likeActive}
                 preview={preview}
                 removeFeatLike={removeFeatLike}
                 reRender={reRender}
@@ -294,6 +295,7 @@ function App() {
                 setFeatFormValues={setFeatFormValues}
                 user={user}
                 setImg={setImg}
+                // setLikeActive={setLikeActive}
                 setPreview={setPreview}
                 updateText={updateText}
                 updateFeatFormValues={updateFeatFormValues}
@@ -316,6 +318,7 @@ function App() {
                 formDisplay={formDisplay}
                 handleImage={handleImage}
                 img={img}
+                // likeActive={likeActive}
                 preview={preview}
                 removeFeatLike={removeFeatLike}
                 reRender={reRender}
@@ -327,6 +330,7 @@ function App() {
                 showFeat={showFeat}
                 setFeatFormValues={setFeatFormValues}
                 setImg={setImg}
+                // setLikeActive={setLikeActive}
                 setPreview={setPreview}
                 user={user}
                 updateText={updateText}
@@ -350,12 +354,14 @@ function App() {
                 feats={feats}
                 featFormValues={featFormValues}
                 formDisplay={formDisplay}
+                // likeActive={likeActive}
                 removeCommentLike={removeCommentLike}
                 removeFeatLike={removeFeatLike}
                 reRender={reRender}
                 selectedComment={selectedComment}
                 setActive={setActive}
                 setFormDisplay={setFormDisplay}
+                // setLikeActive={setLikeActive}
                 submitFeatForm={submitFeatForm}
                 setReRender={setReRender}
                 submitCommentForm={submitCommentForm}
