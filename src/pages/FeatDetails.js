@@ -46,21 +46,17 @@ const FeatDetails = ({
     <div className="feat-detail-page">
       {singleFeat ? (
         <main className="feat-detail-container">
-          <div id="user-info-container">
-            <section className="user-info">
-              <h3 id="fd-user-name">{singleFeat.author.username}</h3>
-              <h3>Age: {singleFeat.author.age}</h3>
-              <h3>Location: {singleFeat.author.location}</h3>
-            </section>
-          </div>
+          <section className="user-info">
+            <h3 id="fd-user-name">{singleFeat.author.username}</h3>
+            <h3>Age: {singleFeat.author.age}</h3>
+            <h3>Location: {singleFeat.author.location}</h3>
+          </section>
           <section className="feat-detail">
-            <div id="feat-detail-container">
-              <img src={singleFeat.image} alt={singleFeat.type} />
-              <h3>Category: {singleFeat.type}</h3>
-              <h3>Area: {singleFeat.bodyPart}</h3>
-              <h3>Intensity: {singleFeat.intensity}</h3>
-              <p>"{singleFeat.description}"</p>
-            </div>
+            <img src={singleFeat.image} alt={singleFeat.type} />
+            <h3>Type: {singleFeat.type}</h3>
+            <h3>Body Part: {singleFeat.bodyPart}</h3>
+            <h3>Intensity: {singleFeat.intensity}</h3>
+            <p>"{singleFeat.description}"</p>
           </section>
           <section className="fd-comment-container">
             <button id="open-comment" onClick={displayCreateForm}>
