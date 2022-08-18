@@ -268,7 +268,13 @@ label {
   width: 50%;
 }
 
-.user-like {
+.fc-info {
+  margin-bottom: 0px;
+  padding: 0px 75px 0px 75px;
+  font-size: 15px;
+}
+
+.user-like, .user-comment {
   color: #c32f27;
 }
 /* .feat-card #feat-descript {
