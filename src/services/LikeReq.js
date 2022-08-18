@@ -19,18 +19,20 @@ export const DeleteFeatLike = async (userId, featId) => {
   }
 }
 
-export const PostCommentLike = async (data) => {
+export const PostCommentLike = async (userId, commentId) => {
   try {
-    const response = await Client.post('/likes/comment', data)
+    const response = await Client.post(`/likes/comment/${userId}/${commentId}`)
     return response.data
   } catch (e) {
     throw e
   }
 }
 
-export const DeleteCommentLike = async (data) => {
+export const DeleteCommentLike = async (userId, commentId) => {
   try {
-    const response = await Client.delete('/likes/comment', data)
+    const response = await Client.delete(
+      `/likes/comment/${userId}/${commentId}`
+    )
     return response.data
   } catch (e) {
     throw e

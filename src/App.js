@@ -188,8 +188,8 @@ function App() {
     setReRender(true)
   }
 
-  const addCommentLike = async (commentId) => {
-    await PostCommentLike(commentId)
+  const addCommentLike = async (userId, commentId) => {
+    await PostCommentLike(userId, commentId)
     setReRender(true)
   }
 
@@ -205,16 +205,12 @@ function App() {
   }
 
   const removeFeatLike = async (userId, featId) => {
-    console.log({
-      featId: featId,
-      userId: userId
-    })
     await DeleteFeatLike(userId, featId)
     setReRender(true)
   }
 
-  const removeCommentLike = async (commentId) => {
-    let res = await DeleteCommentLike(commentId)
+  const removeCommentLike = async (userId, commentId) => {
+    let res = await DeleteCommentLike(userId, commentId)
     console.log(res)
     setReRender(true)
   }

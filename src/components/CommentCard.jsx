@@ -2,15 +2,21 @@ import { useEffect, useState } from 'react'
 
 import { BsFillSuitHeartFill } from 'react-icons/bs'
 
-const CommentCard = ({ user, comment, setReRender }) => {
+const CommentCard = ({
+  addCommentLike,
+  comment,
+  removeCommentLike,
+  setReRender,
+  user
+}) => {
   const [comLikeActive, setComLikeActive] = useState(false)
 
-  const toggleComLikeActive = async (user, feat) => {
+  const toggleComLikeActive = async (user, comment) => {
     if (!comLikeActive) {
-      await addCommentLike(user.id, feat.id)
+      await addCommentLike(user.id, comment.id)
       setComLikeActive(comLikeActive)
     } else {
-      await removeCommentLike(user.id, feat.id)
+      await removeCommentLike(user.id, comment.id)
       let likeToggle = false
       setComLikeActive(likeToggle)
     }
@@ -38,17 +44,13 @@ const CommentCard = ({ user, comment, setReRender }) => {
         {comment.comment_likes.length > 0 ? (
           <p
             onClick={() => toggleComLikeActive(user, comment)}
-            className={() =>
-              comment.comment_likes.some((like) =>
-                like.id === user.id ? 'user-like' : undefined
-              )
-            }
+            className={comLikeActive ? 'user-like' : undefined}
           >
             <BsFillSuitHeartFill className="com-like-icon" />
             {comment.comment_likes.length}
           </p>
         ) : (
-          <p>
+          <p onClick={() => addCommentLike(user.id, comment.id)}>
             <BsFillSuitHeartFill className="com-like-icon" />
           </p>
         )}
