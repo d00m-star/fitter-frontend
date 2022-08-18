@@ -5,25 +5,25 @@ import CommentForm from '../components/CommentForm'
 import { GetFeatById } from '../services/FeatReq'
 
 const FeatDetails = ({
-  feat,
-  comments,
   commentEditing,
   commentFormValues,
-  setCommentFormValues,
-  updateComment,
-  updateComText,
-  submitCommentForm,
-  updateCommentFormValues,
+  comments,
   deleteUserComment,
   displayCreateForm,
-  formDisplay,
-  setFormDisplay,
-  editing,
-  reRender,
-  setEditing,
-  setReRender,
   displayEditCom,
-  selectedComment
+  editing,
+  feat,
+  formDisplay,
+  reRender,
+  selectedComment,
+  setCommentFormValues,
+  setEditing,
+  setFormDisplay,
+  setReRender,
+  submitCommentForm,
+  updateComment,
+  updateCommentFormValues,
+  updateComText
 }) => {
   const [singleFeat, setSingleFeat] = useState(null)
   const { featId } = useParams()
@@ -77,6 +77,7 @@ const FeatDetails = ({
                   <div className="com-card-form-container" key={comment.id}>
                     {editing && selectedComment.id === comment.id ? (
                       <CommentForm
+                        editing={editing}
                         featId={featId}
                         commentFormValues={commentFormValues}
                         commentEditing={commentEditing}
