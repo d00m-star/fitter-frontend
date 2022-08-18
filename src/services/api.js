@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-export const BASE_URL = 'http://localhost:3001/api'
+// export const BASE_URL = 'http://localhost:3001/api'
+export const BASE_URL = 'http://fitter-be.herokuapp.com/'
 
 const Client = axios.create({ baseURL: BASE_URL })
 
