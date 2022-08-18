@@ -1,17 +1,19 @@
 import Client from './api'
 
-export const PostFeatLike = async (data) => {
+export const PostFeatLike = async (userId, featId) => {
   try {
-    const response = await Client.post('/likes/feat', data)
+    const response = await Client.post(`/likes/feat/${userId}/${featId}`)
     return response.data
   } catch (e) {
     throw e
   }
 }
 
-export const DeleteFeatLike = async (data) => {
+export const DeleteFeatLike = async (userId, featId) => {
   try {
-    const response = await Client.delete('/likes/feat', data)
+    console.log(userId, featId)
+    const response = await Client.delete(`/likes/feat/${userId}/${featId}`)
+    console.log(response.data)
     return response.data
   } catch (e) {
     throw e

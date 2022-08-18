@@ -199,6 +199,8 @@ const Profile = ({
                     user={user}
                     addFeatLike={addFeatLike}
                     removeFeatLike={removeFeatLike}
+                    reRender={reRender}
+                    setReRender={setReRender}
                   />
                 )}
                 <button onClick={() => displayEditFeat(feat)}>
