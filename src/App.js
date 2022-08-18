@@ -183,11 +183,8 @@ function App() {
   }
 
   ////// post requests
-  // const updateFeatLike = async (featId) => {
-
-  // }
-  const addFeatLike = async (featId) => {
-    let res = await PostFeatLike(featId)
+  const addFeatLike = async (userId, featId) => {
+    let res = await PostFeatLike(userId, featId)
     console.log(res)
     setReRender(true)
   }
@@ -205,14 +202,18 @@ function App() {
     setReRender(true)
   }
 
-  const removeFeatLike = async (featId) => {
-    let res = await DeleteFeatLike(featId)
+  const deleteUserComment = async (commentId) => {
+    let res = await DeleteComment(commentId)
     console.log(res)
     setReRender(true)
   }
 
-  const deleteUserComment = async (commentId) => {
-    let res = await DeleteComment(commentId)
+  const removeFeatLike = async (userId, featId) => {
+    console.log({
+      featId: featId,
+      userId: userId
+    })
+    let res = await DeleteFeatLike(userId, featId)
     console.log(res)
     setReRender(true)
   }

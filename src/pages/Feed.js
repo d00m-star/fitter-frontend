@@ -1,5 +1,4 @@
-import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { GetFeats } from '../services/FeatReq'
 import FeatCard from '../components/FeatCard'
 import FeatForm from '../components/FeatForm'
@@ -103,6 +102,8 @@ const Feed = ({
                 user={user}
                 addFeatLike={addFeatLike}
                 removeFeatLike={removeFeatLike}
+                reRender={reRender}
+                setReRender={setReRender}
               />
             )}
             {user && user.id === feat.userId ? (

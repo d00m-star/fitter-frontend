@@ -195,6 +195,9 @@ label {
 }
 
 .feat-card-container {
+  display: flex;
+  flex-direction: column;
+
   width: 25%;
   height: 40%;
   margin: 1% 2%;
@@ -243,6 +246,29 @@ label {
   font-size: 2em;
 }
 
+.fc-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  margin-top: 2%;
+  width: 100%;
+}
+
+.fc-button-container span:first-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  border-right: 1px solid black;
+  width: 50%;
+}
+
+.user-like {
+  color: #c32f27;
+}
 /* .feat-card #feat-descript {
   overflow: hidden;
 } */
