@@ -43,7 +43,7 @@ const FeatForm = ({
   }, [])
 
   return (
-    <div>
+    <div id='feat-form-container'>
       <form
         onSubmit={(e) => submitFeatForm(e, selectedFeat.id)}
         className="form"
