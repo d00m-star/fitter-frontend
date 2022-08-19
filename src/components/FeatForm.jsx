@@ -130,7 +130,7 @@ const FeatForm = ({
           value={featFormValues.intensity}
           onChange={updateFeatFormValues}
         />
-        <label htmlFor="intensity">{formEmoji}</label>
+        <label htmlFor="intensity">{formEmoji.current}</label>
 
         <label htmlFor="description">Description:</label>
         <textarea
