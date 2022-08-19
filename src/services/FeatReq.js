@@ -29,15 +29,14 @@ export const GetUserFeats = async (userId) => {
 
 export const PostFeat = async (data) => {
   try {
-    // const formData = new FormData()
-    // formData.append('type', data.type)
-    // formData.append('bodyPart', data.bodyPart)
-    // formData.append('intensity', data.intensity)
-    // formData.append('description', data.description)
-    // formData.append('image', data.image)
-    // formData.append('userId', data.userId)
-    // const response = await Client.post('/feats/create', formData)
-    const response = await Client.post('/feats/create', data)
+    const formData = new FormData()
+    formData.append('type', data.type)
+    formData.append('bodyPart', data.bodyPart)
+    formData.append('intensity', data.intensity)
+    formData.append('description', data.description)
+    formData.append('image', data.image)
+    formData.append('userId', data.userId)
+    const response = await Client.post('/feats/create', formData)
     return response.data
   } catch (e) {
     throw e
