@@ -11,13 +11,11 @@
 
 ### **_Project Links_**
 
-[Trello](https://trello.com/invite/b/Tii64Mux/b676ef2972e7b8260c972527c064d530/project-3-fitter-app) | [Project-Placeholder]()
-
----
+## [Trello](https://trello.com/invite/b/Tii64Mux/b676ef2972e7b8260c972527c064d530/project-3-fitter-app) | [Fitter App](https://get-fitter.herokuapp.com/) | [Backend Repository] (https://github.com/scubastove4/Fitter-Backend)
 
 ## **_Description_**
 
-## ![Get Fit](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.99inspiration.com%2Fwp-content%2Fuploads%2F2016%2F07%2FFunny-Animated-Gifs-of-Totoro-Making-Fitness-6.gif&f=1&nofb=1)
+## ![Get Fit](https://i.gifer.com/uGR.gif)
 
 Want to show off your workout routine or simply need some inspiration? Fitter is the perfect fit 😉 for you. With Fitter you are able to post your own fitness journey, as well as see what the rest of the FitFam is up to. Users will also have the ability to like and comment on other Feats.
 
@@ -37,7 +35,11 @@ Want to show off your workout routine or simply need some inspiration? Fitter is
 
 ## **_App Overview_**
 
+Fitter is a full-stack PERN application that allows users to create an account to share posts regarding their fitness journey as well as like/unlike and comment other users posts. The user is able to return to their account at anytime to delete and modify their own post.
+
 ## **_Getting Started_**
+
+When prompted to the home page, users need to either login or sign up for an account to access the feed page. Once logged in the user is able to see posts of other users of the app as well as like/unlike and comment on their posts or create a post of their own. If the user wants to find out more info about any particular user, see all other comments regarding the post, or simply see the post in more detail they can click on any feat of their choice to be able to do that. The user is only able edit and delete their own post and not others. The user is also able to see their own account which will show all the posts they created and if need to they have the option to change their password. The user can logout and comeback to their account at anytime they chose to.
 
 ## **_Screenshots_**
 
@@ -51,10 +53,14 @@ Want to show off your workout routine or simply need some inspiration? Fitter is
 
 - Future Updates
 
-  - [ ]
+  - [ ] User to be able to edit their comment and for their initial photo to show up
 
 - Completed updates
 
-  - [x]
+  - [x] User to be able to like and unlike comments
+  - [x] User to be able to upload images
 
 ## **_Credits_**
+
+- MDN:[MDN Search](https://developer.mozilla.org/en-US/)
+- ALl of our instructors and peers
