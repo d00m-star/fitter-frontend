@@ -13,6 +13,7 @@ const FeatCard = ({
 }) => {
   const [likeActive, setLikeActive] = useState(false)
   const [commentActive, setCommentActive] = useState(false)
+  const [emoji, setEmoji] = useState('')
 
   const toggleLikeActive = async (user, feat) => {
     if (!likeActive) {
@@ -38,22 +39,49 @@ const FeatCard = ({
     activeComment && setCommentActive(activeComment)
   }
 
+  const makeEmoji = (feat) => {
+    switch (feat.intensity) {
+      case 0:
+        setEmoji('🍔')
+        break
+      case 1:
+        setEmoji('😅')
+        break
+      case 2:
+        setEmoji('😫')
+        break
+      case 3:
+        setEmoji('🥵')
+        break
+      case 4:
+        setEmoji('🤬')
+        break
+      case 5:
+        setEmoji('🤮')
+        break
+      default:
+    }
+  }
+
   useEffect(() => {
     makeLikeActive(feat)
     makeCommentActive(feat)
     setReRender(false)
+    makeEmoji(feat)
   }, [likeActive, toggleLikeActive, !feat])
 
   return (
     <div className="feat-card">
       <main className="fc-info" onClick={() => showFeat(feat)}>
-        {feat.createdAt !== feat.updatedAt && <p id="edited">(edited)</p>}
-        <h2>{feat.author.username}</h2>
+        <div className="auth-edited">
+          {feat.createdAt !== feat.updatedAt && <p id="edited">(edited)</p>}
+          <h2>{feat.author.username}</h2>
+        </div>
         <h3>{feat.likes}</h3>
         {feat.image !== '' && <img src={feat.image} alt={feat.type} />}
         <p>{feat.type}</p>
         <p>{feat.bodyPart}</p>
-        <p>{feat.intensity}</p>
+        <p>{emoji}</p>
         <p id="feat-descript">{feat.description}</p>
       </main>
       <div className="fc-button-container">

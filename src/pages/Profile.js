@@ -13,10 +13,10 @@ const Profile = ({
   displayCreateForm,
   displayEditFeat,
   editing,
-  emoji,
   featFormValues,
   feats,
   formDisplay,
+  formEmoji,
   handleImage,
   img,
   preview,
@@ -99,13 +99,20 @@ const Profile = ({
   }, [reRender, !user])
 
   return (
-    <main>
+    <main id="profile">
       {user ? (
         <section id="user-info-container">
           <div id="user-info" style={{ display: `${infoDisplay}` }}>
-            <h2>{user.username}</h2>
-            <h3>{user.email}</h3>
-            <h3>{user.location}</h3>
+            <h2 id="pr-username">{user.username}</h2>
+            <h3 id="pr-email">{user.email}</h3>
+            <h3 id="pr-location">{user.location}</h3>
+            <button
+              onClick={renderPasswordEditing}
+              className="btn"
+              id="fc-changepass-button"
+            >
+              Change Password
+            </button>
           </div>
           <form
             id="user-info-form"
@@ -151,41 +158,11 @@ const Profile = ({
               Submit
             </button>
           </form>
-          <button
-            onClick={renderPasswordEditing}
-            className="btn"
-            id="fc-changepass-button"
-          >
-            Change Password
-          </button>
         </section>
       ) : (
         <h1>Loading Profile</h1>
       )}
       <section id="user-feats">
-        <button
-          onClick={displayCreateForm}
-          disabled={active}
-          className="btn"
-          id="fc-share-button"
-        >
-          Share Feat!
-        </button>
-        <div style={{ display: `${formDisplay}` }}>
-          <FeatForm
-            displayCreateForm={displayCreateForm}
-            featFormValues={featFormValues}
-            updateFeatFormValues={updateFeatFormValues}
-            submitFeatForm={submitFeatForm}
-            emoji={emoji}
-            selectedFeat={selectedFeat}
-            handleImage={handleImage}
-            img={img}
-            preview={preview}
-            setPreview={setPreview}
-            setImg={setImg}
-          />
-        </div>
         <div>
           {userFeats ? (
             userFeats.map((feat) => (
@@ -193,9 +170,9 @@ const Profile = ({
                 {editing && selectedFeat.id === feat.id ? (
                   <FeatForm
                     editing={editing}
-                    emoji={emoji}
                     feat={feat}
                     featFormValues={featFormValues}
+                    formEmoji={formEmoji}
                     handleImage={handleImage}
                     img={img}
                     preview={preview}
@@ -210,6 +187,7 @@ const Profile = ({
                   <FeatCard
                     addFeatLike={addFeatLike}
                     feat={feat}
+                    formEmoji={formEmoji}
                     removeFeatLike={removeFeatLike}
                     reRender={reRender}
                     setReRender={setReRender}
@@ -219,15 +197,13 @@ const Profile = ({
                 )}
                 <button
                   onClick={() => displayEditFeat(feat)}
-                  className="btn"
-                  id="fc-edit-button"
+                  className="btn feat-edit-btn"
                 >
                   {updateText}
                 </button>
                 <button
                   onClick={() => deleteUserFeat(feat.id)}
-                  className="btn"
-                  id="fc-delete-button"
+                  className="btn feat-delete-btn"
                 >
                   X
                 </button>
@@ -236,6 +212,31 @@ const Profile = ({
           ) : (
             <h2>Share a Feat!</h2>
           )}
+        </div>
+      </section>
+      <section className="add-feat">
+        <button
+          onClick={displayCreateForm}
+          disabled={active}
+          className="btn"
+          id="fc-share-button"
+        >
+          Share Feat!
+        </button>
+        <div style={{ display: `${formDisplay}` }}>
+          <FeatForm
+            displayCreateForm={displayCreateForm}
+            featFormValues={featFormValues}
+            formEmoji={formEmoji}
+            updateFeatFormValues={updateFeatFormValues}
+            submitFeatForm={submitFeatForm}
+            selectedFeat={selectedFeat}
+            handleImage={handleImage}
+            img={img}
+            preview={preview}
+            setPreview={setPreview}
+            setImg={setImg}
+          />
         </div>
       </section>
     </main>
