@@ -106,7 +106,7 @@ function App() {
         })
       : setFeatFormValues({ ...featFormValues, [e.target.id]: e.target.value })
     switch (featFormValues.intensity) {
-      case 0:
+      case 0 || '':
         formEmoji.current = '🍔'
         break
       case 1:
@@ -125,6 +125,7 @@ function App() {
         formEmoji.current = '🤮'
         break
       default:
+        formEmoji.current = '🍔'
     }
   }
 

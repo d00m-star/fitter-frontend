@@ -77,7 +77,6 @@ const FeatCard = ({
           {feat.createdAt !== feat.updatedAt && <p id="edited">(edited)</p>}
           <h2>{feat.author.username}</h2>
         </div>
-        <h3>{feat.likes}</h3>
         {feat.image !== '' && <img src={feat.image} alt={feat.type} />}
         <p>{feat.type}</p>
         <p>{feat.bodyPart}</p>
