@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 
 const FeatForm = ({
-  displayEditFeat,
   featFormValues,
   formEmoji,
   displayCreateForm,
@@ -28,6 +27,7 @@ const FeatForm = ({
     }
     if (editing) {
       setFeatFormValues({
+        ...featFormValues,
         type: feat.type,
         bodyPart: feat.bodyPart,
         intensity: feat.intensity,
@@ -35,7 +35,7 @@ const FeatForm = ({
         image: feat.image
       })
     }
-  }, [featFormValues.image, !editing])
+  }, [featFormValues.image, formEmoji])
 
   return (
     <div id="feat-form-container">
@@ -137,15 +137,19 @@ const FeatForm = ({
           onChange={updateFeatFormValues}
         ></textarea>
 
-        <label htmlFor="image">Photo:</label>
-        <input
-          type="file"
-          name="image"
-          id="image"
-          accept="image/*"
-          onChange={handleImage}
-        />
-        {preview && <img src={preview} alt="preview" id="preview" />}
+        {!editing && (
+          <div>
+            <label htmlFor="image">Photo:</label>
+            <input
+              type="file"
+              name="image"
+              id="image"
+              accept="image/*"
+              onChange={handleImage}
+            />
+            {preview && <img src={preview} alt="preview" id="preview" />}
+          </div>
+        )}
         <button type="submit" className="btn">
           Post Feat
         </button>

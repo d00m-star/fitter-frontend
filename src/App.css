@@ -20,7 +20,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  text-align: center;
+  /* text-align: center; */
   height: 90vh;
   width: 100%;
 }
@@ -195,7 +195,7 @@ label {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  text-align: center;
+  /* text-align: center; */
   align-items: center;
 
   width: 80%;
@@ -338,7 +338,7 @@ label {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: space-between;
   cursor: pointer;
   border-radius: 5px;
   box-shadow: 2px 2px 10px 0px rgb(6, 6, 6) inset,
@@ -346,32 +346,44 @@ label {
   width: 100%;
   height: 90%;
   padding: 1% 1%;
+  /* z-index: 1; */
+}
+
+.feat-card,
+.feat-card h2,
+.feat-card p,
+.feat-card img {
+  background-color: transparent;
+  margin-bottom: 1%;
+}
+
+.feat-card .auth-edited,
+.feat-card p {
+  height: 1.5em;
+  width: 100%;
+  overflow: hidden;
+}
+
+.feat-card p {
+  text-align: center;
 }
 
 .auth-edited {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.feat-card,
-.feat-card h2,
-.feat-card h3,
-.feat-card p,
-.feat-card img {
-  background-color: transparent;
-}
-
-.feat-card h2,
-.feat-card h3,
-.feat-card p {
-  width: 100%;
-  height: 8%;
-  text-align: center;
+#edited {
+  width: 20%;
+  margin: 0 5% 0 0;
 }
 
 .feat-card img {
-  width: 30%;
-  height: 50%;
+  width: 30;
+  height: 30%;
+  /* text-align: center; */
+  align-self: center;
 }
 
 .feat-card:hover {
@@ -384,9 +396,17 @@ label {
   font-size: 2em;
 }
 
-.edit-user {
-  display: flex;
-  justify-content: flex-start;
+.fc-info {
+  margin-top: 5%;
+  width: 95%;
+  height: 80%;
+}
+
+.fc-info > p {
+  /* padding: 0px 33px 0px 33px; */
+  font-size: 15px;
+  margin: 1%;
+  background-color: #c32f2781;
 }
 
 .fc-button-container {
@@ -395,7 +415,10 @@ label {
   justify-content: space-around;
   align-items: center;
 
+  justify-self: flex-end;
+
   margin-top: 2%;
+  height: 10%;
   width: 95%;
 }
 
@@ -407,22 +430,13 @@ label {
   width: 100%;
 }
 
+.fc-button-container span p {
+  width: 50%;
+  margin: 0 0 2% 0;
+}
+
 .fc-button-container span p:first-child {
   border-right: 1px solid black;
-  width: 50%;
-  margin-right: 2%;
-}
-
-.fc-info {
-  width: 95%;
-  height: 60%;
-}
-
-.fc-info > p {
-  /* padding: 0px 33px 0px 33px; */
-  font-size: 15px;
-  margin: 1%;
-  background-color: #c32f2781;
 }
 
 .user-name {
@@ -598,7 +612,7 @@ label {
   background-color: #161616;
   border: 3px solid white;
   border-radius: 5px;
-  z-index: 9;
+  /* z-index: 9; */
 }
 
 .form {
@@ -629,7 +643,7 @@ textarea {
 }
 
 #preview {
-  width: 230px;
-  height: 200px;
+  width: 20%;
+  height: 30%;
 }
 /*////////// form styling above //////////////////////*/
