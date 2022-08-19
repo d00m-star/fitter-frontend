@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 
 import NavBar from './components/NavBar'
@@ -56,9 +56,9 @@ function App() {
   /////// text due to toggle state
   const [upOrIn, setUpOrIn] = useState('Login')
   const [formDisplay, setFormDisplay] = useState('none')
-  const [emoji, setEmoji] = useState('')
   const [updateText, setUpdateText] = useState('Edit Feat')
   const [updateComText, setUpdateComText] = useState('Edit Comment')
+  const formEmoji = useRef('')
 
   ////// display forms
   const displayCreateForm = () => {
@@ -107,22 +107,22 @@ function App() {
       : setFeatFormValues({ ...featFormValues, [e.target.id]: e.target.value })
     switch (featFormValues.intensity) {
       case 0:
-        setEmoji('a')
+        formEmoji.current = '🍔'
         break
       case 1:
-        setEmoji('b')
+        formEmoji.current = '😅'
         break
       case 2:
-        setEmoji('c')
+        formEmoji.current = '😫'
         break
       case 3:
-        setEmoji('d')
+        formEmoji.current = '🥵'
         break
       case 4:
-        setEmoji('e')
+        formEmoji.current = '🤬'
         break
       case 5:
-        setEmoji('f')
+        formEmoji.current = '🤮'
         break
       default:
     }
@@ -266,7 +266,7 @@ function App() {
                 displayCreateForm={displayCreateForm}
                 displayEditFeat={displayEditFeat}
                 deleteUserFeat={deleteUserFeat}
-                emoji={emoji}
+                formEmoji={formEmoji}
                 editing={editing}
                 feats={feats}
                 featFormValues={featFormValues}
@@ -301,7 +301,7 @@ function App() {
                 deleteUserFeat={deleteUserFeat}
                 displayEditFeat={displayEditFeat}
                 displayCreateForm={displayCreateForm}
-                emoji={emoji}
+                formEmoji={formEmoji}
                 editing={editing}
                 feats={feats}
                 featFormValues={featFormValues}
@@ -337,7 +337,7 @@ function App() {
                 deleteUserComment={deleteUserComment}
                 displayCreateForm={displayCreateForm}
                 displayEditCom={displayEditCom}
-                emoji={emoji}
+                formEmoji={formEmoji}
                 editing={editing}
                 feats={feats}
                 featFormValues={featFormValues}

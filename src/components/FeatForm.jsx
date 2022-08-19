@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 const FeatForm = ({
   featFormValues,
-  emoji,
+  formEmoji,
   displayCreateForm,
   updateFeatFormValues,
   submitFeatForm,
@@ -16,6 +16,7 @@ const FeatForm = ({
   setPreview,
   handleImage
 }) => {
+  const [emoji, setEmoji] = useState('')
   // to show a preview whenever we have an img stored
   useEffect(() => {
     const reader = new FileReader()
@@ -43,7 +44,7 @@ const FeatForm = ({
   }, [])
 
   return (
-    <div id='feat-form-container'>
+    <div id="feat-form-container">
       <form
         onSubmit={(e) => submitFeatForm(e, selectedFeat.id)}
         className="form"
@@ -129,7 +130,7 @@ const FeatForm = ({
           value={featFormValues.intensity}
           onChange={updateFeatFormValues}
         />
-        <label htmlFor="intensity">{emoji}</label>
+        <label htmlFor="intensity">{formEmoji}</label>
 
         <label htmlFor="description">Description:</label>
         <textarea

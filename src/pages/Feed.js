@@ -10,10 +10,10 @@ const Feed = ({
   displayCreateForm,
   displayEditFeat,
   editing,
-  emoji,
   featFormValues,
   feats,
   formDisplay,
+  formEmoji,
   handleImage,
   img,
   preview,
@@ -64,7 +64,7 @@ const Feed = ({
       <div style={{ display: `${formDisplay}`, justifyContent: 'center' }}>
         <FeatForm
           featFormValues={featFormValues}
-          emoji={emoji}
+          formEmoji={formEmoji}
           displayCreateForm={displayCreateForm}
           updateFeatFormValues={updateFeatFormValues}
           submitFeatForm={submitFeatForm}
@@ -82,9 +82,9 @@ const Feed = ({
             {editing && selectedFeat.id === feat.id ? (
               <FeatForm
                 editing={editing}
-                emoji={emoji}
                 feat={feat}
                 featFormValues={featFormValues}
+                formEmoji={formEmoji}
                 handleImage={handleImage}
                 img={img}
                 preview={preview}
@@ -99,6 +99,7 @@ const Feed = ({
               <FeatCard
                 addFeatLike={addFeatLike}
                 feat={feat}
+                formEmoji={formEmoji}
                 removeFeatLike={removeFeatLike}
                 reRender={reRender}
                 setReRender={setReRender}
@@ -110,8 +111,7 @@ const Feed = ({
               {user && user.id === feat.userId ? (
                 <button
                   onClick={() => displayEditFeat(feat)}
-                  className="btn"
-                  id="feat-edit-btn"
+                  className="btn feat-edit-btn"
                 >
                   {updateText}
                 </button>
@@ -119,8 +119,7 @@ const Feed = ({
               {user && user.id === feat.userId ? (
                 <button
                   onClick={() => deleteUserFeat(feat.id)}
-                  className="btn"
-                  id="feat-delete-btn"
+                  className="btn feat-delete-btn"
                 >
                   X
                 </button>
