@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 const FeatForm = ({
+  displayEditFeat,
   featFormValues,
   formEmoji,
   displayCreateForm,
@@ -10,28 +11,21 @@ const FeatForm = ({
   editing,
   setFeatFormValues,
   selectedFeat,
-  img,
-  setImg,
   preview,
   setPreview,
   handleImage
 }) => {
-  const [emoji, setEmoji] = useState('')
   // to show a preview whenever we have an img stored
   useEffect(() => {
     const reader = new FileReader()
-    if (img) {
+    if (featFormValues.image) {
       reader.onloadend = () => {
         setPreview(reader.result)
       }
-      reader.readAsDataURL(img)
+      reader.readAsDataURL(featFormValues.image)
     } else {
       setPreview('')
     }
-    console.log(reader)
-  }, [img])
-
-  useEffect(() => {
     if (editing) {
       setFeatFormValues({
         type: feat.type,
@@ -41,7 +35,7 @@ const FeatForm = ({
         image: feat.image
       })
     }
-  }, [])
+  }, [featFormValues.image, !editing])
 
   return (
     <div id="feat-form-container">
@@ -151,7 +145,7 @@ const FeatForm = ({
           accept="image/*"
           onChange={handleImage}
         />
-        <img src={preview} alt="preview" id="preview" />
+        {preview && <img src={preview} alt="preview" id="preview" />}
         <button type="submit" className="btn">
           Post Feat
         </button>

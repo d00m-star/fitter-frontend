@@ -169,6 +169,7 @@ const Profile = ({
               <div key={feat.id}>
                 {editing && selectedFeat.id === feat.id ? (
                   <FeatForm
+                    displayEditFeat={displayEditFeat}
                     editing={editing}
                     feat={feat}
                     featFormValues={featFormValues}
@@ -226,6 +227,7 @@ const Profile = ({
         <div style={{ display: `${formDisplay}` }}>
           <FeatForm
             displayCreateForm={displayCreateForm}
+            displayEditFeat={displayEditFeat}
             featFormValues={featFormValues}
             formEmoji={formEmoji}
             updateFeatFormValues={updateFeatFormValues}
