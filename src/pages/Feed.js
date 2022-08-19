@@ -63,17 +63,16 @@ const Feed = ({
       </button>
       <div style={{ display: `${formDisplay}`, justifyContent: 'center' }}>
         <FeatForm
+          displayCreateForm={displayCreateForm}
+          displayEditFeat={displayEditFeat}
           featFormValues={featFormValues}
           formEmoji={formEmoji}
-          displayCreateForm={displayCreateForm}
           updateFeatFormValues={updateFeatFormValues}
           submitFeatForm={submitFeatForm}
           selectedFeat={selectedFeat}
           handleImage={handleImage}
-          img={img}
           preview={preview}
           setPreview={setPreview}
-          setImg={setImg}
         />
       </div>
       <div className="feat-grid">
@@ -81,6 +80,7 @@ const Feed = ({
           <div className="feat-card-container" id={feat.value} key={feat.id}>
             {editing && selectedFeat.id === feat.id ? (
               <FeatForm
+                displayEditFeat={displayEditFeat}
                 editing={editing}
                 feat={feat}
                 featFormValues={featFormValues}
